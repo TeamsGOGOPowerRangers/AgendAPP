@@ -137,11 +137,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
+    <Compile Include="Controllers\FichaPacienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MantenedoresController.cs" />
+    <Compile Include="Controllers\PacientesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Agenda_Model.cs" />
+    <Compile Include="Models\Ficha_Paciente_Model.cs" />
+    <Compile Include="Models\Mantenedor_Model.cs" />
     <Compile Include="Models\MPS_AJUSTE_DISPONIBILIDAD.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
@@ -181,13 +186,25 @@
     <Compile Include="Models\MPS_DIAS_SEMANA.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MPS_ETIQUETAS.cs">
+      <DependentUpon>MPS_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MPS_EVENTO_CLINICO.cs">
+      <DependentUpon>MPS_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MPS_FICHA.cs">
+      <DependentUpon>MPS_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MPS_FICHA_CLINICA.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MPS_HORARIO_PROFESIONAL.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MPS_MODO_LLEGADA.cs">
+      <DependentUpon>MPS_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MPS_OCUPACIONES.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MPS_ORGANIZACION.cs">
@@ -199,6 +216,9 @@
     <Compile Include="Models\MPS_PRESTACION_PROFESIONALES.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MPS_PREVISION.cs">
+      <DependentUpon>MPS_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MPS_REGION.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
@@ -208,13 +228,19 @@
     <Compile Include="Models\MSP_PRESTACION.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pacientes_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActionJs\Agenda\Ajuste_Disponibilidad.js" />
     <Content Include="ActionJs\Agenda\Disponibilidad_Profesional.js" />
+    <Content Include="ActionJs\FichaPaciente\FichaPaciente.js" />
     <Content Include="ActionJs\Globales\Global.js" />
     <Content Include="ActionJs\Layout\ColoresTemplate.js" />
+    <Content Include="ActionJs\Mantenedores\Etiqueta.js" />
+    <Content Include="ActionJs\Mantenedores\Ocupaciones.js" />
+    <Content Include="ActionJs\Mantenedores\Prevision.js" />
+    <Content Include="ActionJs\Paciente\Paciente.js" />
     <Content Include="Assets\plugins\noty\lib\bounce.min.js" />
     <Content Include="Assets\plugins\noty\lib\build\mo.js" />
     <Content Include="Assets\plugins\noty\lib\build\mo.min.js" />
@@ -2251,7 +2277,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -2267,6 +2295,22 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Agenda\AjusteDisponibilidad.cshtml" />
     <Content Include="Views\Agenda\HorarioProfesional.cshtml" />
+    <Content Include="Views\Mantenedores\AdministraciondeUsuarios.cshtml" />
+    <Content Include="Views\Mantenedores\Almacenes.cshtml" />
+    <Content Include="Views\Mantenedores\ArtFamilias.cshtml" />
+    <Content Include="Views\Mantenedores\Articulos.cshtml" />
+    <Content Include="Views\Mantenedores\ArtSecciones.cshtml" />
+    <Content Include="Views\Mantenedores\Convenios.cshtml" />
+    <Content Include="Views\Mantenedores\Empresa.cshtml" />
+    <Content Include="Views\Mantenedores\Etiquetas.cshtml" />
+    <Content Include="Views\Mantenedores\ModosLlegada.cshtml" />
+    <Content Include="Views\Mantenedores\Ocupaciones.cshtml" />
+    <Content Include="Views\Mantenedores\Prestaciones.cshtml" />
+    <Content Include="Views\Mantenedores\Previsiones.cshtml" />
+    <Content Include="Views\Mantenedores\Recursos.cshtml" />
+    <Content Include="Views\Mantenedores\TelefonosEmpresa.cshtml" />
+    <Content Include="Views\FichaPaciente\FichaPaciente.cshtml" />
+    <Content Include="Views\Pacientes\Pacientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
