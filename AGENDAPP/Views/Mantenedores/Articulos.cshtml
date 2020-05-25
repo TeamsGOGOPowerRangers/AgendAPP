@@ -1,0 +1,259 @@
+﻿
+@{
+    ViewBag.Title = "Articulos";
+}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header mt-0">Administración de Artículos</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Artículos Registrados
+                    </div>
+                    <div class="panel-body">
+						<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+							<div class="toolbar" style="float: left;">
+								<div class="btn-group bootstrap-select">
+									<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboSeccion" title="Todos">
+										<span class="filter-option pull-left">Todos</span>&nbsp;
+										<span class="bs-caret">
+											<span class="caret"></span>
+										</span>
+									</button>
+									<div class="dropdown-menu open">
+										<ul class="dropdown-menu inner" role="menu">
+											<li data-original-index="1" class="selected">
+												<a tabindex="0" class="" style="" data-tokens="null">
+													<span class="text">Todos</span>
+													<span class="glyphicon glyphicon-ok check-mark"></span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<select id="cboSeccion" data-aditional-parameter="ArtSeccionId" data-aditional-type="int" title="Sección..." class="" tabindex="-98">
+										<option class="bs-title-option" value="">Sección...</option>
+										<option value="0">Todos</option>
+									</select>
+								</div>&nbsp;
+								<div class="btn-group bootstrap-select">
+									<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboFamilia" title="Todos">
+										<span class="filter-option pull-left">Todos</span>&nbsp;
+										<span class="bs-caret">
+											<span class="caret"></span>
+										</span>
+									</button>
+									<div class="dropdown-menu open">
+										<ul class="dropdown-menu inner" role="menu">
+											<li data-original-index="1" class="selected">
+												<a tabindex="0" class="" style="" data-tokens="null">
+													<span class="text">Todos</span>
+													<span class="glyphicon glyphicon-ok check-mark"></span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<select id="cboFamilia" data-aditional-parameter="ArtFamiliaId" data-aditional-type="int" title="Familia..." class="" tabindex="-98">
+										<option class="bs-title-option" value="">Familia...</option>
+										<option value="0">Todos</option>
+									</select>
+								</div>&nbsp;
+								<button id="btnNueva" class="btn btn-primary ml-3 mr-5" data-toggle="tooltip" data-placement="right" title="" onclick="Crear();" data-original-title="Crear nuevo registro">Crear</button>
+							</div>
+							<div id="tblData_filter" class="dataTables_filter">
+								<label>
+									Buscar:
+									<input type="search" class="form-control input-sm ml-3" placeholder="" aria-controls="tblData">
+								</label>
+							</div>
+							<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+							<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+								<thead>
+									<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: Activar para ordenar la columna de manera descendente" style="width: 49px;">Código</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Nombre: Activar para ordenar la columna de manera ascendente" style="width: 53px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Sección: Activar para ordenar la columna de manera ascendente" style="width: 54px;">Sección</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Familia: Activar para ordenar la columna de manera ascendente" style="width: 49px;">Familia</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Costo: Activar para ordenar la columna de manera ascendente" style="width: 40px;">Costo</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Margen: Activar para ordenar la columna de manera ascendente" style="width: 50px;">Margen</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Precio Venta: Activar para ordenar la columna de manera ascendente" style="width: 81px;">Precio Venta</th></tr>
+								</thead>
+								<tbody><tr class="odd"><td valign="top" colspan="12" class="dataTables_empty">Ningún dato disponible en esta tabla</td></tr></tbody>
+							</table><div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div><div class="dataTables_paginate paging_full_numbers" id="tblData_paginate"><ul class="pagination"><li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first"><a href="#">Primero</a></li><li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous"><a href="#">Anterior</a></li><li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next"><a href="#">Siguiente</a></li><li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last"><a href="#">Último</a></li></ul></div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#region Modal Crear -->
+        <div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-plus-sign"></span> Crear Artículo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal interline5 sub">
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboSeccion">Sección:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboSeccion" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboSeccion" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div><input id="hdnSeccion" class="hidden" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboFamilia">Familia:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboFamilia" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboFamilia" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div><input id="hdnFamilia" class="hidden" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="txtCodigo">Código:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="txtCodigo" maxlength="50" value="" placeholder="00000001" autocomplete="off" name="code" required="">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="txtNombre" value="" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtCosto">Costo:</label>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon3">$</span>
+                                        <input type="number" max="999999999" min="0" step="0.01" class="form-control" id="txtCosto" aria-describedby="basic-addon3" value="" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtMargen">Margen:</label>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="input-group">
+                                        <input type="number" max="1000" min="0" step="0.01" class="form-control" id="txtMargen" aria-describedby="basic-addon3" value="" required="">
+                                        <span class="input-group-addon" id="basic-addon3">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPrecio">Precio Venta:</label>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon3">$</span>
+                                        <input type="number" max="999999999" min="0" step="0.01" class="form-control" id="txtPrecio" aria-describedby="basic-addon3" value="" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboImpuesto">Impuesto:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboImpuesto" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboImpuesto" data-width="fit" title="Seleccione..." required="" tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#endregion -->
+        <!--#region Modal Editar -->
+        <div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-pencil"></span> Editar Artículo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal interline5 sub">
+                            <input type="hidden" value="" id="id">
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboSeccion">Sección:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboSeccion" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboSeccion" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div><input id="hdnSeccion" class="hidden" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboFamilia">Familia:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboFamilia" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboFamilia" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div><input id="hdnFamilia" class="hidden" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="txtCodigo">Código:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="txtCodigo" maxlength="50" value="" placeholder="00000001" autocomplete="off" name="code" required="">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="txtNombre" value="" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtCosto">Costo:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon3">$</span>
+                                        <input type="number" max="999999999" min="0" step="0.01" class="form-control" id="txtCosto" aria-describedby="basic-addon3" value="" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtMargen">Margen:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="input-group">
+                                        <input type="number" max="100" min="0" step="0.01" class="form-control" id="txtMargen" aria-describedby="basic-addon3" value="" required="">
+                                        <span class="input-group-addon" id="basic-addon3">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPrecio">Precio Venta:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon3">$</span>
+                                        <input type="number" max="999999999" min="0" step="0.01" class="form-control" id="txtPrecio" aria-describedby="basic-addon3" value="" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboImpuesto">Impuesto:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboImpuesto" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboImpuesto" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div><input id="hdnImpuesto" class="hidden" required="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--#endregion -->
+        <script src="/js/admin_articulos?v=R3a6v9_gHREyM68sCnqgHt0qVM3rdAkFUQaTdrpjoYI1"></script>
+
+        <!-- /.row -->
+    </div>
