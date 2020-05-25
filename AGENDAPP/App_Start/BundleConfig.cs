@@ -28,14 +28,18 @@ namespace AGENDAPP
                        "~/Assets/plugins/global/plugins.bundle.css",
                        "~/Assets/CssTemplate/Layout/style.bundle.css",
                        "~/CssPages/Layout/ColoresTemplate.css",
+                       "~/CssPages/Colores/Colorcss.css",
+                       "~/CssPages/Tabla/Tablascss.css",
                        "~/Assets/js/pages/dashboard.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/JsPlugins").Include(
                         "~/Assets/plugins/moment/moment.js",
                         "~/Assets/plugins/moment/min/moment-with-locales.min.js",
+                        "~/Assets/plugins/DataTables/datatables.js",
                         "~/Assets/plugins/Timepicker/js/bootstrap-material-datetimepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/CssPlugins").Include(
+                       "~/Assets/plugins/DataTables/datatables.css",
                        "~/Assets/plugins/Timepicker/css/bootstrap-material-datetimepicker.css"));
 
 
