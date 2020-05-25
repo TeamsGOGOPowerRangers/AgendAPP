@@ -81,6 +81,26 @@
           <Property Name="ID_DIA_SEMANA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DIA_SEMANA" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="MPS_ETIQUETAS">
+          <Key>
+            <PropertyRef Name="ID_ETIQUETA" />
+          </Key>
+          <Property Name="ID_ETIQUETA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_COLORR" Type="varchar" MaxLength="50" />
+          <Property Name="COLOR" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_EDICION" Type="date" />
+          <Property Name="ESTADO" Type="int" />
+        </EntityType>
+        <EntityType Name="MPS_EVENTO_CLINICO">
+          <Key>
+            <PropertyRef Name="ID_EVENTO" />
+          </Key>
+          <Property Name="ID_EVENTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENTO" Type="varchar(max)" />
+          <Property Name="ESTADO" Type="bit" />
+          <Property Name="COD_PACIENTE" Type="bigint" />
+        </EntityType>
         <EntityType Name="MPS_FICHA">
           <Key>
             <PropertyRef Name="ID_FICHA" />
@@ -109,6 +129,27 @@
           <Property Name="ALERTA_EN_FICHA" Type="varchar" MaxLength="500" />
           <Property Name="ALERTA_EN_TOMA_HORA" Type="varchar" MaxLength="500" />
           <Property Name="COD_ORGANIZACION" Type="int" />
+          <Property Name="SEXO" Type="int" />
+          <Property Name="COD_ETIQUETA" Type="int" />
+        </EntityType>
+        <EntityType Name="MPS_FICHA_CLINICA">
+          <Key>
+            <PropertyRef Name="ID_FICHA_MEDICA" />
+          </Key>
+          <Property Name="ID_FICHA_MEDICA" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MOTIVO_CONSULTA" Type="varchar(max)" />
+          <Property Name="ANAMNESIS" Type="varchar(max)" />
+          <Property Name="EVALUACION" Type="varchar(max)" />
+          <Property Name="DIAGNOSTICO" Type="varchar(max)" />
+          <Property Name="PATOLOGIA_GES" Type="varchar(max)" />
+          <Property Name="EXAMENES" Type="varchar(max)" />
+          <Property Name="SEGUIMIENTO" Type="varchar(max)" />
+          <Property Name="TRATAMIENTO" Type="varchar(max)" />
+          <Property Name="INDICACIONES" Type="varchar(max)" />
+          <Property Name="COD_PACIENTE" Type="bigint" />
+          <Property Name="COD_EVENTO" Type="bigint" />
+          <Property Name="FECHA_CREACION" Type="datetime" />
+          <Property Name="COD_ESPECIALISTA" Type="bigint" />
         </EntityType>
         <EntityType Name="MPS_HORARIO_PROFESIONAL">
           <Key>
@@ -132,6 +173,17 @@
           <Property Name="ID_MODO_LLEGADA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_MODO_LLEGADA" Type="varchar" MaxLength="50" />
           <Property Name="ESTADO" Type="bit" />
+        </EntityType>
+        <EntityType Name="MPS_OCUPACIONES">
+          <Key>
+            <PropertyRef Name="ID_OCUPACION" />
+          </Key>
+          <Property Name="ID_OCUPACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_OCUPACION" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_EDICION" Type="date" />
+          <Property Name="ESTADO" Type="int" />
         </EntityType>
         <EntityType Name="MPS_ORGANIZACION">
           <Key>
@@ -162,15 +214,18 @@
           <Property Name="PORCENTAJE" Type="decimal" Precision="10" Scale="2" />
           <Property Name="VIGENCIA" Type="date" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="MPS_PREVISION">
-          <Property Name="ID_PREVISION" Type="int" />
+          <Key>
+            <PropertyRef Name="ID_PREVISION" />
+          </Key>
+          <Property Name="ID_PREVISION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_PREVISION" Type="varchar" MaxLength="100" />
-          <Property Name="ESTADO" Type="bit" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_EDICION" Type="nchar" MaxLength="10" />
           <Property Name="ORDEN" Type="int" />
-        </EntityType>-->
+          <Property Name="ESTADO" Type="int" />
+        </EntityType>
         <EntityType Name="MPS_REGION">
           <Key>
             <PropertyRef Name="ID_REGION" />
@@ -210,12 +265,17 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
           <EntitySet Name="MPS_DETALLE_DIAS_ATENCION" EntityType="Self.MPS_DETALLE_DIAS_ATENCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_DETALLE_HORARIO_PROFESIONAL" EntityType="Self.MPS_DETALLE_HORARIO_PROFESIONAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_DIAS_SEMANA" EntityType="Self.MPS_DIAS_SEMANA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_ETIQUETAS" EntityType="Self.MPS_ETIQUETAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_EVENTO_CLINICO" EntityType="Self.MPS_EVENTO_CLINICO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_FICHA" EntityType="Self.MPS_FICHA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_FICHA_CLINICA" EntityType="Self.MPS_FICHA_CLINICA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_HORARIO_PROFESIONAL" EntityType="Self.MPS_HORARIO_PROFESIONAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_MODO_LLEGADA" EntityType="Self.MPS_MODO_LLEGADA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_OCUPACIONES" EntityType="Self.MPS_OCUPACIONES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_ORGANIZACION" EntityType="Self.MPS_ORGANIZACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_PRESTACION_PREVISION" EntityType="Self.MPS_PRESTACION_PREVISION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_PRESTACION_PROFESIONALES" EntityType="Self.MPS_PRESTACION_PROFESIONALES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_PREVISION" EntityType="Self.MPS_PREVISION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_REGION" EntityType="Self.MPS_REGION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_TIPO_ORGANIZACION" EntityType="Self.MPS_TIPO_ORGANIZACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MSP_PRESTACION" EntityType="Self.MSP_PRESTACION" Schema="dbo" store:Type="Tables" />
@@ -233,12 +293,17 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
           <EntitySet Name="MPS_DETALLE_DIAS_ATENCION" EntityType="MPSModel.MPS_DETALLE_DIAS_ATENCION" />
           <EntitySet Name="MPS_DETALLE_HORARIO_PROFESIONAL" EntityType="MPSModel.MPS_DETALLE_HORARIO_PROFESIONAL" />
           <EntitySet Name="MPS_DIAS_SEMANA" EntityType="MPSModel.MPS_DIAS_SEMANA" />
+          <EntitySet Name="MPS_ETIQUETAS" EntityType="MPSModel.MPS_ETIQUETAS" />
+          <EntitySet Name="MPS_EVENTO_CLINICO" EntityType="MPSModel.MPS_EVENTO_CLINICO" />
           <EntitySet Name="MPS_FICHA" EntityType="MPSModel.MPS_FICHA" />
+          <EntitySet Name="MPS_FICHA_CLINICA" EntityType="MPSModel.MPS_FICHA_CLINICA" />
           <EntitySet Name="MPS_HORARIO_PROFESIONAL" EntityType="MPSModel.MPS_HORARIO_PROFESIONAL" />
           <EntitySet Name="MPS_MODO_LLEGADA" EntityType="MPSModel.MPS_MODO_LLEGADA" />
+          <EntitySet Name="MPS_OCUPACIONES" EntityType="MPSModel.MPS_OCUPACIONES" />
           <EntitySet Name="MPS_ORGANIZACION" EntityType="MPSModel.MPS_ORGANIZACION" />
           <EntitySet Name="MPS_PRESTACION_PREVISION" EntityType="MPSModel.MPS_PRESTACION_PREVISION" />
           <EntitySet Name="MPS_PRESTACION_PROFESIONALES" EntityType="MPSModel.MPS_PRESTACION_PROFESIONALES" />
+          <EntitySet Name="MPS_PREVISION" EntityType="MPSModel.MPS_PREVISION" />
           <EntitySet Name="MPS_REGION" EntityType="MPSModel.MPS_REGION" />
           <EntitySet Name="MPS_TIPO_ORGANIZACION" EntityType="MPSModel.MPS_TIPO_ORGANIZACION" />
           <EntitySet Name="MSP_PRESTACION" EntityType="MPSModel.MSP_PRESTACION" />
@@ -319,6 +384,26 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
           <Property Name="ID_DIA_SEMANA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DIA_SEMANA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="MPS_ETIQUETAS">
+          <Key>
+            <PropertyRef Name="ID_ETIQUETA" />
+          </Key>
+          <Property Name="ID_ETIQUETA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_COLORR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COLOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_EDICION" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MPS_EVENTO_CLINICO">
+          <Key>
+            <PropertyRef Name="ID_EVENTO" />
+          </Key>
+          <Property Name="ID_EVENTO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Boolean" />
+          <Property Name="COD_PACIENTE" Type="Int64" />
+        </EntityType>
         <EntityType Name="MPS_FICHA">
           <Key>
             <PropertyRef Name="ID_FICHA" />
@@ -347,6 +432,27 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
           <Property Name="ALERTA_EN_FICHA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="ALERTA_EN_TOMA_HORA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="COD_ORGANIZACION" Type="Int32" />
+          <Property Name="SEXO" Type="Int32" />
+          <Property Name="COD_ETIQUETA" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MPS_FICHA_CLINICA">
+          <Key>
+            <PropertyRef Name="ID_FICHA_MEDICA" />
+          </Key>
+          <Property Name="ID_FICHA_MEDICA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MOTIVO_CONSULTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ANAMNESIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EVALUACION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DIAGNOSTICO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PATOLOGIA_GES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EXAMENES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SEGUIMIENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TRATAMIENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="INDICACIONES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="COD_PACIENTE" Type="Int64" />
+          <Property Name="COD_EVENTO" Type="Int64" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+          <Property Name="COD_ESPECIALISTA" Type="Int64" />
         </EntityType>
         <EntityType Name="MPS_HORARIO_PROFESIONAL">
           <Key>
@@ -370,6 +476,17 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
           <Property Name="ID_MODO_LLEGADA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_MODO_LLEGADA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MPS_OCUPACIONES">
+          <Key>
+            <PropertyRef Name="ID_OCUPACION" />
+          </Key>
+          <Property Name="ID_OCUPACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_OCUPACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_EDICION" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO" Type="Int32" />
         </EntityType>
         <EntityType Name="MPS_ORGANIZACION">
           <Key>
@@ -399,6 +516,18 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
           <Property Name="CANTIDAD_FIJA_HONORARIO" Type="Int32" />
           <Property Name="PORCENTAJE" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="VIGENCIA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="MPS_PREVISION">
+          <Key>
+            <PropertyRef Name="ID_PREVISION" />
+          </Key>
+          <Property Name="ID_PREVISION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_PREVISION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_EDICION" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ORDEN" Type="Int32" />
+          <Property Name="ESTADO" Type="Int32" />
         </EntityType>
         <EntityType Name="MPS_REGION">
           <Key>
@@ -520,9 +649,33 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MPS_ETIQUETAS">
+            <EntityTypeMapping TypeName="MPSModel.MPS_ETIQUETAS">
+              <MappingFragment StoreEntitySet="MPS_ETIQUETAS">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="NOMBRE_COLORR" ColumnName="NOMBRE_COLORR" />
+                <ScalarProperty Name="ID_ETIQUETA" ColumnName="ID_ETIQUETA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPS_EVENTO_CLINICO">
+            <EntityTypeMapping TypeName="MPSModel.MPS_EVENTO_CLINICO">
+              <MappingFragment StoreEntitySet="MPS_EVENTO_CLINICO">
+                <ScalarProperty Name="COD_PACIENTE" ColumnName="COD_PACIENTE" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="EVENTO" ColumnName="EVENTO" />
+                <ScalarProperty Name="ID_EVENTO" ColumnName="ID_EVENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MPS_FICHA">
             <EntityTypeMapping TypeName="MPSModel.MPS_FICHA">
               <MappingFragment StoreEntitySet="MPS_FICHA">
+                <ScalarProperty Name="COD_ETIQUETA" ColumnName="COD_ETIQUETA" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
                 <ScalarProperty Name="COD_ORGANIZACION" ColumnName="COD_ORGANIZACION" />
                 <ScalarProperty Name="ALERTA_EN_TOMA_HORA" ColumnName="ALERTA_EN_TOMA_HORA" />
                 <ScalarProperty Name="ALERTA_EN_FICHA" ColumnName="ALERTA_EN_FICHA" />
@@ -550,6 +703,26 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MPS_FICHA_CLINICA">
+            <EntityTypeMapping TypeName="MPSModel.MPS_FICHA_CLINICA">
+              <MappingFragment StoreEntitySet="MPS_FICHA_CLINICA">
+                <ScalarProperty Name="COD_ESPECIALISTA" ColumnName="COD_ESPECIALISTA" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="COD_EVENTO" ColumnName="COD_EVENTO" />
+                <ScalarProperty Name="COD_PACIENTE" ColumnName="COD_PACIENTE" />
+                <ScalarProperty Name="INDICACIONES" ColumnName="INDICACIONES" />
+                <ScalarProperty Name="TRATAMIENTO" ColumnName="TRATAMIENTO" />
+                <ScalarProperty Name="SEGUIMIENTO" ColumnName="SEGUIMIENTO" />
+                <ScalarProperty Name="EXAMENES" ColumnName="EXAMENES" />
+                <ScalarProperty Name="PATOLOGIA_GES" ColumnName="PATOLOGIA_GES" />
+                <ScalarProperty Name="DIAGNOSTICO" ColumnName="DIAGNOSTICO" />
+                <ScalarProperty Name="EVALUACION" ColumnName="EVALUACION" />
+                <ScalarProperty Name="ANAMNESIS" ColumnName="ANAMNESIS" />
+                <ScalarProperty Name="MOTIVO_CONSULTA" ColumnName="MOTIVO_CONSULTA" />
+                <ScalarProperty Name="ID_FICHA_MEDICA" ColumnName="ID_FICHA_MEDICA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MPS_HORARIO_PROFESIONAL">
             <EntityTypeMapping TypeName="MPSModel.MPS_HORARIO_PROFESIONAL">
               <MappingFragment StoreEntitySet="MPS_HORARIO_PROFESIONAL">
@@ -572,6 +745,18 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="NOMBRE_MODO_LLEGADA" ColumnName="NOMBRE_MODO_LLEGADA" />
                 <ScalarProperty Name="ID_MODO_LLEGADA" ColumnName="ID_MODO_LLEGADA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPS_OCUPACIONES">
+            <EntityTypeMapping TypeName="MPSModel.MPS_OCUPACIONES">
+              <MappingFragment StoreEntitySet="MPS_OCUPACIONES">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE_OCUPACION" ColumnName="NOMBRE_OCUPACION" />
+                <ScalarProperty Name="ID_OCUPACION" ColumnName="ID_OCUPACION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -604,6 +789,19 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_PREVISION' no tiene definida una
                 <ScalarProperty Name="COD_PROFESIONAL" ColumnName="COD_PROFESIONAL" />
                 <ScalarProperty Name="COD_PRESTACION" ColumnName="COD_PRESTACION" />
                 <ScalarProperty Name="ID_PRESTACION_PROFESIONAL" ColumnName="ID_PRESTACION_PROFESIONAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPS_PREVISION">
+            <EntityTypeMapping TypeName="MPSModel.MPS_PREVISION">
+              <MappingFragment StoreEntitySet="MPS_PREVISION">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="ORDEN" ColumnName="ORDEN" />
+                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE_PREVISION" ColumnName="NOMBRE_PREVISION" />
+                <ScalarProperty Name="ID_PREVISION" ColumnName="ID_PREVISION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

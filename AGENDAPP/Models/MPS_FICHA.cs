@@ -38,5 +38,7 @@ namespace AGENDAPP.Models
         public string ALERTA_EN_FICHA { get; set; }
         public string ALERTA_EN_TOMA_HORA { get; set; }
         public Nullable<int> COD_ORGANIZACION { get; set; }
+        public Nullable<int> SEXO { get; set; }
+        public Nullable<int> COD_ETIQUETA { get; set; }
     }
 }
