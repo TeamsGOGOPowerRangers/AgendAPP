@@ -1,0 +1,601 @@
+﻿
+@{
+    ViewBag.Title = "Pacientes";
+}
+
+
+<body>
+    <div id="">
+        <button id="BtnModalAgregarPaciente" class="btn btn-info mr-3 mb-3" data-toggle="tooltip" data-placement="right" title="Crear nuevo registro">Crear</button>
+        <table class="table table-info table-striped table-bordered table-hover" id="tblPacientes" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Nro Ficha</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Identifiación</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="TbodyPacientes">
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<div class="modal fade" id="ModalCrearPaciente" tabindex="-1" role="dialog" aria-labelledby="mdlCrearPacienteLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><span class="fa fa-plus"></span> Crear Paciente</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="id" value="">
+                <div>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-Datos" role="tab" aria-controls="nav-home" aria-selected="true">Datos</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-Direccion" role="tab" aria-controls="nav-profile" aria-selected="false">Dirección</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-Alertas" role="tab" aria-controls="nav-contact" aria-selected="false">Alertas</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-Otros" role="tab" aria-controls="nav-contact" aria-selected="false">Otros</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-Datos" role="tabpanel" aria-labelledby="nav-Datos-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Número de Ficha:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" disabled class="form-control" id="txtNFicha" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Nombres:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtNombres">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Apellido Paterno:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtApellidoPaterno">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Apellido Materno:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtApellidoMaterno" value="" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Nacionalidad:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcNacionalidad" class="form-control">
+                                                <option value="0">Seleccione...</option>
+                                                <option value="1">Chilena</option>
+                                                <option value="2">Extranjero</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Identificación:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtIdentificacion">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Fecha de Nacimiento:</label>
+                                        <div class="col-md-45 col-sm-5 col-xs-5">
+                                            <div id="txtFechaNacimiento" class="input-group date">
+                                                <input id="FNacimiento" type="date" class="form-control" name="date" placeholder="DD/MM/YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Sexo:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcSexo">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">
+                                            Email:
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input type="email" id="txtEmail" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Teléfono Fijo:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input type="text" id="txtTelefonoFijo" class="form-control">
+                                            </div>
+                                        </div>
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Teléfono Móvil:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input type="text" id="txtTelefonoMovil" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Convenio:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcConvenio" class="form-group">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Convenio</option>
+                                                <option value="2">Convenio2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Previsión:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcPrevicion">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Particular</option>
+                                                <option value="2">Particular2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="cboModoLlegada">Modo de Llegada:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcMLlegada">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Facebook Ads</option>
+                                                <option value="2">Twitter Ads</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        <div class="tab-pane fade" id="nav-Direccion" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="lblRegion" for="cboRegión">Región:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <select id="slcRegion">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Metropolitana</option>
+                                                <option value="2">Arica</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="lblComuna">Comuna:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <select id="slcComuna">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Estacion Central</option>
+                                                <option value="2">Maipu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Calle:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="txtCalle" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Número:</label>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <input type="text" class="form-control" id="txtNumero" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Piso:</label>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <input type="text" class="form-control" id="txtPiso">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Oficina:</label>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <input type="text" class="form-control" id="txtOficina">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Comentario:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtComentario" rows="5" maxlength="250"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-Alertas" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Alerta en Ficha:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtAlertaFicha" rows="5" maxlength="380"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Alerta en Toma de Hora:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtAlertaAgenda" rows="5" maxlength="380"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Alerta en Caja:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtAlertaCaja" rows="5" maxlength="380"></textarea>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-Otros" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="row">                                
+                                    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
+                                        Etiquetas
+                                    </label>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <select id="slcEtiqueta">
+                                            <option value="0">Seleccione..</option>
+                                            <option value="1">Etiqueta</option>
+                                            <option value="2">Etiqueta2</option>
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="BtnGuardaPaciente"> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="ModalModificarPaciente" tabindex="-1" role="dialog" aria-labelledby="mdlCrearPacienteLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><span class="fa fa-plus"></span> Crear Paciente</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="id" value="">
+                <div>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-DatosM" role="tab" aria-controls="nav-home" aria-selected="true">Datos</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-DireccionM" role="tab" aria-controls="nav-profile" aria-selected="false">Dirección</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-AlertasM" role="tab" aria-controls="nav-contact" aria-selected="false">Alertas</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-OtrosM" role="tab" aria-controls="nav-contact" aria-selected="false">Otros</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-DatosM" role="tabpanel" aria-labelledby="nav-Datos-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Número de Ficha:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" disabled class="form-control" id="txtNFichaM" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Nombres:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtNombresM">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Apellido Paterno:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtApellidoPaternoM">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Apellido Materno:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtApellidoMaternoM" value="" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Nacionalidad:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcNacionalidadM" class="form-control">
+                                                <option value="0">Seleccione...</option>
+                                                <option value="1">Chilena</option>
+                                                <option value="2">Extranjero</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Identificación:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" id="txtIdentificacionM">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Fecha de Nacimiento:</label>
+                                        <div class="col-md-45 col-sm-5 col-xs-5">
+                                            <div id="txtFechaNacimiento" class="input-group date">
+                                                <input id="FNacimientoM" type="date" class="form-control" name="date" placeholder="DD/MM/YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Sexo:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcSexoM">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">
+                                            Email:
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input type="email" id="txtEmailM" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Teléfono Fijo:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input type="text" id="txtTelefonoFijoM" class="form-control">
+                                            </div>
+                                        </div>
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Teléfono Móvil:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="input-group">
+                                                <input type="text" id="txtTelefonoMovilM" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4">Convenio:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcConvenioM" class="form-group">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Convenio</option>
+                                                <option value="2">Convenio2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label">Previsión:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcPrevicionM">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Particular</option>
+                                                <option value="2">Particular2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="cboModoLlegada">Modo de Llegada:</label>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <select id="slcMLlegadaM">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Facebook Ads</option>
+                                                <option value="2">Twitter Ads</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-DireccionM" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="lblRegion" for="cboRegión">Región:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <select id="slcRegionM">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Metropolitana</option>
+                                                <option value="2">Arica</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="lblComuna">Comuna:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <select id="slcComunaM">
+                                                <option value="0">Seleccione..</option>
+                                                <option value="1">Estacion Central</option>
+                                                <option value="2">Maipu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Calle:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="txtCalleM" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Número:</label>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <input type="text" class="form-control" id="txtNumeroM" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Piso:</label>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <input type="text" class="form-control" id="txtPisoM">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Oficina:</label>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <input type="text" class="form-control" id="txtOficinaM">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Comentario:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtComentarioM" rows="5" maxlength="250"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-AlertasM" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Alerta en Ficha:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtAlertaFichaM" rows="5" maxlength="380"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Alerta en Toma de Hora:</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <textarea class="form-control" id="txtAlertaAgendaM" rows="5" maxlength="380"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-12">
+                                        <div class="row">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Alerta en Caja:</label>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <textarea class="form-control" id="txtAlertaCaja" rows="5" maxlength="380"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-OtrosM" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="row">
+                                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
+                                    Etiquetas
+                                </label>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                    <select id="slcEtiquetaM">
+                                        <option value="0">Seleccione..</option>
+                                        <option value="1">Etiqueta</option>
+                                        <option value="2">Etiqueta2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="GuardarPacienteModificado()" id="BtnGuardaPacienteM"> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+<script type="module" src="~/ActionJs/Paciente/Paciente.js"></script>
+
+}
+
