@@ -1,0 +1,166 @@
+﻿<link href="~/Assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet" />
+<link href="~/Assets/plugins/DataTables/datatables.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Etiquetas";
+}
+
+
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header mt-0">Administración de Etiquetas</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-heading">
+
+                        <button style="margin-right:10px" class="float-right d-inline-block btn btn-sm btn-outline-primary" id="AddColores" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Agregar nuevo color" data-original-title="" title=""><i class="fa fa-plus"></i></button>
+                        Etiquetas Registradas <br><small>Lista</small>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped table-borderless table-bordered text-center" style="width:100%" id="tabla_Etiqueta">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Color</th>
+                                <th>Fecha Creacion</th>
+                                <th>Fecha Edicion</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id=""></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #region Crear -->
+    <div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <h4 class="modal-title" id="myModalLabel">
+                        <span class="glyphicon glyphicon-plus-sign"></span> Crear Etiqueta
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-12">
+                            <label for="Nombre_Color">Nombre Color</label>
+                            <input type="text" class="form-control" id="Nombre_Color1" placeholder="Ingrese Nombre color">
+                        </div>
+             \
+                        <div class="col-md-6 mb-3">
+
+                            <div class="form-group">
+                                <label>Color</label>
+
+                                <div class="input-group my-colorpicker2 ">
+                                    <input type="text" class="form-control my-colorpicker2 colorpicker-element " id="Color1">
+                                    <div class="input-group-text">
+                                        <div class="input-group-addon">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+
+                        </div>
+
+
+      
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" id="BtnGuardarColor"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+    <!-- #region Editar -->
+    <div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        <span class="fa fa-pencil"></span> Editar Etiqueta
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-12">
+                            <label for="Nombre_Color">Nombre Color</label>
+                            <input type="text" class="form-control" id="MNombre_Color" placeholder="Ingrese Nombre color">
+                        </div>
+  
+                        <div class="col-md-6 mb-3">
+
+                            <div class="form-group">
+                                <label>Color</label>
+
+                                <div class="input-group my-colorpicker2 ">
+                                    <input type="text" class="form-control my-colorpicker2 colorpicker-element " id="Mcolor">
+                                    <div class="input-group-text">
+                                        <div class="input-group-addon">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+
+                        </div>
+
+
+            
+
+                        <div class="col-md-12 mb-3">
+                            <label for="Nombre_Color">Estado</label>
+                            <select class="form-control" id="MEstado">
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="BtnModificarColoresss"><span class="fa fa-save"></span> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+    @section scripts{
+        <script src="~/ActionJs/jquery.min.js"></script>
+        <script src="~/Assets/plugins/DataTables/datatables.js"></script>
+        <script src="~/Assets/plugins/colorpicker/bootstrap-colorpicker.js"></script>
+
+        <script src="~/ActionJs/Mantenedores/Etiqueta.js"></script>
+    }
+
+
+    <!-- /.row -->
+</div>

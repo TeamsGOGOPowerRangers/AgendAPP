@@ -1,0 +1,673 @@
+﻿
+@{
+	ViewBag.Title = "Prestaciones";
+}
+
+<div class="container-fluid">
+
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header mt-0">Administración de Prestaciones</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Prestaciones Registradas
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar" style="float: left;">
+							<button id="btnNueva" class="btn btn-primary mr-5" data-toggle="tooltip" data-placement="right" title="" onclick="Crear();" data-original-title="Crear nuevo registro">Crear</button>
+						</div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-3" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="nowrap sorting_asc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Código: Activar para ordenar la columna de manera descendente" style="width: 74px;">Código</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Nombre: Activar para ordenar la columna de manera ascendente" style="width: 210px;">Nombre</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Precio: Activar para ordenar la columna de manera ascendente" style="width: 43px;">Precio</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Requiere Recurso: Activar para ordenar la columna de manera ascendente" style="width: 60px;">Requiere Recurso</th>
+									<th class="text-centered all sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 63px;">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr role="row" class="odd">
+									<td class="nowrap sorting_1">
+										0101301
+										<span class="fa fa-star" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Código autorizado para atenciones remotas"></span>
+									</td>
+									<td>CONSULTA MEDICA DE ESPECIALIDAD EN CARDIOLOGIA</td>
+									<td>200000</td>
+									<td class=" text-centered">No</td>
+									<td class=" text-centered all">
+										<a onclick="Editar(4630);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(4630,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="nowrap sorting_1">
+										0101301
+										<span class="fa fa-star" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Código autorizado para atenciones remotas"></span>
+									</td>
+									<td>CONSULTA MEDICA DE ESPECIALIDAD EN CARDIOLOGIA</td>
+									<td>300</td>
+									<td class=" text-centered">No</td>
+									<td class=" text-centered all">
+										<a onclick="Editar(4636);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(4636,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="nowrap sorting_1">1</td>
+									<td>Laboratorio</td>
+									<td>20000</td>
+									<td class=" text-centered">No</td>
+									<td class=" text-centered all">
+										<a onclick="Editar(4628);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(4628,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="nowrap sorting_1">1201006</td>
+									<td>&amp; ELECTROMIOGRAFIA MUSCULOS OCULARES ADULTOS, C/OJO</td>
+									<td>10000</td>
+									<td class=" text-centered">No</td>
+									<td class=" text-centered all">
+										<a onclick="Editar(4635);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(4635,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="nowrap sorting_1">1707034</td>
+									<td>CUERPO EXTRAÑO DE BRONQUIO, EXTRACCION POR VIA ENDOSCOPICA (INCLUYE LA ENDOSCOPIA)</td>
+									<td>40000</td>
+									<td class=" text-centered">No</td>
+									<td class=" text-centered all">
+										<a onclick="Editar(4631);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(4631,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 1 al 5 de un total de 5 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button active" aria-controls="tblData" tabindex="0">
+									<a href="#">1</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#region Modal Crear/Editar -->
+	<div class="modal fade" id="mdlPrestacion" tabindex="-1" role="dialog" aria-labelledby="mdlPrestacionLabel" style="display: none;">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">
+						<span class="fa fa-medkit"></span> Editar  Prestación
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="tabPrestacion">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs bordered" role="tablist">
+							<li role="presentation" class="">
+								<a href="#prestacion" aria-controls="prestacion" role="tab" data-toggle="tab" aria-expanded="false">Prestación <span class="fa"></span></a>
+							</li>
+							<li role="presentation" class="">
+								<a href="#articulos" aria-controls="articulos" role="tab" data-toggle="tab" aria-expanded="false">Artículos <span class="fa"></span></a>
+							</li>
+							<li role="presentation" class="">
+								<a href="#recursos" aria-controls="recursos" role="tab" data-toggle="tab" aria-expanded="false">Recursos <span class="fa"></span></a>
+							</li>
+							<li role="presentation" class="">
+								<a href="#precios" aria-controls="precios" role="tab" data-toggle="tab" aria-expanded="false">Precios <span class="fa"></span></a>
+							</li>
+							<li role="presentation" class="active">
+								<a href="#comisiones" aria-controls="comisiones" role="tab" data-toggle="tab" aria-expanded="true">Honorarios<span class="fa"></span></a>
+							</li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content bordered">
+							<div role="tabpanel" class="tab-pane" id="prestacion">
+								<br>
+								<form class="form-horizontal interline5" novalidate="true">
+									<div class="form-group hidden" id="trImportFonasa">
+										<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="txtCodigo">&nbsp;</label>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+											<button type="button" class="btn btn-primary" id="import"><span class="fa fa-heartbeat"></span> Importar desde Fonasa</button>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="txtCodigo">Código:</label>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+											<div class="input-group">
+												<input type="text" class="form-control" id="txtCodigo" maxlength="50" value="" placeholder="00000001" autocomplete="off" name="code" readonly="">
+												<span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="En caso de ser importado fonasa, el código no se podrá cambiar para su futura actualización"><span class="fa fa-exclamation-circle"></span></span>
+											</div>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+											<input type="text" class="form-control" id="txtNombre" maxlength="300" value="" required="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+										<div class="col-md-8 col-sm-8 col-xs-8">
+											<input type="text" class="form-control" id="txtDescripcion" maxlength="450" value="" required="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPrecio" id="lblPrecio">Precio Particular:</label>
+										<div class="col-md-5 col-sm-5 col-xs-5">
+											<div class="input-group">
+												<span class="input-group-addon">$</span>
+												<input type="number" max="999999999" min="0" step="0.01" class="form-control text-right" id="txtPrecio" aria-describedby="basic-addon3" value="" required="">
+												<span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="En caso de importar desde Fonasa, no olvide establecer su Precio Particular"><span class="fa fa-exclamation-circle"></span></span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="cboImpuesto">Impuesto:</label>
+										<div class="col-md-8 col-sm-8 col-xs-8">
+											<div class="btn-group bootstrap-select fit-width">
+												<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboImpuesto" title="Exento"><span class="filter-option pull-left">Exento</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+												<div class="dropdown-menu open">
+													<ul class="dropdown-menu inner" role="menu">
+														<li data-original-index="1">
+															<a tabindex="0" class="" style="" data-tokens="null"><span class="text">I.V.A.</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+														</li>
+														<li data-original-index="2" class="selected">
+															<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Exento</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+														</li>
+													</ul>
+												</div>
+												<select class="" id="cboImpuesto" data-width="fit" title="Ninguno" tabindex="-98"><option class="bs-title-option" value="">Ninguno</option><option value="1">I.V.A.</option><option value="2">Exento</option></select>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="chkRequireRecurso">Requiere Recurso:</label>
+										<div class="col-md-8 col-sm-8 col-xs-8">
+											<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkRequireRecurso bootstrap-switch-animate" style="width: 72.6875px;">
+												<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+													<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+													<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+													<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+													<input type="checkbox" id="chkRequireRecurso">
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="articulos">
+								<br>
+								<form class="form-horizontal interline5" novalidate="true">
+									<div class="form-group">
+										<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+											<div id="tblArticulos_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+												<div class="row">
+													<div class="col-sm-6"></div>
+													<div class="col-sm-6"></div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12">
+														<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer" id="tblArticulos" role="grid" aria-describedby="tblArticulos_info" style="width: 100%;">
+															<caption>
+																Artículos
+																<div class="pull-right add_control">
+																	<div class="form-inline">
+																		<div class="input-group">
+																			<input type="search" autocomplete="off" id="txtSearchArticulo" class="form-control" placeholder="Artículo" aria-describedby="basic-addon1" data-suggest="/api/suggest/articulos" data-suggest-triggerlength="1" data-suggest-resultlength="15" data-suggest-text="Nombre">
+																			<span class="input-group-addon" id="basic-addon1"><span class="fa fa-search"></span></span>
+																		</div>
+																		<button type="button" id="btnAddArticulo" class="btn btn-circle btn-primary"><span class="fa fa-plus"></span></button>
+																	</div>
+																</div>
+															</caption>
+															<thead>
+																<tr role="row">
+																	<th class="sorting_asc" tabindex="0" aria-controls="tblArticulos" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nombre: Activar para ordenar la columna de manera descendente" style="width: 0px;">Nombre</th>
+																	<th class="sorting" tabindex="0" aria-controls="tblArticulos" rowspan="1" colspan="1" aria-label="Cantidad: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Cantidad</th>
+																	<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 0px;">Acciones</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr class="odd">
+																	<td valign="top" colspan="3" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="dataTables_info" id="tblArticulos_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="dataTables_paginate paging_simple_numbers" id="tblArticulos_paginate">
+															<ul class="pagination">
+																<li class="paginate_button previous disabled" aria-controls="tblArticulos" tabindex="0" id="tblArticulos_previous">
+																	<a href="#">Anterior</a>
+																</li>
+																<li class="paginate_button next disabled" aria-controls="tblArticulos" tabindex="0" id="tblArticulos_next">
+																	<a href="#">Siguiente</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="recursos">
+								<br>
+								<form class="form-horizontal interline5" novalidate="true">
+									<div class="form-group">
+										<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+											<div id="tblRecursos_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+												<div class="row">
+													<div class="col-sm-6"></div>
+													<div class="col-sm-6"></div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12">
+														<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer" id="tblRecursos" role="grid" aria-describedby="tblRecursos_info" style="width: 100%;">
+															<caption>
+																Recursos
+																<div class="pull-right add_control">
+																	<div class="form-inline">
+																		<div class="input-group">
+																			<input type="search" autocomplete="off" id="txtSearchRecurso" class="form-control" placeholder="Recurso" aria-describedby="basic-addon1" data-suggest="/api/suggest/recursos" data-suggest-triggerlength="1" data-suggest-resultlength="15" data-suggest-text="Nombre">
+																			<span class="input-group-addon" id="basic-addon1"><span class="fa fa-search"></span></span>
+																		</div>
+																		<button type="button" id="btnAddRecurso" class="btn btn-circle btn-primary"><span class="fa fa-plus"></span></button>
+																	</div>
+																</div>
+															</caption>
+															<thead>
+																<tr role="row">
+																	<th class="sorting_asc" tabindex="0" aria-controls="tblRecursos" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nombre: Activar para ordenar la columna de manera descendente" style="width: 0px;">Nombre</th>
+																	<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 0px;">Acciones</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr class="odd">
+																	<td valign="top" colspan="2" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="dataTables_info" id="tblRecursos_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="dataTables_paginate paging_simple_numbers" id="tblRecursos_paginate">
+															<ul class="pagination">
+																<li class="paginate_button previous disabled" aria-controls="tblRecursos" tabindex="0" id="tblRecursos_previous">
+																	<a href="#">Anterior</a>
+																</li>
+																<li class="paginate_button next disabled" aria-controls="tblRecursos" tabindex="0" id="tblRecursos_next">
+																	<a href="#">Siguiente</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="precios">
+								<br>
+								<form class="form-horizontal interline5" novalidate="true">
+									<div class="form-group">
+										<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+											<div id="tblPrecios_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+												<div class="row">
+													<div class="col-sm-6"></div>
+													<div class="col-sm-6"></div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12">
+														<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer" id="tblPrecios" role="grid" aria-describedby="tblPrecios_info" style="width: 100%;">
+															<caption>
+																Precios
+															</caption>
+															<thead>
+																<tr role="row">
+																	<th class="sorting_asc" tabindex="0" aria-controls="tblPrecios" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Previsión: Activar para ordenar la columna de manera descendente" style="width: 0px;">Previsión</th>
+																	<th class="text-right sorting" tabindex="0" aria-controls="tblPrecios" rowspan="1" colspan="1" aria-label="Precio: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Precio</th>
+																	<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 0px;">Acciones</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">Banmedica</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetPrice(4)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetPrice(4)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">Capredena</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetPrice(14)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetPrice(14)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">Chuquicamata</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetPrice(13)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetPrice(13)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">Colmena</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetPrice(3)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetPrice(3)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">Consalud</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetPrice(2)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetPrice(2)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="dataTables_info" id="tblPrecios_info" role="status" aria-live="polite">Mostrando registros del 1 al 5 de un total de 17 registros</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="dataTables_paginate paging_simple_numbers" id="tblPrecios_paginate">
+															<ul class="pagination">
+																<li class="paginate_button previous disabled" aria-controls="tblPrecios" tabindex="0" id="tblPrecios_previous">
+																	<a href="#">Anterior</a>
+																</li>
+																<li class="paginate_button active" aria-controls="tblPrecios" tabindex="0">
+																	<a href="#">1</a>
+																</li>
+																<li class="paginate_button " aria-controls="tblPrecios" tabindex="0">
+																	<a href="#">2</a>
+																</li>
+																<li class="paginate_button " aria-controls="tblPrecios" tabindex="0">
+																	<a href="#">3</a>
+																</li>
+																<li class="paginate_button " aria-controls="tblPrecios" tabindex="0">
+																	<a href="#">4</a>
+																</li>
+																<li class="paginate_button next" aria-controls="tblPrecios" tabindex="0" id="tblPrecios_next">
+																	<a href="#">Siguiente</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div role="tabpanel" class="tab-pane active" id="comisiones">
+								<br>
+								<form class="form-horizontal interline5" novalidate="true">
+									<div class="form-group">
+										<div class="col-md-12 col-sm-12 col-xs-12 ">
+											<div id="tblComisiones_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+												<div class="row">
+													<div class="col-sm-6"></div>
+													<div class="col-sm-6"></div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12">
+														<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer" id="tblComisiones" role="grid" aria-describedby="tblComisiones_info" style="width: 100%;">
+															<caption>
+																Honorarios médicos
+															</caption>
+															<thead>
+																<tr role="row">
+																	<th class="sorting_asc" tabindex="0" aria-controls="tblComisiones" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Especialista: Activar para ordenar la columna de manera descendente" style="width: 0px;">Especialista</th>
+																	<th class="text-right sorting" tabindex="0" aria-controls="tblComisiones" rowspan="1" colspan="1" aria-label="Fija: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Fija</th>
+																	<th class="text-right sorting" tabindex="0" aria-controls="tblComisiones" rowspan="1" colspan="1" aria-label="Porcentaje: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Porcentaje</th>
+																	<th class="text-center sorting" tabindex="0" aria-controls="tblComisiones" rowspan="1" colspan="1" aria-label="Vigencia: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Vigencia</th>
+																	<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 0px;">Acciones</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">Luciano Rodriguez</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-right"></td>
+																	<td class=" text-center"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetComision(0)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetComision(0)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">Diego Fernandez</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-right"></td>
+																	<td class=" text-center"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetComision(1)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetComision(1)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">Profesional 1</td>
+																	<td class=" text-right"></td>
+																	<td class=" text-right"></td>
+																	<td class=" text-center"></td>
+																	<td class=" text-centered">
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="SetComision(2)" class="fa fa-pencil" data-original-title="Cambiar o Establecer"></a>&nbsp;
+																		<a data-toggle="tooltip" data-placement="left" title="" onclick="UnsetComision(2)" class="fa fa-trash" data-original-title="Restablecer"></a>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="dataTables_info" id="tblComisiones_info" role="status" aria-live="polite">Mostrando registros del 1 al 3 de un total de 3 registros</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="dataTables_paginate paging_simple_numbers" id="tblComisiones_paginate">
+															<ul class="pagination">
+																<li class="paginate_button previous disabled" aria-controls="tblComisiones" tabindex="0" id="tblComisiones_previous">
+																	<a href="#">Anterior</a>
+																</li>
+																<li class="paginate_button active" aria-controls="tblComisiones" tabindex="0">
+																	<a href="#">1</a>
+																</li>
+																<li class="paginate_button next disabled" aria-controls="tblComisiones" tabindex="0" id="tblComisiones_next">
+																	<a href="#">Siguiente</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#endregion -->
+	<!--#region Modal Precio -->
+	<div class="modal fade" id="mdlSetPrice" tabindex="-1" role="dialog" aria-labelledby="mdlSetPrice-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlSetPrice-label">
+						<span class="fa fa-pencil"></span> Establecer o Cambiar Precio
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPrecio">Precio:</label>
+							<div class="col-md-5 col-sm-5 col-xs-5">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon3">$</span>
+									<input type="number" max="999999999" min="0" step="0.01" class="form-control text-right" id="txtPrecio" aria-describedby="basic-addon3" value="" required="">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Modal Comisiones -->
+	<div class="modal fade" id="mdlSetComision" tabindex="-1" role="dialog" aria-labelledby="mdlSetComision-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlSetComision-label">
+						<span class="fa fa-pencil"></span> Establecer o Cambiar Honorario
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtFija">Cantidad Fija:</label>
+							<div class="col-md-5 col-sm-5 col-xs-5">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon3">$</span>
+									<input type="number" max="999999999" min="0" step="0.01" class="form-control text-right fijpor" id="txtFija" aria-describedby="basic-addon3" data-error="Debe ingresar Cantidad Fija o Porcentaje" value="">
+								</div>
+								<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPorcentaje">Porcentaje:</label>
+							<div class="col-md-5 col-sm-5 col-xs-5">
+								<div class="input-group">
+									<input type="number" max="100" min="0" step="0.1" class="form-control text-right fijpor" id="txtPorcentaje" aria-describedby="basic-addon3" data-error="Debe ingresar Cantidad Fija o Porcentaje" value="">
+									<span class="input-group-addon" id="basic-addon3">%</span>
+								</div>
+								<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtFechaVigencia">Vigencia:</label>
+							<div class="col-md-5 col-sm-5 col-xs-5">
+								<div id="txtFechaVigencia" class="input-group date">
+									<input type="text" class="form-control" required="">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+									<span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="La comisión será válida solo hasta esta fecha"><span class="fa fa-exclamation-circle"></span></span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Modal Fonasa Import -->
+	<div class="modal fade" id="mdlFonasaImport" tabindex="-1" role="dialog" aria-labelledby="mdlFonasaImport-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlFonasaImport-label">
+						<span class="fa fa-medkit"></span> Buscar Prestación Fonasa
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPrecio">Prestación:</label>
+							<div class="col-md-5 col-sm-5 col-xs-5">
+								<input type="search" autocomplete="off" id="txtFonasa" class="form-control" placeholder="Prestación Fonasa" aria-describedby="basic-addon1" data-suggest="/api/suggest/fonasaimport" data-suggest-triggerlength="1" data-suggest-resultlength="50" data-suggest-text="Nombre">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary except" id="save" disabled=""><span class="fa fa-check"></span> Seleccionar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<script src="/js/admin_prestaciones?v=kmwjCFLwbPm0_BB0AZG9Q7RBH6Ypon-ONxzvlqEqP3o1"></script>
+
+
+	<!-- /.row -->
+</div>
+
