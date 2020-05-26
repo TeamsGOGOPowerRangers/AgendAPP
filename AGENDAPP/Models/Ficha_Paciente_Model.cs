@@ -274,6 +274,86 @@ namespace AGENDAPP.Models
             }
         }
 
+        public static object EditarFichaMedica(string I)
+        {
+            try
+            {
+                using (MPS_DB db = new MPS_DB())
+                {
+
+                    int ID = Int32.Parse(DesencriptarBase64(I));
+
+                    object FichaClinicaEditar = (from a in db.MPS_FICHA_CLINICA.AsEnumerable()
+                                                 where a.ID_FICHA_MEDICA == ID
+                                                 select new
+                                                 {
+                                                     ID = EncriptarBase64(a.ID_FICHA_MEDICA.ToString()),
+                                                     a.MOTIVO_CONSULTA,
+                                                     a.ANAMNESIS,
+                                                     a.EVALUACION,
+                                                     a.DIAGNOSTICO,
+                                                     a.PATOLOGIA_GES,
+                                                     a.EXAMENES,
+                                                     a.SEGUIMIENTO,
+                                                     a.TRATAMIENTO,
+                                                     a.INDICACIONES,
+                                                     COD_EVENTO = EncriptarBase64(a.COD_EVENTO.ToString())
+                                                 }).FirstOrDefault();
+
+                    return new { Respuesta = true, FichaClinicaEditar };
+                }
+            }
+            catch (Exception Error)
+            {
+
+                return new { Respuesta = false, Error.Message };
+            }
+        }
+
+
+        public static object ModificarFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string PacienteFichaMedica)
+        {
+            try
+            {
+                using (MPS_DB db = new MPS_DB())
+                {
+                    int IDPACIENTEFICHAMEDICA = Convert.ToInt32(DesencriptarBase64(PacienteFichaMedica));
+
+                    MPS_FICHA_CLINICA FICHA = db.MPS_FICHA_CLINICA.Where(a => a.ID_FICHA_MEDICA == IDPACIENTEFICHAMEDICA).FirstOrDefault();
+
+                    FICHA.MOTIVO_CONSULTA = Nueva_Ficha_Clinica.MOTIVO_CONSULTA;
+                    FICHA.ANAMNESIS = Nueva_Ficha_Clinica.ANAMNESIS;
+                    FICHA.EVALUACION = Nueva_Ficha_Clinica.EVALUACION;
+                    FICHA.DIAGNOSTICO = Nueva_Ficha_Clinica.DIAGNOSTICO;
+                    FICHA.PATOLOGIA_GES = Nueva_Ficha_Clinica.PATOLOGIA_GES;
+                    FICHA.EXAMENES = Nueva_Ficha_Clinica.EXAMENES;
+                    FICHA.SEGUIMIENTO = Nueva_Ficha_Clinica.SEGUIMIENTO;
+                    FICHA.TRATAMIENTO = Nueva_Ficha_Clinica.TRATAMIENTO;
+                    FICHA.INDICACIONES = Nueva_Ficha_Clinica.INDICACIONES;
+                    db.SaveChanges();
+
+                    //object EventoNuevo = (from a in db.MPS_FICHA_CLINICA.AsEnumerable()
+                    //                      where a.ID_FICHA_MEDICA == IDPACIENTEFICHAMEDICA
+                    //                      select new
+                    //                      {
+                    //                          ID = EncriptarBase64(a.ID_FICHA_MEDICA.ToString()),
+                    //                          a
+                    //                      }).FirstOrDefault();
+
+
+                    return new { Respuesta = true, FICHA, Tipo = 1 };
+
+
+
+                }
+            }
+            catch (Exception Error)
+            {
+
+                return new { Respuesta = false, Error.Message };
+            }
+        }
+
         public static string EncriptarBase64(string Encriptar)
         {
             string Datos = Convert.ToBase64String(new ASCIIEncoding().GetBytes(Encriptar));

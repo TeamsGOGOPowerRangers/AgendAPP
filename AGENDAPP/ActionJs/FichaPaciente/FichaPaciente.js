@@ -43,7 +43,7 @@ window.addEventListener('load', async function () {
 
                 }
             }
-           
+
         }
 
     }
@@ -131,7 +131,7 @@ window.ModalEditarEvento = async function ModalEditarEvento(Btn) {
         }).show();
 
     }
-    
+
 
 };
 
@@ -307,7 +307,7 @@ window.HistorialPaciente = async function HistorialPaciente(Btn) {
 window.CambiarEventoH = async function CambiarEventoH(Btn) {
 
     const Url = '../FichaPaciente/FichaClinicaEvento';
-    const Fetchs = Fetch(Url, { I: Btn.value, E: Btn.name });
+    const Fetchs = Fetch(Url, { I: Btn.name, E: Btn.value});
     const Resultado = await Fetchs.FetchWithData();
 
     if (Resultado.Respuesta) {
@@ -324,9 +324,9 @@ window.CambiarEventoH = async function CambiarEventoH(Btn) {
                                 <td>${moment(Item.FECHA_CREACION).format('DD-MM-YYYY hh:mm')}</td>                                
                                 <td>${Item.ESPECIELISTA}</td>                                
                                 <td>${Item.ESTADO == 1 ? "ACTIVO" : "INACTIVO"}</td>                             
-                                <td><button class="btn btn-light fa fa-edit" id="${Item.ID}"  value="${Item.ID}" title="Editar Ficha Medica" onclick="EditarPaciente(this)"></button>
-                                    <button class="btn btn-light fa fa-copy" value="${Item.ID}" title="Copiar Ficha Medica" onclick="FichaPaciente(this)"></button>
-                                    <button class="btn btn-light fa fa-file-pdf" value="${Item.ID}" title="Imprimir Ficha Medica" onclick="FichaPaciente(this)"></button>
+                                <td><button type="button" class="btn btn-light fa fa-edit" value="${Item.ID}" title="Editar Ficha Medica" onclick="EditarFichaMedica(this)"></button>
+                                    <button type="button" class="btn btn-light fa fa-copy" value="${Item.ID}" title="Copiar Ficha Medica" onclick="CopiarFichaMedica(this)"></button>
+                                    <button type="button" class="btn btn-light fa fa-file-pdf" value="${Item.ID}" title="Imprimir Ficha Medica" onclick="ImprimirFichaMedica(this)"></button>
                                 </td>                                
                              </tr>`;
             }
@@ -338,6 +338,71 @@ window.CambiarEventoH = async function CambiarEventoH(Btn) {
             "lengthChange": false,
             language: Espanol
         });
+
+    }
+
+};
+
+window.EditarFichaMedica = async function EditarFichaMedica(Btn) {
+
+    const Url = '../FichaPaciente/EditarFichaMedica';
+    const Fetchs = Fetch(Url, { I: Btn.value });
+    const Resultado = await Fetchs.FetchWithData();
+
+    if (Resultado.Respuesta) {
+
+        document.getElementById('txtMotivoConsulta').value = Resultado.FichaClinicaEditar.MOTIVO_CONSULTA;
+        document.getElementById('txtAnamnesis').value = Resultado.FichaClinicaEditar.ANAMNESIS;
+        document.getElementById('txtEvaluacion').value = Resultado.FichaClinicaEditar.EVALUACION;
+        document.getElementById('txtDiagnostico').value = Resultado.FichaClinicaEditar.DIAGNOSTICO;
+        document.getElementById('txtGes').value = Resultado.FichaClinicaEditar.PATOLOGIA_GES;
+        document.getElementById('txtExamenes').value = Resultado.FichaClinicaEditar.EXAMENES;
+        document.getElementById('txtSeguimiento').value = Resultado.FichaClinicaEditar.SEGUIMIENTO;
+        document.getElementById('txtTratamiento').value = Resultado.FichaClinicaEditar.TRATAMIENTO;
+        document.getElementById('txtPrescripcion').value = Resultado.FichaClinicaEditar.INDICACIONES;
+        document.getElementById('slcEvtCli').value = Resultado.FichaClinicaEditar.COD_EVENTO;
+        document.getElementById('BtnGuardarFichaClinicaModificada').value = Resultado.FichaClinicaEditar.ID;
+
+        $("#ModalHistorial").modal('hide');
+    }
+
+};
+
+
+window.GuardarFichaClinicaModificada = async function GuardarFichaClinicaModificada(Btn) {
+
+    var PacienteFichaMedica = document.getElementById('BtnGuardarFichaClinicaModificada').value;
+
+    const Nueva_Ficha_Clinica = new Object();
+
+    Nueva_Ficha_Clinica.MOTIVO_CONSULTA = document.getElementById('txtMotivoConsulta').value;
+    Nueva_Ficha_Clinica.ANAMNESIS = document.getElementById('txtAnamnesis').value;
+    Nueva_Ficha_Clinica.EVALUACION = document.getElementById('txtEvaluacion').value;
+    Nueva_Ficha_Clinica.DIAGNOSTICO = document.getElementById('txtDiagnostico').value;
+    Nueva_Ficha_Clinica.PATOLOGIA_GES = document.getElementById('txtGes').value;
+    Nueva_Ficha_Clinica.EXAMENES = document.getElementById('txtExamenes').value;
+    Nueva_Ficha_Clinica.SEGUIMIENTO = document.getElementById('txtSeguimiento').value;
+    Nueva_Ficha_Clinica.TRATAMIENTO = document.getElementById('txtTratamiento').value;
+    Nueva_Ficha_Clinica.INDICACIONES = document.getElementById('txtPrescripcion').value;
+
+    const Url = '../FichaPaciente/ModificarFichaMedica';
+    const Fetchs = Fetch(Url, { Nueva_Ficha_Clinica: Nueva_Ficha_Clinica, PacienteFichaMedica: PacienteFichaMedica,});
+    const Resultado = await Fetchs.FetchWithData();
+
+    if (Resultado.Respuesta) {
+
+
+        new Noty({
+            text: '<strong>Advertencia</strong> Ficha Medica guardada correctamente',
+            type: 'alert',
+            theme: 'metroui',
+            layout: 'topRight',
+            timeout: 4000,
+            animation: {
+                open: bouncejsShow,
+                close: bouncejsClose
+            }
+        }).show();
 
     }
 

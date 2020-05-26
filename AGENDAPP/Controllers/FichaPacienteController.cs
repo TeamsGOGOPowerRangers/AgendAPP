@@ -49,5 +49,15 @@ namespace AGENDAPP.Controllers
         {
             return Json(Ficha_Paciente_Model.FichaClinicaEvento(I,E), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult EditarFichaMedica(string I)
+        {
+            return Json(Ficha_Paciente_Model.EditarFichaMedica(I), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ModificarFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string PacienteFichaMedica)
+        {
+            return Json(Ficha_Paciente_Model.ModificarFichaMedica(Nueva_Ficha_Clinica, PacienteFichaMedica), JsonRequestBehavior.AllowGet);
+        }
     }
 }
