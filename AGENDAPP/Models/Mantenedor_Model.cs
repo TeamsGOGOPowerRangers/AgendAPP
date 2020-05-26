@@ -385,5 +385,137 @@ namespace AGENDAPP.Models
 
         }
         #endregion
+
+        #region Seccion
+        public static object SeccionLitas()
+        {
+            using (MPS_DB db = new MPS_DB())
+            {
+                object[] datos = (from c in db.MPS_SECCION
+                                  select new
+                                  {
+                                   c.ID_SECCION,
+                                   c.NOMBRE_SECCION,
+                                   c.DESCRIPCION,
+                                   c.IMPUESTO,
+                                   c.FECHA_CREACION,
+                                   c.FECHA_EDICION,
+                                   c.ESTADO
+
+                                  }).ToArray();
+
+
+
+                return new { RESPUESTA = true, TIPO = 0, datos };
+
+            }
+        }
+
+        public static object GuardarSeccion(string NombreSeccion, string Descripcion, int Impuesto)
+        {
+            try
+            {
+                MPS_SECCION Mps_Seccion = new MPS_SECCION();
+                Mps_Seccion.NOMBRE_SECCION = NombreSeccion;
+                Mps_Seccion.DESCRIPCION = Descripcion;
+                Mps_Seccion.IMPUESTO = Impuesto;
+                Mps_Seccion.FECHA_CREACION = DateTime.Now;
+                Mps_Seccion.ESTADO = 1;
+                using (MPS_DB db = new MPS_DB())
+                {
+                    db.MPS_SECCION.Add(Mps_Seccion);
+                    db.SaveChanges();
+
+                    object datos = (from c in db.MPS_SECCION
+                                    where c.ID_SECCION == Mps_Seccion.ID_SECCION
+                                    select new
+                                    {
+                                        c.ID_SECCION,
+                                        c.NOMBRE_SECCION,
+                                        c.DESCRIPCION,
+                                        c.IMPUESTO,
+                                        c.FECHA_CREACION,
+                                        c.FECHA_EDICION,
+                                        c.ESTADO
+                                    }).FirstOrDefault();
+
+                    return new { RESPUESTA = true, TIPO = 0, data = datos };
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new { RESPUESTA = false, TIPO = 1, e.Message };
+            }
+
+        }
+
+        public static object ListaSeccionId(int id)
+        {
+            using (MPS_DB db = new MPS_DB())
+            {
+
+
+
+                object[] datos = (from c in db.MPS_SECCION
+
+                                  where c.ID_SECCION == id
+                                  select new
+                                  {
+                                      c.ID_SECCION,
+                                      c.NOMBRE_SECCION,
+                                      c.DESCRIPCION,
+                                      c.IMPUESTO,
+                                      c.FECHA_CREACION,
+                                      c.FECHA_EDICION,
+                                      c.ESTADO
+
+                                  }).ToArray();
+
+
+
+
+                return new { RESPUESTA = true, TIPO = 0, datos };
+            }
+        }
+
+        public static object ModificarSeccion(int ID_SECCION, string NOMBRE, string DESCRIPCION, int IMPUESTO, int COD_ESTADO)
+        {
+            try
+            {
+                using (MPS_DB db = new MPS_DB())
+                {
+                    DateTime Fecha = DateTime.Now;
+                    string subQuery = $@"UPDATE MPS_SECCION SET NOMBRE_SECCION = '{ NOMBRE }' , DESCRIPCION = '{DESCRIPCION}' ,FECHA_EDICION='{ Fecha.ToString(Formato) }',IMPUESTO = {IMPUESTO},
+                                       ESTADO = {COD_ESTADO} where ID_SECCION = { ID_SECCION } ";
+                    db.Database.ExecuteSqlCommand(subQuery);
+
+                    object datos = (from c in db.MPS_SECCION
+                                    where c.ID_SECCION == ID_SECCION
+                                    select new
+                                    {
+                                        c.ID_SECCION,
+                                        c.NOMBRE_SECCION,
+                                        c.DESCRIPCION,
+                                        c.IMPUESTO,
+                                        c.FECHA_CREACION,
+                                        c.FECHA_EDICION,
+                                        c.ESTADO
+                                    }).FirstOrDefault();
+
+
+
+                    return new { RESPUESTA = true, TIPO = 0, data = datos };
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new { RESPUESTA = false, TIPO = 1, e.Message };
+            }
+
+        }
+        #endregion
+
     }
 }

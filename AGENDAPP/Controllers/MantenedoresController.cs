@@ -138,5 +138,26 @@ namespace AGENDAPP.Controllers
             return Json(Mantenedor_Model.ModificarPrevision(ID_PREVISION, NOMBRE, DESCRIPCION, COD_ESTADO), JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        #region Seccion
+        public JsonResult SeccionLitas()
+        {
+            return Json(Mantenedor_Model.SeccionLitas(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GuardarSeccion(string NombreSeccion, string Descripcion,int Impuesto)
+        {
+            return Json(Mantenedor_Model.GuardarSeccion(NombreSeccion, Descripcion, Impuesto), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ListaSeccionId(int id)
+        {
+            return Json(Mantenedor_Model.ListaSeccionId(id), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ModificarSeccion(int ID_SECCION, string NOMBRE, string DESCRIPCION,int IMPUESTO, int COD_ESTADO)
+        {
+            return Json(Mantenedor_Model.ModificarSeccion(ID_SECCION, NOMBRE, DESCRIPCION, IMPUESTO, COD_ESTADO), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+ 
     }
 }
