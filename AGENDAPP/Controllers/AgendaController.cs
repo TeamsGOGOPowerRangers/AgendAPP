@@ -42,6 +42,11 @@ namespace AGENDAPP.Controllers
         #endregion
 
         #region Horario Profesional
+        public JsonResult ValidarHorario(int TipoValidacion, DateTime Horario)
+        {
+            return Json(Agenda_Model.ValidarHorario(TipoValidacion, Horario), JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult Agregar_Horario_Profesional(MPS_HORARIO_PROFESIONAL Horario_Profesional, MPS_DIAS_SEMANA[] Detalle_dias)
         {
             return Json(Agenda_Model.Agregar_Horario_Profesional(Horario_Profesional, Detalle_dias), JsonRequestBehavior.AllowGet);

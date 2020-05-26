@@ -3,6 +3,11 @@
 $('[data-toggle="popover"]').popover();
 
 window.addEventListener('load', function () {
+    //const Valida_horarios = document.getElementsByClassName('Valida_horario');
+
+    //for (let Item of Valida_horarios) {
+    //    Item.setAttribute('onchange', 'Valida_horario(this)');
+    //}
     $('#HoraInicio').bootstrapMaterialDatePicker
         ({
             date: false,
@@ -29,6 +34,8 @@ window.addEventListener('load', function () {
             time: false,
             clearButton: true
         });
+
+
 });
 
 document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('click', async function () {
@@ -233,3 +240,11 @@ document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('
 document.getElementById('Agregar_Jornada').addEventListener('click', function () {
     $('#Modal_Agregar_Jornada').modal('show');
 });
+
+//window.Valida_horario = async function Valida_horario(Input) {
+//    let TipoValidacion = Input.classList.contains('hora') ? 1 : 2;
+//    const Fetchs = Fetch('../Agenda/ValidarHorario', { TipoValidacion: TipoValidacion, Horario: Input.value });
+//    const Resultado = await Fetchs.FetchWithData();
+
+//    Input.getAttribute('id') === 'HoraInicio' ? document.getElementById('span_HoraInicio').innerText = 'hsjdhjshdjsh' : document.getElementById('span_HoraInicio').innerText = '';
+//};
