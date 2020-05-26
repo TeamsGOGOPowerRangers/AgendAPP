@@ -165,6 +165,8 @@
           <Property Name="COD_PROFESIONAL" Type="bigint" />
           <Property Name="COD_JORNADA" Type="int" Nullable="false" />
           <Property Name="ATENCION_WEB" Type="bit" />
+          <Property Name="COD_ESPECIALIDAD" Type="int" />
+          <Property Name="COD_SERVICIO" Type="int" />
         </EntityType>
         <EntityType Name="MPS_MODO_LLEGADA">
           <Key>
@@ -468,6 +470,8 @@
           <Property Name="COD_PROFESIONAL" Type="Int64" />
           <Property Name="COD_JORNADA" Type="Int32" Nullable="false" />
           <Property Name="ATENCION_WEB" Type="Boolean" />
+          <Property Name="COD_ESPECIALIDAD" Type="Int32" />
+          <Property Name="COD_SERVICIO" Type="Int32" />
         </EntityType>
         <EntityType Name="MPS_MODO_LLEGADA">
           <Key>
@@ -726,6 +730,8 @@
           <EntitySetMapping Name="MPS_HORARIO_PROFESIONAL">
             <EntityTypeMapping TypeName="MPSModel.MPS_HORARIO_PROFESIONAL">
               <MappingFragment StoreEntitySet="MPS_HORARIO_PROFESIONAL">
+                <ScalarProperty Name="COD_SERVICIO" ColumnName="COD_SERVICIO" />
+                <ScalarProperty Name="COD_ESPECIALIDAD" ColumnName="COD_ESPECIALIDAD" />
                 <ScalarProperty Name="ATENCION_WEB" ColumnName="ATENCION_WEB" />
                 <ScalarProperty Name="COD_JORNADA" ColumnName="COD_JORNADA" />
                 <ScalarProperty Name="COD_PROFESIONAL" ColumnName="COD_PROFESIONAL" />
