@@ -225,9 +225,6 @@
     <Compile Include="Models\MPS_SECCION.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MPS_TELEFONO.cs">
-      <DependentUpon>MPS_DB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\MPS_TIPO_ORGANIZACION.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>

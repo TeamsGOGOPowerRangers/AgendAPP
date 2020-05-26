@@ -332,9 +332,9 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_TELEFONO' no tiene definida una 
           <EntitySet Name="MPS_PRESTACION_PROFESIONALES" EntityType="MPSModel.MPS_PRESTACION_PROFESIONALES" />
           <EntitySet Name="MPS_PREVISION" EntityType="MPSModel.MPS_PREVISION" />
           <EntitySet Name="MPS_REGION" EntityType="MPSModel.MPS_REGION" />
-          <EntitySet Name="MPS_SECCION" EntityType="MPSModel.MPS_SECCION" />
           <EntitySet Name="MPS_TIPO_ORGANIZACION" EntityType="MPSModel.MPS_TIPO_ORGANIZACION" />
           <EntitySet Name="MSP_PRESTACION" EntityType="MPSModel.MSP_PRESTACION" />
+          <EntitySet Name="MPS_SECCION" EntityType="MPSModel.MPS_SECCION" />
         </EntityContainer>
         <EntityType Name="MPS_AJUSTE_DISPONIBILIDAD">
           <Key>
@@ -568,18 +568,6 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_TELEFONO' no tiene definida una 
           <Property Name="ESTADO" Type="Boolean" />
           <Property Name="ORDEN" Type="Int32" />
         </EntityType>
-        <EntityType Name="MPS_SECCION">
-          <Key>
-            <PropertyRef Name="ID_SECCION" />
-          </Key>
-          <Property Name="ID_SECCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE_SECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IMPUESTO" Type="Int32" />
-          <Property Name="ESTADO" Type="Int32" />
-          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
-          <Property Name="FECHA_EDICION" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="MPS_TIPO_ORGANIZACION">
           <Key>
             <PropertyRef Name="ID_TIPO_ORGANIZACION" />
@@ -600,6 +588,18 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_TELEFONO' no tiene definida una 
           <Property Name="COD_IMPUESTO" Type="Int32" />
           <Property Name="ESTADO" Type="Boolean" />
           <Property Name="COD_ORGANIZACION" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MPS_SECCION">
+          <Key>
+            <PropertyRef Name="ID_SECCION" />
+          </Key>
+          <Property Name="ID_SECCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_SECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IMPUESTO" Type="Int32" />
+          <Property Name="ESTADO" Type="Int32" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_EDICION" Type="DateTime" Precision="0" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -859,19 +859,6 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_TELEFONO' no tiene definida una 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MPS_SECCION">
-            <EntityTypeMapping TypeName="MPSModel.MPS_SECCION">
-              <MappingFragment StoreEntitySet="MPS_SECCION">
-                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
-                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-                <ScalarProperty Name="IMPUESTO" ColumnName="IMPUESTO" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="NOMBRE_SECCION" ColumnName="NOMBRE_SECCION" />
-                <ScalarProperty Name="ID_SECCION" ColumnName="ID_SECCION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MPS_TIPO_ORGANIZACION">
             <EntityTypeMapping TypeName="MPSModel.MPS_TIPO_ORGANIZACION">
               <MappingFragment StoreEntitySet="MPS_TIPO_ORGANIZACION">
@@ -892,6 +879,19 @@ advertencia 6013: La tabla o vista 'MPS.dbo.MPS_TELEFONO' no tiene definida una 
                 <ScalarProperty Name="NOMBRE_PREVISION" ColumnName="NOMBRE_PREVISION" />
                 <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
                 <ScalarProperty Name="ID_PRESTACION" ColumnName="ID_PRESTACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPS_SECCION">
+            <EntityTypeMapping TypeName="MPSModel.MPS_SECCION">
+              <MappingFragment StoreEntitySet="MPS_SECCION">
+                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="IMPUESTO" ColumnName="IMPUESTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE_SECCION" ColumnName="NOMBRE_SECCION" />
+                <ScalarProperty Name="ID_SECCION" ColumnName="ID_SECCION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
