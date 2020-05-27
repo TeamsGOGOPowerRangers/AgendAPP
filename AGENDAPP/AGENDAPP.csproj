@@ -329,6 +329,8 @@
     <Content Include="Assets\plugins\bootstrap-sweetalert\sweet-alert.js" />
     <Content Include="Assets\plugins\bootstrap-sweetalert\sweet-alert.min.js" />
     <Content Include="Assets\plugins\bootstrap-sweetalert\thumbs-up.jpg" />
+    <Content Include="Assets\plugins\Bootstrap-Toggle\bootstrap-toggle.min.css" />
+    <Content Include="Assets\plugins\Bootstrap-Toggle\bootstrap-toggle.min.js" />
     <Content Include="Assets\plugins\canvasjs-2.3.1\canvasjs.min.js" />
     <Content Include="Assets\plugins\canvasjs-2.3.1\canvasjs.react.js" />
     <Content Include="Assets\plugins\canvasjs-2.3.1\examples\01-overview\animated-chart.html" />

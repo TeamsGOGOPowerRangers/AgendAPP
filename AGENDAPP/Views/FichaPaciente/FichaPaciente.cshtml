@@ -3,6 +3,8 @@
     ViewBag.Title = "FichaPaciente";
 }
 
+<link href="~/Assets/plugins/Bootstrap-Toggle/bootstrap-toggle.min.css" rel="stylesheet" />
+
 <style>
     .image-upload > input {
         display: none;
@@ -12,6 +14,20 @@
         width: 80px;
         cursor: pointer;
     }
+
+    .btn.btn-default i {
+        color: #000000 !important;
+    }
+
+    .show > .btn.btn-default, .btn.btn-default.active, .btn.btn-default:active, .btn.btn-default:hover {
+        color: #000000 !important;
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+
+        .show > .btn.btn-default i, .btn.btn-default.active i, .btn.btn-default:active i, .btn.btn-default:hover i {
+            color: #ffffff !important;
+        }
 </style>
 
 <div class="container-fluid">
@@ -107,6 +123,7 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-General-tab" data-toggle="tab" href="#nav-General" role="tab" aria-controls="nav-General" aria-selected="true">General</a>
             <a class="nav-item nav-link" id="nav-Documentos-tab" data-toggle="tab" href="#nav-Documentos" role="tab" aria-controls="nav-Documentos" aria-selected="false">Documentos</a>
+            <a class="nav-item nav-link" id="nav-DatosClinicos-tab" data-toggle="tab" href="#nav-DatosClinicos" role="tab" aria-controls="nav-DatosClinicos" aria-selected="false">Datos Clínicos</a>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -115,17 +132,15 @@
             <div class="panel panel-success">
                 <div class="panel-heading clearfix my-2">
                     <div class="form-group form-inline pull-left">
-                        <select id="slcEvtCli" onchange="CambiarEvento(this);" class="mr-2" style="width:200px; height:30px">
-
-                        </select>
+                        <select id="slcEvtCli" onchange="CambiarEvento(this);" class="mr-2" style="width:200px; height:30px"></select>
                         <span class="input-group-btn">
                             <button class="btn btn-warning" type="button" data-toggle="tooltip" data-placement="top" title="Ver histórico de Evento Clínico">
                                 <span class="fa fa-calendar"></span>
                             </button>
-                            <button class="btn btn-primary" type="button" onclick="ModalEditarEvento(this);" data-toggle="tooltip" data-placement="top" title="Editar Nombre de Evento Clínico Seleccionado">
+                            <button class="btn btn-primary" type="button" id="BtnEditarEvento" onclick="ModalEditarEvento(this);" data-toggle="tooltip" data-placement="top" title="Editar Nombre de Evento Clínico Seleccionado">
                                 <span class="fa fa-edit"></span>
                             </button>
-                            <button class="btn btn-success" onclick="ModalNuevoEvento();" type="button" data-toggle="tooltip" data-placement="top" title="Agregar nuevo Evento Clínico">
+                            <button class="btn btn-success" id="BtnNuevoEvento" onclick="ModalNuevoEvento();" type="button" data-toggle="tooltip" data-placement="top" title="Agregar nuevo Evento Clínico">
                                 <span class="fa fa-plus"></span>
                             </button>
                         </span>
@@ -136,7 +151,7 @@
                                 <span class="fa fa-calendar"></span>
                                 <span class="hidden-xs">Historial</span>
                             </button>
-                            <button class="btn btn-success" type="button"><span class="fa fa-plus"></span> <span class="hidden-xs">Nuevo Registro</span></button>
+                            <button class="btn btn-success" onclick="NuevoRegistro(this);" type="button"><span class="fa fa-plus"></span> <span class="hidden-xs">Nuevo Registro</span></button>
                         </div>
                     </div>
                 </div>
@@ -220,7 +235,7 @@
                                     <label class="control-label text-left">Seguimiento:</label>
                                 </div>
                                 <div class="col-8">
-                                    <textarea style="height:120px; resize:none" id="txtSeguimiento"  class="form-control" autocomplete="off" maxlength="4000" data-maxlength-error="No puede tener más de 4000 caracteres" data-error="Debe ingresar Seguimiento" placeholder="Seguimiento"></textarea>
+                                    <textarea style="height:120px; resize:none" id="txtSeguimiento" class="form-control" autocomplete="off" maxlength="4000" data-maxlength-error="No puede tener más de 4000 caracteres" data-error="Debe ingresar Seguimiento" placeholder="Seguimiento"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -252,10 +267,10 @@
                     <div class="pull-right">
                         <a href="javascript:void(0)" role="button" data-toogle="helptip" data-width="500px" data-placement="right" data-id="22" class="" style="color: rgb(253, 129, 83);" data-original-title="" title=""><span class="fa fa-lg fa-question-circle-o"></span></a>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary" id="BtnGuardarFichaClinica" onclick="GuardarFichaClinica(this);" type="button"><span class="fa fa-floppy-o"></span> <span class="hidden-xs">Guardar</span></button>
+                            <button class="btn btn-info" style="display:block" id="BtnGuardarFichaClinica" onclick="GuardarFichaClinica(this);" type="button"><span class="fa fa-floppy-o"></span> <span class="hidden-xs">Guardar</span></button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-info" id="BtnGuardarFichaClinicaModificada" onclick="GuardarFichaClinicaModificada(this);" type="button"><span class="fa fa-floppy-o"></span> <span class="hidden-xs">Guardar</span></button>
+                            <button class="btn btn-info" style="display:none" id="BtnGuardarFichaClinicaModificada" onclick="GuardarFichaClinicaModificada(this);" type="button"><span class="fa fa-floppy-o"></span> <span class="hidden-xs">Guardar</span></button>
                         </div>
                         <div class="btn-group" role="group">
                             <button class="btn btn-info" type="button">
@@ -290,6 +305,117 @@
 
         </div>
         <div class="tab-pane fade" id="nav-Documentos" role="tabpanel" aria-labelledby="nav-Documentos-tab">Documentos</div>
+        <div class="tab-pane fade" id="nav-DatosClinicos" role="tabpanel" aria-labelledby="nav-Documentos-tab">
+
+            <div class="panel panel-success">
+                <div class="panel-heading clearfix my-2">
+                    <h3>Datos Clínicos</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">Peso(Kg.):</label>
+                                </div>
+                                <div class="col-4">
+                                    <input  id="txtPeso" class="form-control" autocomplete="off" placeholder="Peso(Kg.)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">Talla(cms.):</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtTalla" class="form-control" autocomplete="off" placeholder="Talla(cms.)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">IMC:</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtIMC" class="form-control" placeholder="IMC">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">Pulso @*<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="Campo con autocompletado (Cie10 Full), comience a escribir con @."></span>*@:</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtPulso" class="form-control" autocomplete="off" placeholder="Pulso">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">Patologías GES @*<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="Campo con autocompletado (GES (Garantía Explicita de Salud)), comience a escribir con @."></span>*@:</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtGes" class="form-control" autocomplete="off" placeholder="Patologías GES">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">P.a. Sistolica @*<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="Campo con autocompletado (Fonasa Full), comience a escribir con @."></span>*@:</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtPASistolica" class="form-control" autocomplete="off" placeholder="P.a. Sistolica">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">P.a. Diastolica:</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtPADiastolica" class="form-control" autocomplete="off" placeholder="P.a. Diastolica">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4"><label class="control-label text-left">P/A:</label></div>
+                                <div class="col-4">
+                                    <input id="txtPA" class="form-control" autocomplete="off" placeholder="P/A">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="control-label text-left">Saturacion @*<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="Campo con autocompletado (Medicamentos Fasa CL), comience a escribir con @."></span>*@:</label>
+                                </div>
+                                <div class="col-4">
+                                    <input id="txtSaturacion" class="form-control" autocomplete="off" placeholder="Saturacion">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        @*<div class="btn-group" role="group">
+                            <button class="btn btn-info" style="display:block" id="BtnGuardarFichaClinica" onclick="GuardarFichaClinica(this);" type="button"><span class="fa fa-floppy-o"></span> <span class="hidden-xs">Guardar</span></button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-info" style="display:none" id="BtnGuardarFichaClinicaModificada" onclick="GuardarFichaClinicaModificada(this);" type="button"><span class="fa fa-floppy-o"></span> <span class="hidden-xs">Guardar</span></button>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -302,12 +428,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                    <div class="row">
-                        <label class="col-2 ml-5">Nombre: </label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="txtNombreEvento">
-                        </div>
+                <div class="row">
+                    <label class="col-2 ml-5">Nombre: </label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" id="txtNombreEvento">
                     </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -356,15 +482,15 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <table  class="table table-info table-striped table-bordered table-hover w-100" id="DatosFichaMedica">
+                            <table class="table table-info table-striped table-bordered table-hover w-100" id="DatosFichaMedica">
                                 <thead>
                                     <tr>
-                                    <th>Fecha Creación</th>
-                                    <th>Especialista</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                    @*<th>Id</th>
-                                    <th>Id Padre</th>*@
+                                        <th>Fecha Creación</th>
+                                        <th>Especialista</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                        @*<th>Id</th>
+                                            <th>Id Padre</th>*@
                                     </tr>
                                 </thead>
                                 <tbody id="TbodyDatosFichaMedica"></tbody>
@@ -380,8 +506,53 @@
     </div>
 </div>
 
+
+<div class="modal" id="ModalGuardarFichaCheck" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mdlHist-label"><span class="fa fa-calendar-check-o"></span> Historial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>¿Desea cerrar el Evento Clínico al "Guardar"? </label>
+                    <input type="checkbox" id="CheckTerminoEvento" data-toggle="toggle" data-on="Si" data-off="No" data-size="normal" data-onstyle="info" data-offstyle="default">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="GuardarFichaClinicaCheck(this);">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="ModalGuardarFichaModificadaCheck" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mdlHist-label"><span class="fa fa-calendar-check-o"></span> Historial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>¿Desea cerrar el Evento Clínico al "Guardar"? </label>
+                    <input type="checkbox" id="CheckTerminoEventoModificado" data-toggle="toggle" data-on="Si" data-off="No" data-size="normal" data-onstyle="info" data-offstyle="default">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="GuardarFichaClinicaModificadaCheck(this);">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts{
 
     <script type="module" src="~/ActionJs/FichaPaciente/FichaPaciente.js"></script>
+    <script src="~/Assets/plugins/Bootstrap-Toggle/bootstrap-toggle.min.js"></script>
 
 }

@@ -20,6 +20,10 @@ namespace AGENDAPP.Models
 
                     object Paciente = (from a in db.MPS_FICHA.AsEnumerable()
                                        where a.ID_FICHA == IDPacienteD
+                                       join r in db.MPS_PREVISION on a.COD_PREVISION equals r.ID_PREVISION
+                                       join c in db.MPS_MODO_LLEGADA on a.COD_MODO_LLEGADA equals c.ID_MODO_LLEGADA
+                                       join t in db.MPS_REGION on a.COD_REGION equals t.ID_REGION
+                                       join m in db.MPS_COMUNA on a.COD_COMUNA equals m.ID_COMUNA
                                        select new
                                        {
                                            ID = EncriptarBase64(a.ID_FICHA.ToString()),
@@ -29,14 +33,14 @@ namespace AGENDAPP.Models
                                            a.APELLIDO_MATERNO,
                                            a.IDENTIFICACION,
                                            a.FECHA_NACIMIENTO,
-                                           NACIONALIDAD = "CHILENA",
+                                           a.NACIONALIDAD,
                                            a.EMAIL,
                                            a.TELEFONO_FIJO,
                                            a.TELEFONO_MOVIL,
-                                           COD_PREVISION = "FONASA",
-                                           COD_MODO_LLEGADA = "FACEBOOK ADS",
-                                           COD_REGION = "METROPOLITANA",
-                                           COD_COMUNA = "ESTACION CENTRAL",
+                                           r.NOMBRE_PREVISION,
+                                           c.NOMBRE_MODO_LLEGADA,
+                                           t.NOMBRE_REGION,
+                                           m.NOMBRE_COMUNA,
                                            a.CALLE,
                                            a.NUMERO,
                                        }).FirstOrDefault();
@@ -50,6 +54,34 @@ namespace AGENDAPP.Models
                                              }).ToArray();
 
                     return new { Respuesta = true, Paciente, EventoPaciente };
+                }
+            }
+            catch (Exception Error)
+            {
+
+                return new { Respuesta = false, Error.Message };
+            }
+        }
+
+
+        public static object DatosPacienteH(string I)
+        {
+            try
+            {
+                using (MPS_DB db = new MPS_DB())
+                {
+
+                    int IDPacienteD = Int32.Parse(DesencriptarBase64(I));
+
+                    object EventoPaciente = (from a in db.MPS_EVENTO_CLINICO.AsEnumerable()
+                                             where a.COD_PACIENTE == IDPacienteD
+                                             select new
+                                             {
+                                                 ID = EncriptarBase64(a.ID_EVENTO.ToString()),
+                                                 a.EVENTO
+                                             }).ToArray();
+
+                    return new { Respuesta = true, EventoPaciente };
                 }
             }
             catch (Exception Error)
@@ -177,7 +209,7 @@ namespace AGENDAPP.Models
             }
         }
 
-        public static object NuevaFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string Paciente, string EventoClinica)
+        public static object NuevaFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string Paciente, string EventoClinica, bool Check)
         {
             try
             {
@@ -185,6 +217,19 @@ namespace AGENDAPP.Models
                 {
                     int IDPACIENTE = Convert.ToInt32(DesencriptarBase64(Paciente));
                     int IDEvento = Convert.ToInt32(DesencriptarBase64(EventoClinica));
+
+                    MPS_EVENTO_CLINICO Evento = db.MPS_EVENTO_CLINICO.Where(a => a.ID_EVENTO == IDEvento).FirstOrDefault();
+
+                    if (Check)
+                    {
+                        Evento.ESTADO = false;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Evento.ESTADO = true;
+                        db.SaveChanges();
+                    }
 
                     Nueva_Ficha_Clinica.COD_PACIENTE = IDPACIENTE;
                     Nueva_Ficha_Clinica.COD_EVENTO = IDEvento;
@@ -194,16 +239,16 @@ namespace AGENDAPP.Models
                     db.MPS_FICHA_CLINICA.Add(Nueva_Ficha_Clinica);
                     db.SaveChanges();
 
-                    object EventoNuevo = (from a in db.MPS_EVENTO_CLINICO.AsEnumerable()
-                                          where a.ID_EVENTO == Nueva_Ficha_Clinica.ID_FICHA_MEDICA
-                                          select new
-                                          {
-                                              ID = EncriptarBase64(a.ID_EVENTO.ToString()),
-                                              a.EVENTO
-                                          }).FirstOrDefault();
+                    object EventoPaciente = (from a in db.MPS_EVENTO_CLINICO.AsEnumerable()
+                                             where a.COD_PACIENTE == IDPACIENTE && a.ESTADO == true
+                                             select new
+                                             {
+                                                 ID = EncriptarBase64(a.ID_EVENTO.ToString()),
+                                                 a.EVENTO
+                                             }).ToArray();
 
 
-                    return new { Respuesta = true, EventoNuevo, Tipo = 1 };
+                    return new { Respuesta = true, EventoPaciente, Tipo = 1 };
 
 
 
@@ -311,7 +356,7 @@ namespace AGENDAPP.Models
         }
 
 
-        public static object ModificarFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string PacienteFichaMedica)
+        public static object ModificarFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string PacienteFichaMedica, bool Check)
         {
             try
             {
@@ -332,16 +377,28 @@ namespace AGENDAPP.Models
                     FICHA.INDICACIONES = Nueva_Ficha_Clinica.INDICACIONES;
                     db.SaveChanges();
 
-                    //object EventoNuevo = (from a in db.MPS_FICHA_CLINICA.AsEnumerable()
-                    //                      where a.ID_FICHA_MEDICA == IDPACIENTEFICHAMEDICA
-                    //                      select new
-                    //                      {
-                    //                          ID = EncriptarBase64(a.ID_FICHA_MEDICA.ToString()),
-                    //                          a
-                    //                      }).FirstOrDefault();
+                    MPS_EVENTO_CLINICO Evento = db.MPS_EVENTO_CLINICO.Where(a => a.ID_EVENTO == FICHA.COD_EVENTO).FirstOrDefault();
+                    if (Check)
+                    {
+                        Evento.ESTADO = false;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Evento.ESTADO = true;
+                        db.SaveChanges();
+                    }
+
+                    object EventoPaciente = (from a in db.MPS_EVENTO_CLINICO.AsEnumerable()
+                                             where a.COD_PACIENTE == FICHA.COD_PACIENTE && a.ESTADO == true
+                                             select new
+                                             {
+                                                 ID = EncriptarBase64(a.ID_EVENTO.ToString()),
+                                                 a.EVENTO
+                                             }).ToArray();
 
 
-                    return new { Respuesta = true, FICHA, Tipo = 1 };
+                    return new { Respuesta = true, FICHA, EventoPaciente, Tipo = 1 };
 
 
 

@@ -20,6 +20,11 @@ namespace AGENDAPP.Controllers
             return Json(Ficha_Paciente_Model.DatosPaciente(I), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult DatosPacienteH(string I)
+        {
+            return Json(Ficha_Paciente_Model.DatosPacienteH(I), JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult NuevoEvento(MPS_EVENTO_CLINICO Nuevo_Evento , string I)
         {
             return Json(Ficha_Paciente_Model.NuevoEvento(Nuevo_Evento, I), JsonRequestBehavior.AllowGet);
@@ -35,9 +40,9 @@ namespace AGENDAPP.Controllers
             return Json(Ficha_Paciente_Model.EventoEditado(I,E), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult NuevaFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string Paciente, string EventoClinica)
+        public JsonResult NuevaFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string Paciente, string EventoClinica, bool Check)
         {
-            return Json(Ficha_Paciente_Model.NuevaFichaMedica(Nueva_Ficha_Clinica, Paciente, EventoClinica), JsonRequestBehavior.AllowGet);
+            return Json(Ficha_Paciente_Model.NuevaFichaMedica(Nueva_Ficha_Clinica, Paciente, EventoClinica, Check), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult EventosPaciente(string I)
@@ -55,9 +60,9 @@ namespace AGENDAPP.Controllers
             return Json(Ficha_Paciente_Model.EditarFichaMedica(I), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ModificarFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string PacienteFichaMedica)
+        public JsonResult ModificarFichaMedica(MPS_FICHA_CLINICA Nueva_Ficha_Clinica, string PacienteFichaMedica , bool Check)
         {
-            return Json(Ficha_Paciente_Model.ModificarFichaMedica(Nueva_Ficha_Clinica, PacienteFichaMedica), JsonRequestBehavior.AllowGet);
+            return Json(Ficha_Paciente_Model.ModificarFichaMedica(Nueva_Ficha_Clinica, PacienteFichaMedica, Check), JsonRequestBehavior.AllowGet);
         }
     }
 }
