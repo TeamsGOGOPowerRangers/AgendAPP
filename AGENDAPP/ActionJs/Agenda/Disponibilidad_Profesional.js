@@ -3,6 +3,7 @@
 $('[data-toggle="popover"]').popover();
 
 window.addEventListener('load', function () {
+    
     $('#HoraInicio').bootstrapMaterialDatePicker
         ({
             date: false,
@@ -29,6 +30,8 @@ window.addEventListener('load', function () {
             time: false,
             clearButton: true
         });
+
+
 });
 
 document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('click', async function () {
@@ -233,3 +236,4 @@ document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('
 document.getElementById('Agregar_Jornada').addEventListener('click', function () {
     $('#Modal_Agregar_Jornada').modal('show');
 });
+

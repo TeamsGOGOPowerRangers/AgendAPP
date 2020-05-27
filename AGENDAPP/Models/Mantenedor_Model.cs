@@ -385,5 +385,277 @@ namespace AGENDAPP.Models
 
         }
         #endregion
+
+        #region Seccion
+        public static object SeccionLitas()
+        {
+            using (MPS_DB db = new MPS_DB())
+            {
+                object[] datos = (from c in db.MPS_SECCION
+                                  select new
+                                  {
+                                   c.ID_SECCION,
+                                   c.NOMBRE_SECCION,
+                                   c.DESCRIPCION,
+                                   c.IMPUESTO,
+                                   c.FECHA_CREACION,
+                                   c.FECHA_EDICION,
+                                   c.ESTADO
+
+                                  }).ToArray();
+
+
+
+                return new { RESPUESTA = true, TIPO = 0, datos };
+
+            }
+        }
+
+        public static object GuardarSeccion(string NombreSeccion, string Descripcion, int Impuesto)
+        {
+            try
+            {
+                MPS_SECCION Mps_Seccion = new MPS_SECCION();
+                Mps_Seccion.NOMBRE_SECCION = NombreSeccion;
+                Mps_Seccion.DESCRIPCION = Descripcion;
+                Mps_Seccion.IMPUESTO = Impuesto;
+                Mps_Seccion.FECHA_CREACION = DateTime.Now;
+                Mps_Seccion.ESTADO = 1;
+                using (MPS_DB db = new MPS_DB())
+                {
+                    db.MPS_SECCION.Add(Mps_Seccion);
+                    db.SaveChanges();
+
+                    object datos = (from c in db.MPS_SECCION
+                                    where c.ID_SECCION == Mps_Seccion.ID_SECCION
+                                    select new
+                                    {
+                                        c.ID_SECCION,
+                                        c.NOMBRE_SECCION,
+                                        c.DESCRIPCION,
+                                        c.IMPUESTO,
+                                        c.FECHA_CREACION,
+                                        c.FECHA_EDICION,
+                                        c.ESTADO
+                                    }).FirstOrDefault();
+
+                    return new { RESPUESTA = true, TIPO = 0, data = datos };
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new { RESPUESTA = false, TIPO = 1, e.Message };
+            }
+
+        }
+
+        public static object ListaSeccionId(int id)
+        {
+            using (MPS_DB db = new MPS_DB())
+            {
+
+
+
+                object[] datos = (from c in db.MPS_SECCION
+
+                                  where c.ID_SECCION == id
+                                  select new
+                                  {
+                                      c.ID_SECCION,
+                                      c.NOMBRE_SECCION,
+                                      c.DESCRIPCION,
+                                      c.IMPUESTO,
+                                      c.FECHA_CREACION,
+                                      c.FECHA_EDICION,
+                                      c.ESTADO
+
+                                  }).ToArray();
+
+
+
+
+                return new { RESPUESTA = true, TIPO = 0, datos };
+            }
+        }
+
+        public static object ModificarSeccion(int ID_SECCION, string NOMBRE, string DESCRIPCION, int IMPUESTO, int COD_ESTADO)
+        {
+            try
+            {
+                using (MPS_DB db = new MPS_DB())
+                {
+                    DateTime Fecha = DateTime.Now;
+                    string subQuery = $@"UPDATE MPS_SECCION SET NOMBRE_SECCION = '{ NOMBRE }' , DESCRIPCION = '{DESCRIPCION}' ,FECHA_EDICION='{ Fecha.ToString(Formato) }',IMPUESTO = {IMPUESTO},
+                                       ESTADO = {COD_ESTADO} where ID_SECCION = { ID_SECCION } ";
+                    db.Database.ExecuteSqlCommand(subQuery);
+
+                    object datos = (from c in db.MPS_SECCION
+                                    where c.ID_SECCION == ID_SECCION
+                                    select new
+                                    {
+                                        c.ID_SECCION,
+                                        c.NOMBRE_SECCION,
+                                        c.DESCRIPCION,
+                                        c.IMPUESTO,
+                                        c.FECHA_CREACION,
+                                        c.FECHA_EDICION,
+                                        c.ESTADO
+                                    }).FirstOrDefault();
+
+
+
+                    return new { RESPUESTA = true, TIPO = 0, data = datos };
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new { RESPUESTA = false, TIPO = 1, e.Message };
+            }
+
+        }
+        #endregion
+
+        #region Telefono
+        public static object TelefonoLista()
+        {
+            using (MPS_DB db = new MPS_DB())
+            {
+                object[] datos = (from c in db.MPS_TELEFONO
+                                  select new
+                                  {
+                                   c.ID_TELEFONO,
+                                   c.TIPO,
+                                   c.CODIGO_TELEFONO,
+                                   c.NUMERO,
+                                   c.COMENTARIO,
+                                   c.FECHA_CREACION,
+                                   c.FECHA_EDICION,
+                                   c.PRINCIPAL,
+                                   c.ESTADO
+
+                                  }).ToArray();
+
+
+
+                return new { RESPUESTA = true, TIPO = 0, datos };
+
+            }
+        }
+
+        public static object GuardarTelefono(string SelectTipo, string Codigo, string Numero,string Comentario,int Principal)
+        {
+            try
+            {
+                MPS_TELEFONO Mps_Telefono = new MPS_TELEFONO();
+                Mps_Telefono.TIPO = SelectTipo;
+                Mps_Telefono.CODIGO_TELEFONO = Codigo;
+                Mps_Telefono.NUMERO = Numero;
+                Mps_Telefono.COMENTARIO = Comentario;
+                Mps_Telefono.FECHA_CREACION = DateTime.Now;
+                Mps_Telefono.PRINCIPAL = Principal;
+                Mps_Telefono.ESTADO = 1;
+                using (MPS_DB db = new MPS_DB())
+                {
+                    db.MPS_TELEFONO.Add(Mps_Telefono);
+                    db.SaveChanges();
+
+                    object datos = (from c in db.MPS_TELEFONO
+                                    where c.ID_TELEFONO == Mps_Telefono.ID_TELEFONO
+                                    select new
+                                    {
+                                        c.ID_TELEFONO,
+                                        c.TIPO,
+                                        c.CODIGO_TELEFONO,
+                                        c.NUMERO,
+                                        c.COMENTARIO,
+                                        c.FECHA_CREACION,
+                                        c.FECHA_EDICION,
+                                        c.PRINCIPAL,
+                                        c.ESTADO
+                                    }).FirstOrDefault();
+
+                    return new { RESPUESTA = true, TIPO = 0, data = datos };
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new { RESPUESTA = false, TIPO = 1, e.Message };
+            }
+
+        }
+
+        public static object ListaTelefonoId(int id)
+        {
+            using (MPS_DB db = new MPS_DB())
+            {
+
+
+
+                object[] datos = (from c in db.MPS_TELEFONO
+
+                                  where c.ID_TELEFONO == id
+                                  select new
+                                  {
+                                      c.ID_TELEFONO,
+                                      c.TIPO,
+                                      c.CODIGO_TELEFONO,
+                                      c.NUMERO,
+                                      c.COMENTARIO,
+                                      c.FECHA_CREACION,
+                                      c.FECHA_EDICION,
+                                      c.PRINCIPAL,
+                                      c.ESTADO
+
+                                  }).ToArray();
+
+
+
+
+                return new { RESPUESTA = true, TIPO = 0, datos };
+            }
+        }
+
+        public static object ModificarTelefono(int ID_TELEFONO, string Tipo, string Codigo, string Numero, string Comentario, int Principal, int CodEstado)
+        {
+            try
+            {
+                using (MPS_DB db = new MPS_DB())
+                {
+                    DateTime Fecha = DateTime.Now;
+                    string subQuery = $@"UPDATE MPS_TELEFONO SET TIPO = '{ Tipo }' , CODIGO_TELEFONO = '{Codigo}' ,NUMERO = '{Numero}',COMENTARIO = '{Comentario}',FECHA_EDICION='{ Fecha.ToString(Formato) }',PRINCIPAL = {Principal},
+                                       ESTADO = {CodEstado} where ID_TELEFONO = { ID_TELEFONO } ";
+                    db.Database.ExecuteSqlCommand(subQuery);
+
+                    object datos = (from c in db.MPS_TELEFONO
+                                    where c.ID_TELEFONO == ID_TELEFONO
+                                    select new
+                                    {
+                                        c.ID_TELEFONO,
+                                        c.TIPO,
+                                        c.CODIGO_TELEFONO,
+                                        c.NUMERO,
+                                        c.COMENTARIO,
+                                        c.FECHA_CREACION,
+                                        c.FECHA_EDICION,
+                                        c.PRINCIPAL,
+                                        c.ESTADO
+                                    }).FirstOrDefault();
+
+
+
+                    return new { RESPUESTA = true, TIPO = 0, data = datos };
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new { RESPUESTA = false, TIPO = 1, e.Message };
+            }
+
+        }
+        #endregion
     }
 }

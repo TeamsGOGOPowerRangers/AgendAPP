@@ -143,63 +143,107 @@ namespace AGENDAPP.Models
         #endregion
 
         #region Horario Profesional
+
         public static object Agregar_Horario_Profesional(MPS_HORARIO_PROFESIONAL Horario_Profesional, MPS_DIAS_SEMANA[] Detalle_dias)
         {
             try
             {
                 using (MPS_DB db = new MPS_DB())
                 {
-                    db.MPS_HORARIO_PROFESIONAL.Add(Horario_Profesional);
-                    db.SaveChanges();
+                    List<MPS_DIAS_SEMANA> Dias_Fuera_de_Atencion = new List<MPS_DIAS_SEMANA>();
+                    List<object> Horario_Fuera_de_Atencion = new List<object>();
 
                     foreach (var item in Detalle_dias)
                     {
-                        MPS_DETALLE_DIAS_ATENCION Horario_detalle_dia = new MPS_DETALLE_DIAS_ATENCION();
-                        Horario_detalle_dia.COD_DIA_SEMANA = item.ID_DIA_SEMANA;
-                        Horario_detalle_dia.COD_HORARIO_PROFESIONAL = Horario_Profesional.ID_HORARIO_PROFESIONAL;
-                        db.MPS_DETALLE_DIAS_ATENCION.Add(Horario_detalle_dia);
-                        db.SaveChanges();
-                    }
+                        MPS_AJUSTE_DISPONIBILIDAD Ajuste = db.MPS_AJUSTE_DISPONIBILIDAD.Where(a => a.COD_DIA_SEMANA == item.ID_DIA_SEMANA).FirstOrDefault();
 
-                    DateTime Fecha_Inicio = Horario_Profesional.FECHA_DESDE.Value;
-
-                    while (Fecha_Inicio <= Horario_Profesional.FECHA_HASTA)
-                    {
-                        DateTime Hora_Inicio = Horario_Profesional.HORA_INICIO.Value;
-
-                        int Codigo_dia = (int)Convert.ToDateTime(Fecha_Inicio).DayOfWeek;
-                        bool Dia_Semana_Existe = Detalle_dias.Any(a => a.ID_DIA_SEMANA == Codigo_dia);
-                        if (Dia_Semana_Existe)
+                        if (Ajuste != null)
                         {
-                            while (Hora_Inicio <= Horario_Profesional.HORA_TERMINO)
+                            DateTime Hora_Inicio = Convert.ToDateTime(Horario_Profesional.HORA_INICIO.Value.ToString("HH:mm"));
+                            DateTime Hora_Termino = Convert.ToDateTime(Horario_Profesional.HORA_TERMINO.Value.ToString("HH:mm"));
+
+                            if (!(Hora_Inicio >= Convert.ToDateTime(Ajuste.HORA_INICIO.Value.ToString("HH:mm")) && Hora_Inicio <= Convert.ToDateTime(Ajuste.HORA_TERMINO.Value.ToString("HH:mm"))) &&
+                                !(Hora_Termino >= Convert.ToDateTime(Ajuste.HORA_INICIO.Value.ToString("HH:mm")) && Hora_Termino <= Convert.ToDateTime(Ajuste.HORA_TERMINO.Value.ToString("HH:mm"))))
                             {
-                                MPS_DETALLE_HORARIO_PROFESIONAL Detalle_Horario = new MPS_DETALLE_HORARIO_PROFESIONAL();
-                                Detalle_Horario.FECHA_ATENCION = Fecha_Inicio;
-                                Detalle_Horario.HORA_ATENCION = Hora_Inicio;
-                                Detalle_Horario.COD_HORARIO_PROFESIONAL = Horario_Profesional.ID_HORARIO_PROFESIONAL;
-                                Detalle_Horario.COD_ESTADO = 1;
+                                object Hora_fuera_de_atencion = (from a in db.MPS_AJUSTE_DISPONIBILIDAD
+                                                                 join ds in db.MPS_DIAS_SEMANA
+                                                                 on a.COD_DIA_SEMANA equals ds.ID_DIA_SEMANA
+                                                                 where a.ID_AJUSTE_DISPONIBILIDAD == Ajuste.ID_AJUSTE_DISPONIBILIDAD
+                                                                 select new
+                                                                 {
+                                                                     a.HORA_INICIO,
+                                                                     a.HORA_TERMINO,
+                                                                     ds.DIA_SEMANA
+                                                                 }).FirstOrDefault();
 
-                                db.MPS_DETALLE_HORARIO_PROFESIONAL.Add(Detalle_Horario);
-                                db.SaveChanges();
-
-                                int Minutos = Horario_Profesional.DURACION_CITA.Value + Horario_Profesional.ESPACIO_ENTRE_CITA.Value;
-                                Hora_Inicio = Convert.ToDateTime(Hora_Inicio).AddMinutes(Minutos);
+                                Horario_Fuera_de_Atencion.Add(Hora_fuera_de_atencion);
                             }
-                            Fecha_Inicio = Convert.ToDateTime(Fecha_Inicio).AddDays(1);
                         }
                         else
                         {
-                            Fecha_Inicio = Convert.ToDateTime(Fecha_Inicio).AddDays(1);
+                            MPS_DIAS_SEMANA Dia = db.MPS_DIAS_SEMANA.Where(a => a.ID_DIA_SEMANA == item.ID_DIA_SEMANA).FirstOrDefault();
+                            Dias_Fuera_de_Atencion.Add(Dia);
                         }
                     }
 
-                    return new { Respuesta = true };
 
+                    if(Dias_Fuera_de_Atencion.Count == 0 && Horario_Fuera_de_Atencion.Count == 0)
+                    {
+                        //    db.MPS_HORARIO_PROFESIONAL.Add(Horario_Profesional);
+                        //db.SaveChanges();
+
+                        //foreach (var item in Detalle_dias)
+                        //{
+                        //    MPS_DETALLE_DIAS_ATENCION Horario_detalle_dia = new MPS_DETALLE_DIAS_ATENCION();
+                        //    Horario_detalle_dia.COD_DIA_SEMANA = item.ID_DIA_SEMANA;
+                        //    Horario_detalle_dia.COD_HORARIO_PROFESIONAL = Horario_Profesional.ID_HORARIO_PROFESIONAL;
+                        //    db.MPS_DETALLE_DIAS_ATENCION.Add(Horario_detalle_dia);
+                        //    db.SaveChanges();
+                        //}
+
+                        //DateTime Fecha_Inicio = Horario_Profesional.FECHA_DESDE.Value;
+
+                        //while (Fecha_Inicio <= Horario_Profesional.FECHA_HASTA)
+                        //{
+                        //    DateTime Hora_Inicio = Horario_Profesional.HORA_INICIO.Value;
+
+                        //    int Codigo_dia = (int)Convert.ToDateTime(Fecha_Inicio).DayOfWeek;
+                        //    bool Dia_Semana_Existe = Detalle_dias.Any(a => a.ID_DIA_SEMANA == Codigo_dia);
+                        //    if (Dia_Semana_Existe)
+                        //    {
+                        //        while (Hora_Inicio <= Horario_Profesional.HORA_TERMINO)
+                        //        {
+                        //            MPS_DETALLE_HORARIO_PROFESIONAL Detalle_Horario = new MPS_DETALLE_HORARIO_PROFESIONAL();
+                        //            Detalle_Horario.FECHA_ATENCION = Fecha_Inicio;
+                        //            Detalle_Horario.HORA_ATENCION = Hora_Inicio;
+                        //            Detalle_Horario.COD_HORARIO_PROFESIONAL = Horario_Profesional.ID_HORARIO_PROFESIONAL;
+                        //            Detalle_Horario.COD_ESTADO = 1;
+
+                        //            db.MPS_DETALLE_HORARIO_PROFESIONAL.Add(Detalle_Horario);
+                        //            db.SaveChanges();
+
+                        //            int Minutos = Horario_Profesional.DURACION_CITA.Value + Horario_Profesional.ESPACIO_ENTRE_CITA.Value;
+                        //            Hora_Inicio = Convert.ToDateTime(Hora_Inicio).AddMinutes(Minutos);
+                        //        }
+                        //        Fecha_Inicio = Convert.ToDateTime(Fecha_Inicio).AddDays(1);
+                        //    }
+                        //    else
+                        //    {
+                        //        Fecha_Inicio = Convert.ToDateTime(Fecha_Inicio).AddDays(1);
+                        //    }
+                        //}
+
+                        return new { Respuesta = true, Tipo = 1 };
+                    }
+                    else
+                    {
+                        return new { Respuesta = false, Tipo = 1, Dias_Fuera_de_Atencion,Horario_Fuera_de_Atencion};
+                    }
                 }
             }
             catch (Exception Error)
             {
-                return new { Respuesta = false, Error.Message };
+                return new { Respuesta = false, Tipo = 0, Error.Message };
             }
         }
         #endregion

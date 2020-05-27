@@ -1,117 +1,142 @@
-﻿
+﻿<link href="~/Assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet" />
+<link href="~/Assets/plugins/DataTables/datatables.css" rel="stylesheet" />
 @{
     ViewBag.Title = "ArtSecciones";
 }
-    <div class="container-fluid">
+<div class="container-fluid">
 
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header mt-0">Administración de Secciones de Artículos</h2>
-            </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header mt-0">Administración de Secciones de Artículos</h2>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Secciones Registradas
-                    </div>
-                    <div class="panel-body">
-                        <div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                            <div class="toolbar" style="float: left;"><button id="btnNueva" class="btn btn-primary mr-5" data-toggle="tooltip" data-placement="right" title="" onclick="Crear();" data-original-title="Crear nuevo registro">Crear</button></div><div id="tblData_filter" class="dataTables_filter"><label>Buscar:<input type="search" class="form-control input-sm ml-3" placeholder="" aria-controls="tblData"></label></div><div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
-							<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
-                                <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nombre: Activar para ordenar la columna de manera descendente" style="width: 68px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Impuesto: Activar para ordenar la columna de manera ascendente" style="width: 79px;">Impuesto</th><th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Creación: Activar para ordenar la columna de manera ascendente" style="width: 75px;">Creación</th><th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Edición: Activar para ordenar la columna de manera ascendente" style="width: 66px;">Edición</th><th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Estado" style="width: 53px;">Estado</th><th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 72px;">Acciones</th></tr>
-                                </thead>
-                                <tbody><tr class="odd"><td valign="top" colspan="6" class="dataTables_empty">Ningún dato disponible en esta tabla</td></tr></tbody>
-                            </table><div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div><div class="dataTables_paginate paging_full_numbers" id="tblData_paginate"><ul class="pagination"><li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first"><a href="#">Primero</a></li><li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous"><a href="#">Anterior</a></li><li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next"><a href="#">Siguiente</a></li><li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last"><a href="#">Último</a></li></ul></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- I:Modal Crear -->
-        <div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel" style="display: none;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-plus-sign"></span> Crear Sección</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal interline5 sub" novalidate="true">
-                            <div class="form-group">
-                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
-                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                    <input type="text" class="form-control" id="txtNombre" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
-                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                    <textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboImpuesto">Impuesto:</label>
-                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboImpuesto" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Ninguno</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">I.V.A.</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Exento</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker" id="cboImpuesto" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option><option value="0">Ninguno</option><option value="1">I.V.A.</option><option value="2">Exento</option></select></div><input id="hdnImpuesto" class="hidden" required="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- F:Modal Crear -->
-        <!-- I:Modal Editar -->
-        <div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-pencil"></span> Editar Sección</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal interline5 sub">
-                            <input type="hidden" value="" id="id">
-                            <div class="form-group">
-                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
-                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                    <input type="text" class="form-control" id="txtNombre" value="" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
-                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                    <textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 col-sm-4 col-xs-4  control-label" for="cboImpuesto">Impuesto:</label>
-                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                    <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboImpuesto" title="Seleccione..."><span class="filter-option pull-left">Seleccione...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select class="selectpicker" id="cboImpuesto" data-width="fit" title="Seleccione..." tabindex="-98"><option class="bs-title-option" value="">Seleccione...</option></select></div><input id="hdnImpuesto" class="hidden" required="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- F:Modal Editar -->
-        <script src="/js/admin_artsecciones?v=IMExaKATgknUHwno0kSiG0K0AjodfKJ6J8tNzW6jIVY1"></script>
-
-
-
-        <!-- /.row -->
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button style="margin-right:10px" class="float-right d-inline-block btn btn-sm btn-outline-primary" id="AddSeccion" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Agregar nuevo color" data-original-title="" title=""><i class="fa fa-plus"></i></button>
+                    Secciones Registradas <br><small>Lista</small>
+
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped table-borderless table-bordered text-center" style="width:100%" id="tabla_Seccion">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Impuesto</th>
+                                <th>Fecha Creacion</th>
+                                <th>Fecha Edicion</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- I:Modal Crear -->
+    <div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-plus-sign"></span> Crear Sección</h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal interline5 sub" novalidate="true">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <input type="text" class="form-control" id="txtNombre" value="" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="Impuesto">Impuesto</label>
+                            <select class="form-control" id="Impuesto">
+                                <option value="1">Ninguno</option>
+                                <option value="2">I.V.A</option>
+                                <option value="3">Exento</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="BtnGuardarSeccion"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- F:Modal Crear -->
+    <!-- I:Modal Editar -->
+    <div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-pencil"></span> Editar Sección</h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal interline5 sub">
+                        <input type="hidden" value="" id="id">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <input type="text" class="form-control" id="MNombre" value="" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <textarea id="MDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="Impuesto">Impuesto</label>
+                            <select class="form-control" id="MImpuesto">
+                                <option value="1">Ninguno</option>
+                                <option value="2">I.V.A</option>
+                                <option value="3">Exento</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="Estado">Estado</label>
+                            <select class="form-control" id="Mestado">
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="BtnModificarSeccion"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- F:Modal Editar -->
+    @section scripts{
+        <script src="~/ActionJs/jquery.min.js"></script>
+        <script src="~/Assets/plugins/DataTables/datatables.js"></script>
+        <script src="~/ActionJs/Mantenedores/Seccion.js"></script>
+    }
+
+
+
+    <!-- /.row -->
+</div>
 

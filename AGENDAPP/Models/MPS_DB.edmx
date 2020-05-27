@@ -235,6 +235,32 @@
           <Property Name="ESTADO" Type="bit" />
           <Property Name="ORDEN" Type="int" />
         </EntityType>
+        <EntityType Name="MPS_SECCION">
+          <Key>
+            <PropertyRef Name="ID_SECCION" />
+          </Key>
+          <Property Name="ID_SECCION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_SECCION" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="IMPUESTO" Type="int" />
+          <Property Name="ESTADO" Type="int" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_EDICION" Type="date" />
+        </EntityType>
+        <EntityType Name="MPS_TELEFONO">
+          <Key>
+            <PropertyRef Name="ID_TELEFONO" />
+          </Key>
+          <Property Name="ID_TELEFONO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODIGO_TELEFONO" Type="varchar" MaxLength="50" />
+          <Property Name="NUMERO" Type="varchar" MaxLength="50" />
+          <Property Name="COMENTARIO" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_EDICION" Type="date" />
+          <Property Name="PRINCIPAL" Type="int" />
+          <Property Name="ESTADO" Type="int" />
+          <Property Name="TIPO" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="MPS_TIPO_ORGANIZACION">
           <Key>
             <PropertyRef Name="ID_TIPO_ORGANIZACION" />
@@ -277,6 +303,8 @@
           <EntitySet Name="MPS_PRESTACION_PROFESIONALES" EntityType="Self.MPS_PRESTACION_PROFESIONALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_PREVISION" EntityType="Self.MPS_PREVISION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_REGION" EntityType="Self.MPS_REGION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_SECCION" EntityType="Self.MPS_SECCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MPS_TELEFONO" EntityType="Self.MPS_TELEFONO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MPS_TIPO_ORGANIZACION" EntityType="Self.MPS_TIPO_ORGANIZACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MSP_PRESTACION" EntityType="Self.MSP_PRESTACION" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -305,6 +333,8 @@
           <EntitySet Name="MPS_PRESTACION_PROFESIONALES" EntityType="MPSModel.MPS_PRESTACION_PROFESIONALES" />
           <EntitySet Name="MPS_PREVISION" EntityType="MPSModel.MPS_PREVISION" />
           <EntitySet Name="MPS_REGION" EntityType="MPSModel.MPS_REGION" />
+          <EntitySet Name="MPS_SECCION" EntityType="MPSModel.MPS_SECCION" />
+          <EntitySet Name="MPS_TELEFONO" EntityType="MPSModel.MPS_TELEFONO" />
           <EntitySet Name="MPS_TIPO_ORGANIZACION" EntityType="MPSModel.MPS_TIPO_ORGANIZACION" />
           <EntitySet Name="MSP_PRESTACION" EntityType="MPSModel.MSP_PRESTACION" />
         </EntityContainer>
@@ -537,6 +567,32 @@
           <Property Name="NOMBRE_REGION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="Boolean" />
           <Property Name="ORDEN" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MPS_SECCION">
+          <Key>
+            <PropertyRef Name="ID_SECCION" />
+          </Key>
+          <Property Name="ID_SECCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_SECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IMPUESTO" Type="Int32" />
+          <Property Name="ESTADO" Type="Int32" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_EDICION" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="MPS_TELEFONO">
+          <Key>
+            <PropertyRef Name="ID_TELEFONO" />
+          </Key>
+          <Property Name="ID_TELEFONO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODIGO_TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMENTARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_EDICION" Type="DateTime" Precision="0" />
+          <Property Name="PRINCIPAL" Type="Int32" />
+          <Property Name="ESTADO" Type="Int32" />
+          <Property Name="TIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MPS_TIPO_ORGANIZACION">
           <Key>
@@ -812,6 +868,34 @@
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="NOMBRE_REGION" ColumnName="NOMBRE_REGION" />
                 <ScalarProperty Name="ID_REGION" ColumnName="ID_REGION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPS_SECCION">
+            <EntityTypeMapping TypeName="MPSModel.MPS_SECCION">
+              <MappingFragment StoreEntitySet="MPS_SECCION">
+                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="IMPUESTO" ColumnName="IMPUESTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE_SECCION" ColumnName="NOMBRE_SECCION" />
+                <ScalarProperty Name="ID_SECCION" ColumnName="ID_SECCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MPS_TELEFONO">
+            <EntityTypeMapping TypeName="MPSModel.MPS_TELEFONO">
+              <MappingFragment StoreEntitySet="MPS_TELEFONO">
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="PRINCIPAL" ColumnName="PRINCIPAL" />
+                <ScalarProperty Name="FECHA_EDICION" ColumnName="FECHA_EDICION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="CODIGO_TELEFONO" ColumnName="CODIGO_TELEFONO" />
+                <ScalarProperty Name="ID_TELEFONO" ColumnName="ID_TELEFONO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
