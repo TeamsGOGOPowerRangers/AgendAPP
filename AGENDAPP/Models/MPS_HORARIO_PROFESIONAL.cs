@@ -24,7 +24,5 @@ namespace AGENDAPP.Models
         public Nullable<long> COD_PROFESIONAL { get; set; }
         public int COD_JORNADA { get; set; }
         public Nullable<bool> ATENCION_WEB { get; set; }
-        public Nullable<int> COD_ESPECIALIDAD { get; set; }
-        public Nullable<int> COD_SERVICIO { get; set; }
     }
 }

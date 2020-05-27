@@ -158,6 +158,26 @@ namespace AGENDAPP.Controllers
         }
         #endregion
 
- 
+
+        #region Telefono
+        public JsonResult TelefonoLista()
+        {
+            return Json(Mantenedor_Model.TelefonoLista(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GuardarTelefono(string SelectTipo, string Codigo, string Numero,string Comentario,int Principal)
+        {
+            return Json(Mantenedor_Model.GuardarTelefono(SelectTipo, Codigo, Numero, Comentario, Principal), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ListaTelefonoId(int id)
+        {
+            return Json(Mantenedor_Model.ListaTelefonoId(id), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ModificarTelefono(int ID_TELEFONO,string Tipo , string Codigo, string Numero, string Comentario, int Principal,int CodEstado)
+        {
+            return Json(Mantenedor_Model.ModificarTelefono(ID_TELEFONO,Tipo, Codigo, Numero, Comentario, Principal, CodEstado), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+
     }
 }

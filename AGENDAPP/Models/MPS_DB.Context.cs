@@ -45,8 +45,9 @@ namespace AGENDAPP.Models
         public virtual DbSet<MPS_PRESTACION_PROFESIONALES> MPS_PRESTACION_PROFESIONALES { get; set; }
         public virtual DbSet<MPS_PREVISION> MPS_PREVISION { get; set; }
         public virtual DbSet<MPS_REGION> MPS_REGION { get; set; }
+        public virtual DbSet<MPS_SECCION> MPS_SECCION { get; set; }
+        public virtual DbSet<MPS_TELEFONO> MPS_TELEFONO { get; set; }
         public virtual DbSet<MPS_TIPO_ORGANIZACION> MPS_TIPO_ORGANIZACION { get; set; }
         public virtual DbSet<MSP_PRESTACION> MSP_PRESTACION { get; set; }
-        public virtual DbSet<MPS_SECCION> MPS_SECCION { get; set; }
     }
 }

@@ -225,6 +225,9 @@
     <Compile Include="Models\MPS_SECCION.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MPS_TELEFONO.cs">
+      <DependentUpon>MPS_DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MPS_TIPO_ORGANIZACION.cs">
       <DependentUpon>MPS_DB.tt</DependentUpon>
     </Compile>
@@ -244,6 +247,7 @@
     <Content Include="ActionJs\Mantenedores\Ocupaciones.js" />
     <Content Include="ActionJs\Mantenedores\Prevision.js" />
     <Content Include="ActionJs\Mantenedores\Seccion.js" />
+    <Content Include="ActionJs\Mantenedores\Telefono.js" />
     <Content Include="ActionJs\Paciente\Paciente.js" />
     <Content Include="Assets\plugins\bootstrap-filestyle\bootstrap-filestyle.js" />
     <Content Include="Assets\plugins\bootstrap-filestyle\bootstrap-filestyle.min.js" />
