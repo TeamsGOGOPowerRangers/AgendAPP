@@ -3,7 +3,12 @@
 $('[data-toggle="popover"]').popover();
 
 window.addEventListener('load', function () {
-    
+
+    const InputsFecha = document.getElementsByClassName('ValidaFecha');
+    for (let Item of InputsFecha) {
+        Item.setAttribute('onchange', 'ValidaFecha(this)');
+    }
+
     $('#HoraInicio').bootstrapMaterialDatePicker
         ({
             date: false,
@@ -48,6 +53,8 @@ document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('
     const Espacio = document.getElementById('Espacio');
     const Jornada = document.getElementById('Jornada');
     const WebSi = document.getElementById('WebSi');
+    const Especialidad = document.getElementById('Especialidad');
+    const Servicio = document.getElementById('Servicio');
 
     const th = tabla_dias_head.getElementsByTagName('tr')[0].getElementsByTagName('th');
     for (const Item of th) {
@@ -192,6 +199,36 @@ document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('
         }).show();
     }
 
+    if (Especialidad.value === "0") {
+        Errores++;
+        new Noty({
+            text: '<strong>Advertencia</strong> Debes seleccionar una especialidad.',
+            type: 'alert',
+            theme: 'metroui',
+            layout: 'topRight',
+            timeout: 4000,
+            animation: {
+                open: bouncejsShow,
+                close: bouncejsClose
+            }
+        }).show();
+    }
+
+    if (Servicio.value === "0") {
+        Errores++;
+        new Noty({
+            text: '<strong>Advertencia</strong> Debes seleccionar un servicio.',
+            type: 'alert',
+            theme: 'metroui',
+            layout: 'topRight',
+            timeout: 4000,
+            animation: {
+                open: bouncejsShow,
+                close: bouncejsClose
+            }
+        }).show();
+    }
+
     if (Errores === 0) {
 
         const ArrayDias = new Array();
@@ -213,11 +250,14 @@ document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('
         Horario_Profesional.COD_PROFESIONAL = Profesional.value;
         Horario_Profesional.COD_JORNADA = Jornada.value;
         Horario_Profesional.ATENCION_WEB = WebSi.checked === true ? 1 : 0;
+        Horario_Profesional.COD_ESPECIALIDAD = Especialidad.value;
+        Horario_Profesional.COD_SERVICIO = Servicio.value;
 
         const Fetchs = Fetch('../Agenda/Agregar_Horario_Profesional', { Horario_Profesional: Horario_Profesional, Detalle_dias: ArrayDias });
         const Resultado = await Fetchs.FetchWithData();
         console.log(Resultado);
-        if (Resultado.Respuesta) {
+
+        if (Resultado.Respuesta && Resultado.Data.Respuesta && Resultado.Data.Tipo === 1) {
             new Noty({
                 text: '<strong>Información</strong> Disponibilidad Creada con exito.',
                 type: 'info',
@@ -229,7 +269,47 @@ document.getElementById('Agregar_Disponibilidad_Profesional').addEventListener('
                     close: bouncejsClose
                 }
             }).show();
+
+        } else if (Resultado.Respuesta && !Resultado.Data.Respuesta && Resultado.Data.Tipo === 2) {
+            alert("Respuesta = false, data.respuesta = false, data.tipo 2");
+
         }
+        else if (!Resultado.Respuesta && Resultado.Tipo === 2) {
+            alert("tipo 2");
+
+        } else if (!Resultado.Respuesta && Resultado.Tipo === 3) {
+            alert("tipo 3");
+
+        }
+        else if (!Resultado.Respuesta && Resultado.Tipo === 1) {
+            let Contenido = '';
+            const Tbody_Dias_Fuera = document.getElementById('Tbody_Dias_Fuera');
+            const Tbody_Horas_fuera = document.getElementById('Tbody_Horas_fuera');
+            Tbody_Dias_Fuera.innerHTML = "";
+            Tbody_Horas_fuera.innerHTML = "";
+
+
+            for (let Item of Resultado.Dias_Fuera_de_Atencion) {
+                Contenido += `<tr>
+                                 <td>${Item.DIA_SEMANA}</td>
+                              </tr>`;
+            }
+            Tbody_Dias_Fuera.innerHTML = Contenido;
+
+            Contenido = '';
+            for (let Item of Resultado.Horario_Fuera_de_Atencion) {
+                Contenido += `<tr>
+                                 <td>${Item.DIA_SEMANA}</td>
+                                 <td>${moment(Item.HORA_INICIO).format('HH:mm')}</td>
+                                 <td>${moment(Item.HORA_TERMINO).format('HH:mm')}</td>
+                              </tr>`;
+            }
+            Tbody_Horas_fuera.innerHTML = Contenido;
+
+            $("#Modal_Fuera_de_Horario").modal('show');
+
+        }
+
     }
 });
 
@@ -237,3 +317,21 @@ document.getElementById('Agregar_Jornada').addEventListener('click', function ()
     $('#Modal_Agregar_Jornada').modal('show');
 });
 
+window.ValidaFecha = function ValidaFecha(Input) {
+    let Respuesta = true;
+    const Span = Input.parentNode.parentNode.getElementsByTagName('span')[0];
+
+    const Fecha_Hora = Input.value.split(' ');
+    const Fecha = Fecha_Hora[0].split('/');
+
+    const FechaActual = new Date(moment(new Date()).format('YYYY/MM/DD'));
+    const FechaIngresada = new Date(Date.parse(`${Fecha[2]}/${Fecha[1]}/${Fecha[0]}`));
+
+    FechaIngresada.getTime() >= FechaActual.getTime() ? Respuesta = true : Respuesta = false;
+
+    if (Input.getAttribute('id') === 'FechaDesde') {
+        Respuesta === false ? (Span.innerText = 'La fecha Ingresada debe ser mayor o igual a la actual.', Input.value = '') : Span.innerText = '';
+    } else if (Input.getAttribute('id') === 'FechaHasta') {
+        Respuesta === false ? (Span.innerText = 'La fecha Ingresada debe ser mayor o igual a la actual.', Input.value = '') : Span.innerText = '';
+    }
+};

@@ -103,14 +103,17 @@
                 <div class="form-group col-lg-6">
                     <label>Fecha desde</label>
                     <div class="form-control-wrapper">
-                        <input type="text" id="FechaDesde" class="form-control floating-label" placeholder="Hora">
+                        <input type="text" id="FechaDesde" class="form-control floating-label ValidaFecha" placeholder="Hora">
                     </div>
+                    <span class="text-info"></span>
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Fecha hasta</label>
                     <div class="form-control-wrapper">
-                        <input type="text" id="FechaHasta" class="form-control floating-label" placeholder="Hora">
+                        <input type="text" id="FechaHasta" class="form-control floating-label ValidaFecha" placeholder="Hora">
                     </div>
+                    <span class="text-info"></span>
+
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Duración de cita(Minutos)</label>
@@ -173,6 +176,55 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-info" id="Quitar_Horario">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modal_Fuera_de_Horario" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-exclamation-triangle" style="color:#ffb100"></i> Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <p>
+                    A continuación se despliegan los siguientes detalles:
+                </p>
+                <div>
+                    <label>1.- Dias seleccionados que no estan dentro de los días de atencion de la sucursal</label>
+                    <table class="table table-info">
+                        <thead>
+                            <tr>
+                                <td>Días</td>
+                            </tr>
+                        </thead>
+                        <tbody id="Tbody_Dias_Fuera"></tbody>
+
+                    </table>
+                </div>
+                <div>
+                    <label>2.- Días seleccionados en los que si atiende la sucursal, pero entran en conflicto con las horas de atencion del medico </label>
+                    <table class="table table-info">
+                        <thead>
+                            <tr>
+                                <td>Dia de atencion</td>
+                                <td>Desde</td>
+                                <td>Hasta</td>
+                            </tr>
+                        </thead>
+                        <tbody id="Tbody_Horas_fuera"></tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Te recomendamos crear los dias de disponibilidad horaria del medico que estan en conflicto por separado</p>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
