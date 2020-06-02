@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "Prestaciones";
+}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Informe de Prestaciones no Facturadas</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default" id="pnlPrestaciones">
+                    <div class="panel-heading">
+                        <form id="report_prestaciones" class="form-horizontal interline5 sub">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><span class="fa fa-filter"></span> Filtro</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="txtFechaIni">Fechas:</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-field">
+                                                            <input type="text" class="form-control date" id="dtStart" placeholder="Desde" required="" disabled="">
+                                                        </div>
+                                                        <span class="input-group-addon">-</span>
+                                                        <div class="input-group-field">
+                                                            <input type="text" class="form-control date" id="dtEnd" placeholder="Hasta" required="" disabled="">
+                                                        </div>
+                                                        <span class="input-group-btn">
+                                                            <div class="btn-group bootstrap-select fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPeriodo" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="1" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Día Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Pasada</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Pasado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Personalizado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select id="cboPeriodo" class="selectpicker" data-width="fit" title="Periodo..." tabindex="-98"><option class="bs-title-option" value="">Periodo...</option><option value="All">Todo</option><option value="Day">Día Actual</option><option value="WeekP">Semana Pasada</option><option value="Week">Semana Actual</option><option value="MonthP">Mes Pasado</option><option value="Month">Mes Actual</option><option value="Custom">Personalizado</option></select></div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="taPrestaciones">Prestaciones:</label>
+                                                <div class="col-md-9">
+                                                    <div contenteditable="true" data-mentions="/api/mentions/prestaciones_sel" data-mentions-triggerlength="1" data-mentions-resultlength="15" class="form-control" id="taPrestaciones" autocomplete="off" maxlength="10000" data-maxlength-error="No puede tener más de 200 caracteres" placeholder="Comienze a escribir con @ seguido del nombre de la prestación."></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="txtPaciente">Paciente:</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <input type="search" id="txtPaciente" class="form-control" placeholder="Paciente" data-suggest="/api/suggest/pacientes" data-suggest-triggerlength="2" data-suggest-resultlength="25" data-suggest-text="name">
+                                                        <span class="input-group-btn">
+                                                            <div class="btn-group bootstrap-select tps fit-width">
+                                                                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboTPS_0000006" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Rut</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nombre</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Téléfono</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker tps" id="cboTPS_0000006" onchange="UTILS.ChangeTypeSearch(this);" data-width="fit" tabindex="-98">
+                                                                    <option value="1" data-url="/api/suggest/pacientes" data-length="3">Todo</option>
+                                                                    <option value="2" data-url="/api/suggest/pacientes_r" data-length="6">Rut</option>
+                                                                    <option value="3" data-url="/api/suggest/pacientes_n" data-length="3">Nombre</option>
+                                                                    <option value="4" data-url="/api/suggest/pacientes_f" data-length="6">Téléfono</option>
+                                                                </select>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="cboEspecialista">Especialista:</label>
+                                                <div class="col-md-9">
+                                                    <div class="btn-group bootstrap-select show-tick form-control"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEspecialista" title="Especialista..."><span class="filter-option pull-left">Especialista...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><div class="bs-actionsbox"><div class="btn-group btn-group-sm btn-block"><button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button><button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button></div></div><ul class="dropdown-menu inner" role="menu"><li data-original-index="0"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Luciano Rodriguez</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Diego Fernandez</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Profesional 1</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select id="cboEspecialista" class="form-control selectpicker" title="Especialista..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="111ee21f-df8e-4abb-859a-18d513b611c9">Luciano Rodriguez</option><option value="72d0bede-8345-4a83-811c-3631b2ada432">Diego Fernandez</option><option value="fffe540e-4cee-4d96-85bf-9f1381a43ab4">Profesional 1</option></select></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="cboPrevision">Previsión:</label>
+                                                <div class="col-md-9">
+                                                    <div class="btn-group bootstrap-select show-tick form-control"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPrevision" title="Previsión..."><span class="filter-option pull-left">Previsión...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><div class="bs-actionsbox"><div class="btn-group btn-group-sm btn-block"><button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button><button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button></div></div><ul class="dropdown-menu inner" role="menu"><li data-original-index="0"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Particular</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Fonasa</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nueva Masvida</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Consalud</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Colmena</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Banmedica</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Vida Tres</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cruz Blanca</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="8"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Fundación</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="9"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Óptima</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="10"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cruz del Norte</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="11"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Fusat</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="12"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Río Blanco</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="13"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">San Lorenzo</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="14"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Chuquicamata</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="15"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Capredena</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="16"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Dipreca</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="17"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Jeafosale</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select id="cboPrevision" class="form-control selectpicker" title="Previsión..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="0">Particular</option><option value="1">Fonasa</option><option value="2">Nueva Masvida</option><option value="3">Consalud</option><option value="4">Colmena</option><option value="5">Banmedica</option><option value="6">Vida Tres</option><option value="7">Cruz Blanca</option><option value="8">Fundación</option><option value="9">Óptima</option><option value="10">Cruz del Norte</option><option value="11">Fusat</option><option value="12">Río Blanco</option><option value="13">San Lorenzo</option><option value="14">Chuquicamata</option><option value="16">Capredena</option><option value="17">Dipreca</option><option value="19">Jeafosale</option></select></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group hidden">
+                                                <label class="col-md-3 control-label" for="cboEstadoPago">Con Pagos:</label>
+                                                <div class="col-md-9">
+                                                    <div class="btn-group bootstrap-select show-tick form-control"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEstadoPago" title="Estado Pagos..."><span class="filter-option pull-left">Estado Pagos...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><div class="bs-actionsbox"><div class="btn-group btn-group-sm btn-block"><button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button><button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button></div></div><ul class="dropdown-menu inner" role="menu"><li data-original-index="0"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Realizados<small class="text-muted">Facturada (Pagada completa)</small></span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Parciales<small class="text-muted">Facturada (Pagada parcial)</small></span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Sin Pagos<small class="text-muted">Facturada (Sin pagos)</small></span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Sin Facturar<small class="text-muted">No Facturada</small></span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select id="cboEstadoPago" class="form-control selectpicker" title="Estado Pagos..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="1" data-subtext="Facturada (Pagada completa)">Realizados</option><option value="2" data-subtext="Facturada (Pagada parcial)">Parciales</option><option value="3" data-subtext="Facturada (Sin pagos)">Sin Pagos</option><option value="4" data-subtext="No Facturada">Sin Facturar</option></select></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><span class="fa fa-gear"></span> Configuración</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="alert alert-info" role="alert">
+                                                <span class="fa fa-info-circle fa-lg"></span> Puede guardar la configuración del informe (filtros seleccionados), además de agregar un título y un comentario, las configuraciones guardadas las puede cargar de forma fácil y rápida en un futuro. Para guardar simplemente debe ingresar un "Título" y seleccionar "¿Guardar?=Si" antes de generar el Informe.
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="txtTitulo">Preconfiguración:</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="btn-group bootstrap-select input-group-btn fit-width"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPreset" title="Título..."><span class="filter-option pull-left">Título...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"></ul></div><select id="cboPreset" class="selectpicker" data-width="fit" title="Título..." tabindex="-98"><option class="bs-title-option" value="">Título...</option></select></div>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" id="btnDeletePreset" class="btn btn-danger" disabled=""><span class="fa fa-trash"></span></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="txtTitulo">Título:</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="txtTitulo" placeholder="Título" required="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="taComentarios">Comentarios:</label>
+                                                <div class="col-md-9">
+                                                    <div contenteditable="true" class="form-control" id="taComentarios" autocomplete="off" maxlength="10000" data-maxlength-error="No puede tener más de 200 caracteres" placeholder="Comentarios"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="chkSave">¿Guardar?:</label>
+                                                <div class="col-md-9">
+                                                    <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkSave bootstrap-switch-animate" style="width: 72.6875px;"><div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;"><span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span><span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span><span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span><input type="checkbox" id="chkSave"></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button class="btn btn-primary" id="btnApply" type="button">Generar</button>
+                                    <button class="btn btn-primary" id="btnPDF" type="button"><span class="fa fa-file-pdf-o"></span> Descargar PDF</button>
+                                    <button class="btn btn-primary" id="btnXLS" type="button"><span class="fa fa-file-excel-o"></span> Descargar XLS</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-body">
+                        <div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="toolbar"></div><div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div><table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+                                <caption>
+                                    <input id="txtParams" type="text" class="hidden" data-aditional-parameter="params" data-aditional-type="json" data-aditional-skip="true">
+                                </caption>
+                                <thead>
+                                    <tr role="row"><th class="text-centered sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Fecha: Activar para ordenar la columna de manera ascendente" style="width: 76px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 130px;">Paciente</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Previsión: Activar para ordenar la columna de manera ascendente" style="width: 75px;">Previsión</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Referencia: Activar para ordenar la columna de manera ascendente" style="width: 84px;">Referencia</th><th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Prestación: Activar para ordenar la columna de manera ascendente" style="width: 85px;">Prestación</th></tr>
+                                </thead>
+                                <tbody><tr role="row" class="odd"><td class="text-centered sorting_1">08/05/2020</td><td>Paciente1 Demo Demo</td><td>Fonasa</td><td>Cita</td><td>Laboratorio</td></tr><tr role="row" class="even"><td class="text-centered sorting_1">08/05/2020</td><td>Paciente1 Demo Demo</td><td>Fonasa</td><td>Cita</td><td>Laboratorio</td></tr><tr role="row" class="odd"><td class="text-centered sorting_1">08/05/2020</td><td>Paciente1 Demo Demo</td><td>Fonasa</td><td>Cita</td><td>Laboratorio</td></tr><tr role="row" class="even"><td class="text-centered sorting_1">06/05/2020</td><td>diego fernans hh</td><td>Fonasa</td><td>Cita</td><td>Laboratorio</td></tr></tbody>
+                            </table><div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 1 al 4 de un total de 4 registros</div><div class="dataTables_paginate paging_full_numbers" id="tblData_paginate"><ul class="pagination"><li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first"><a href="#">Primero</a></li><li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous"><a href="#">Anterior</a></li><li class="paginate_button active" aria-controls="tblData" tabindex="0"><a href="#">1</a></li><li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next"><a href="#">Siguiente</a></li><li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last"><a href="#">Último</a></li></ul></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/informe_prestaciones?v=3mcub7CMwvqtOlko89ZpOxqP2zzMqQy4zdh2_aQczyw1"></script>
+
+        <!-- /.row -->
+    </div>

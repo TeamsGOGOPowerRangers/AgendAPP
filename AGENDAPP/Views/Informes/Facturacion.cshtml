@@ -1,0 +1,295 @@
+﻿
+@{
+	ViewBag.Title = "Facturacion";
+}
+
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Informe de Facturación</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default" id="pnlInvoices">
+				<div class="panel-heading">
+					<form id="reportInvoices" class="form-horizontal interline5 sub">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-filter"></span> Filtro
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtFechaIni">Fechas:</label>
+											<div class="col-md-9">
+												<div class="input-group row mb-2">
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtStart" placeholder="Desde" required="" disabled="">
+													</div>
+													<span class="input-group-addon">_</span>
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtEnd" placeholder="Hasta" required="" disabled="">
+													</div>
+													<div class="btn-group bootstrap-select fit-width col-12 row mt-2">
+														<button type="button" class="btn dropdown-toggle btn-default col-6" data-toggle="dropdown" data-id="cboPeriodo" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu">
+																<li data-original-index="1" class="selected">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="2">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Día Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="3">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Pasada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="4">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="5">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Pasado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="6">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="7">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Personalizado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+															</ul>
+														</div>
+														<select id="cboPeriodo" class="selectpicker col-6" data-width="fit" title="Periodo..." tabindex="-98"><option class="bs-title-option" value="">Periodo...</option><option value="All">Todo</option><option value="Day">Día Actual</option><option value="WeekP">Semana Pasada</option><option value="Week">Semana Actual</option><option value="MonthP">Mes Pasado</option><option value="Month">Mes Actual</option><option value="Custom">Personalizado</option></select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtPaciente">Paciente:</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<input type="search" id="txtPaciente" class="form-control" placeholder="Paciente" data-suggest="/api/suggest/pacientes" data-suggest-triggerlength="2" data-suggest-resultlength="25" data-suggest-text="name">
+													<span class="input-group-btn">
+														<div class="btn-group bootstrap-select tps fit-width">
+															<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboTPS_0000005" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+															<div class="dropdown-menu open">
+																<ul class="dropdown-menu inner" role="menu">
+																	<li data-original-index="0" class="selected">
+																		<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																	</li>
+																	<li data-original-index="1">
+																		<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Rut</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																	</li>
+																	<li data-original-index="2">
+																		<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nombre</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																	</li>
+																	<li data-original-index="3">
+																		<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Téléfono</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																	</li>
+																</ul>
+															</div>
+															<select class="selectpicker tps" id="cboTPS_0000005" onchange="UTILS.ChangeTypeSearch(this);" data-width="fit" tabindex="-98">
+																<option value="1" data-url="/api/suggest/pacientes" data-length="3">Todo</option>
+																<option value="2" data-url="/api/suggest/pacientes_r" data-length="6">Rut</option>
+																<option value="3" data-url="/api/suggest/pacientes_n" data-length="3">Nombre</option>
+																<option value="4" data-url="/api/suggest/pacientes_f" data-length="6">Téléfono</option>
+															</select>
+														</div>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboUsuario">Cajero:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboUsuario" title="Cajero..."><span class="filter-option pull-left">Cajero...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Bastian Moyano</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Diego Fernandez</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="2">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Joshef Zuñiga</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="3">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Matias Ibarra</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="4">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nicolas Flores</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboUsuario" class="form-control selectpicker" title="Cajero..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="515af04a-b691-4329-94ef-fb79fc21b420">Bastian Moyano</option><option value="72d0bede-8345-4a83-811c-3631b2ada432">Diego Fernandez</option><option value="4237fb37-0312-4547-972c-4e1e4872e4e6">Joshef Zuñiga</option><option value="764a431f-4665-408a-9def-110476afdabb">Matias Ibarra</option><option value="2ce6c06e-638f-4535-ad99-456332239cb6">Nicolas Flores</option></select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtNumero">Número Factura:</label>
+											<div class="col-md-9">
+												<input type="text" id="txtNumero" maxlength="10" class="form-control" placeholder="Número">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboEstado">Estado:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEstado" title="Estado Factura..."><span class="filter-option pull-left">Estado Factura...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pendiente</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pagada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="2">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pagada Parcial</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="3">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Anulada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboEstado" class="form-control selectpicker" title="Estado Factura..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="1">Pendiente</option><option value="2">Pagada</option><option value="3">Pagada Parcial</option><option value="4">Anulada</option></select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-gear"></span> Configuración
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="alert alert-info" role="alert">
+											<span class="fa fa-info-circle fa-lg"></span> Puede guardar la configuración del informe (filtros seleccionados), además de agregar un título y un comentario, las configuraciones guardadas las puede cargar de forma fácil y rápida en un futuro. Para guardar simplemente debe ingresar un "Título" y seleccionar "¿Guardar?=Si" antes de generar el Informe.
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtTitulo">Preconfiguración:</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<div class="btn-group bootstrap-select input-group-btn fit-width">
+														<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPreset" title="Título..."><span class="filter-option pull-left">Título...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu"></ul>
+														</div>
+														<select id="cboPreset" class="selectpicker" data-width="fit" title="Título..." tabindex="-98"><option class="bs-title-option" value="">Título...</option></select>
+													</div>
+													<span class="input-group-btn">
+														<button type="button" id="btnDeletePreset" class="btn btn-danger" disabled=""><span class="fa fa-trash"></span></button>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtTitulo">Título:</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" id="txtTitulo" placeholder="Título" required="">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="taComentarios">Comentarios:</label>
+											<div class="col-md-9">
+												<div contenteditable="true" class="form-control" id="taComentarios" autocomplete="off" maxlength="10000" data-maxlength-error="No puede tener más de 200 caracteres" placeholder="Comentarios"></div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="chkSave">¿Guardar?:</label>
+											<div class="col-md-9">
+												<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkSave bootstrap-switch-animate" style="width: 72.6875px;">
+													<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+														<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+														<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+														<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+														<input type="checkbox" id="chkSave">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12 col-md-offset-4">
+								<button class="btn btn-primary" id="btnApply" type="button">Generar</button>
+								<button class="btn btn-primary" id="btnPDF" type="button"><span class="fa fa-file-pdf-o"></span> Descargar PDF</button>
+								<button class="btn btn-primary" id="btnXLS" type="button"><span class="fa fa-file-excel-o"></span> Descargar XLS</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar"></div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<caption>
+								<input id="txtParams" type="text" class="hidden" data-aditional-parameter="params" data-aditional-type="json" data-aditional-skip="true">
+							</caption>
+							<thead>
+								<tr role="row">
+									<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Fecha: Activar para ordenar la columna de manera ascendente" style="width: 57px;">Fecha</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 75px;">Paciente</th>
+									<th class=" sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 70px;">Número</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Cajero: Activar para ordenar la columna de manera ascendente" style="width: 60px;">Cajero</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Estado: Activar para ordenar la columna de manera ascendente" style="width: 64px;">Estado</th>
+									<th class=" sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Facturado: Activar para ordenar la columna de manera ascendente" style="width: 87px;">Facturado</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd">
+									<td valign="top" colspan="10" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/informe_invoices?v=WTBxksbFyoIZXUgk4AofsduuVgsX7TmC7X68t6eLkHA1"></script>
+
+	<!-- /.row -->
+</div>

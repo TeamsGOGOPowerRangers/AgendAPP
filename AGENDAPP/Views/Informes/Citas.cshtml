@@ -1,0 +1,503 @@
+﻿
+@{
+	ViewBag.Title = "Citas";
+}
+
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Informe de Citas</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default" id="pnlEvent">
+				<div class="panel-heading">
+					<form id="report_event" class="form-horizontal interline5 sub">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-filter"></span> Filtro
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtFechaIni">Fecha Registro:</label>
+											<div class="col-md-9">
+												<div class="input-group row mb-2">
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtStart" placeholder="Desde" required="" disabled="">
+													</div>
+													<span class="input-group-addon">_</span>
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtEnd" placeholder="Hasta" required="" disabled="">
+													</div>
+													<div class="btn-group bootstrap-select fit-width col-12 row mt-2">
+														<button type="button" class="btn dropdown-toggle btn-default col-6" data-toggle="dropdown" data-id="cboPeriodo" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu">
+																<li data-original-index="1" class="selected">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="2">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Día Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="3">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Pasada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="4">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="5">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Pasado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="6">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="7">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Personalizado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+															</ul>
+														</div>
+														<select id="cboPeriodo" class="selectpicker col-6" data-width="fit" title="Periodo..." tabindex="-98"><option class="bs-title-option" value="">Periodo...</option><option value="All">Todo</option><option value="Day">Día Actual</option><option value="WeekP">Semana Pasada</option><option value="Week">Semana Actual</option><option value="MonthP">Mes Pasado</option><option value="Month">Mes Actual</option><option value="Custom">Personalizado</option></select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtFechaIni">Fecha Cita:</label>
+											<div class="col-md-9">
+												<div class="input-group row mb-2">
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtStart" placeholder="Desde" required="" disabled="">
+													</div>
+													<span class="input-group-addon">_</span>
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtEnd" placeholder="Hasta" required="" disabled="">
+													</div>
+													<div class="btn-group bootstrap-select fit-width col-12 row mt-2">
+														<button type="button" class="btn dropdown-toggle btn-default col-6" data-toggle="dropdown" data-id="cboPeriodo" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu">
+																<li data-original-index="1" class="selected">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="2">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Día Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="3">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Pasada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="4">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="5">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Pasado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="6">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="7">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Personalizado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+															</ul>
+														</div>
+														<select id="cboPeriodo" class="selectpicker col-6" data-width="fit" title="Periodo..." tabindex="-98"><option class="bs-title-option" value="">Periodo...</option><option value="All">Todo</option><option value="Day">Día Actual</option><option value="WeekP">Semana Pasada</option><option value="Week">Semana Actual</option><option value="MonthP">Mes Pasado</option><option value="Month">Mes Actual</option><option value="Custom">Personalizado</option></select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboRoles">Roles:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboRoles" title="Roles..."><span class="filter-option pull-left">Roles...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Administrador</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Administrativo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="2">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cajero</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="3">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Especialista</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="4">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Recepcionista</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboRoles" class="form-control selectpicker" title="Roles..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="cf66ac04-9efa-4f88-b33f-bf9bed93038f">Administrador</option><option value="6ED5A0A3-AB8D-47AE-AA95-7E4770C80664">Administrativo</option><option value="ADB7651A-E0B4-40D1-9ADB-1D129D4F9C03">Cajero</option><option value="a10c5ae6-8197-4d28-be42-1a978ed343a1">Especialista</option><option value="59d450f0-cf67-4e0e-b5ba-829c2e18bb55">Recepcionista</option></select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboUsuarios">Usuarios:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboUsuarios" title="Usuarios..."><span class="filter-option pull-left">Usuarios...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Diego Fernandez</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Profesional 1</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboUsuarios" class="form-control selectpicker" title="Usuarios..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="72d0bede-8345-4a83-811c-3631b2ada432">Diego Fernandez</option><option value="fffe540e-4cee-4d96-85bf-9f1381a43ab4">Profesional 1</option></select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboEstadoCita">Estado Cita:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEstadoCita" title="Estado Cita..."><span class="filter-option pull-left">Estado Cita...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Agendado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Confirmado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="2">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Espera</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="3">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Atendido</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="4">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Solicitado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="5">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Eliminado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboEstadoCita" class="form-control selectpicker" title="Estado Cita..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="1">Agendado</option><option value="2">Confirmado</option><option value="3">Espera</option><option value="4">Atendido</option><option value="5">Solicitado</option><option value="7">Eliminado</option></select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboEspecialista">Para Especialista:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEspecialista" title="Especialista..."><span class="filter-option pull-left">Especialista...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Diego Fernandez (Sin Especialidad)</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Luciano Rodriguez (Broncopulmonar)</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="2">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Profesional 1 (Medicina interna)</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboEspecialista" class="form-control selectpicker" title="Especialista..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="72d0bede-8345-4a83-811c-3631b2ada432">Diego Fernandez (Sin Especialidad)</option><option value="111ee21f-df8e-4abb-859a-18d513b611c9">Luciano Rodriguez (Broncopulmonar)</option><option value="fffe540e-4cee-4d96-85bf-9f1381a43ab4">Profesional 1 (Medicina interna)</option></select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-gear"></span> Configuración
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="alert alert-info" role="alert">
+											<span class="fa fa-info-circle fa-lg"></span> Puede guardar la configuración del informe (filtros seleccionados), además de agregar un título y un comentario, las configuraciones guardadas las puede cargar de forma fácil y rápida en un futuro. Para guardar simplemente debe ingresar un "Título" y seleccionar "¿Guardar?=Si" antes de generar el Informe.
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtTitulo">Preconfiguración:</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<div class="btn-group bootstrap-select input-group-btn fit-width">
+														<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPreset" title="Título..."><span class="filter-option pull-left">Título...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu"></ul>
+														</div>
+														<select id="cboPreset" class="selectpicker" data-width="fit" title="Título..." tabindex="-98"><option class="bs-title-option" value="">Título...</option></select>
+													</div>
+													<span class="input-group-btn">
+														<button type="button" id="btnDeletePreset" class="btn btn-danger" disabled=""><span class="fa fa-trash"></span></button>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtTitulo">Título:</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" id="txtTitulo" placeholder="Título" required="">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="taComentarios">Comentarios:</label>
+											<div class="col-md-9">
+												<div contenteditable="true" class="form-control" id="taComentarios" autocomplete="off" maxlength="10000" data-maxlength-error="No puede tener más de 200 caracteres" placeholder="Comentarios"></div>
+											</div>
+										</div>
+										<div class="form-group col-3">
+											<label class="control-label" for="chkSave">¿Guardar?:</label>
+											<div class="">
+												<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkSave bootstrap-switch-animate" style="width: 72.6875px;">
+													<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+														<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+														<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+														<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+														<input type="checkbox" id="chkSave">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-md-offset-6 col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-gear"></span> Otras Configuraciones
+										</h3>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="cboGrpBy">¿Agrupado por?:</label>
+										<div class="col-md-9">
+											<div class="btn-group bootstrap-select form-control">
+												<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboGrpBy" title="Usuario"><span class="filter-option pull-left">Usuario</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+												<div class="dropdown-menu open">
+													<ul class="dropdown-menu inner" role="menu">
+														<li data-original-index="1" class="selected">
+															<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Usuario</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+														</li>
+														<li data-original-index="2">
+															<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Especialista</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+														</li>
+													</ul>
+												</div>
+												<select id="cboGrpBy" class="form-control selectpicker" title="Campo..." tabindex="-98">
+													<option class="bs-title-option" value="">Campo...</option>
+													<option value="Usuario" selected="">Usuario</option>
+													<option value="Especialista">Especialista</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="panel-body row">
+							<div class="form-group col-2">
+								<label class=" control-label" for="chkFirstTime">¿Solo primera vez?:</label>
+								<div class="">
+									<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkFirstTime bootstrap-switch-animate" style="width: 72.6875px;">
+										<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+											<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+											<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+											<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+											<input type="checkbox" id="chkFirstTime">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-2">
+								<label class=" control-label" for="chkOnline">¿Solo citas en línea?:</label>
+								<div class="">
+									<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkOnline bootstrap-switch-animate" style="width: 72.6875px;">
+										<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+											<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+											<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+											<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+											<input type="checkbox" id="chkOnline">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-3">
+								<label class=" control-label" for="chkSmsConfirmed">¿Solo confirmadas vía SMS?:</label>
+								<div class="">
+									<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkSmsConfirmed bootstrap-switch-animate" style="width: 72.6875px;">
+										<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+											<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+											<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+											<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+											<input type="checkbox" id="chkSmsConfirmed">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-2">
+								<label class=" control-label" for="chkNoAsiste">¿Solo citas No Asiste?:</label>
+								<div class="">
+									<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkNoAsiste bootstrap-switch-animate" style="width: 72.6875px;">
+										<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+											<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+											<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+											<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+											<input type="checkbox" id="chkNoAsiste">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-2">
+								<label class=" control-label" for="chkFacturada">¿Solo citas Facturadas?:</label>
+								<div class="">
+									<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkFacturada bootstrap-switch-animate" style="width: 72.6875px;">
+										<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+											<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+											<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+											<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+											<input type="checkbox" id="chkFacturada">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12 col-md-offset-4">
+								<button class="btn btn-primary" id="btnApply" type="button">Generar</button>
+								<button class="btn btn-primary" id="btnPDF" type="button"><span class="fa fa-file-pdf-o"></span> Descargar PDF</button>
+								<button class="btn btn-primary" id="btnXLS" type="button"><span class="fa fa-file-excel-o"></span> Descargar XLS</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar"></div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<caption>
+								<input id="txtParams" type="text" class="hidden" data-aditional-parameter="params" data-aditional-type="json" data-aditional-skip="true">
+							</caption>
+							<thead>
+								<tr role="row">
+									<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Fecha Registro: Activar para ordenar la columna de manera ascendente" style="width: 90px;">Fecha Registro</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Fecha Cita: Activar para ordenar la columna de manera ascendente" style="width: 71px;">Fecha Cita</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Estado: Activar para ordenar la columna de manera ascendente" style="width: 47px;">Estado</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Usuario: Activar para ordenar la columna de manera ascendente" style="width: 69px;">Usuario</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Primera Cita: Activar para ordenar la columna de manera ascendente" style="width: 71px;">Primera Cita</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Cita Online: Activar para ordenar la columna de manera ascendente" style="width: 65px;">Cita Online</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr role="row" class="odd">
+									<td class="text-centered sorting_1">07/05/2020 17:22</td>
+									<td class=" text-centered">08/05/2020 12:00</td>
+									<td>Agendado</td>
+									<td>Diego Fernandez</td>
+									<td class=" text-centered">
+										<span class="fa fa-check text-success"></span>
+									</td>
+									<td class=" text-centered"></td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="text-centered sorting_1">07/05/2020 1:02</td>
+									<td class=" text-centered">08/05/2020 9:10</td>
+									<td>Atendido</td>
+									<td>Profesional 1</td>
+									<td class=" text-centered">
+										<span class="fa fa-check text-success"></span>
+									</td>
+									<td class=" text-centered"></td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="text-centered sorting_1">07/05/2020 0:53</td>
+									<td class=" text-centered">08/05/2020 9:00</td>
+									<td>Agendado</td>
+									<td>Diego Fernandez</td>
+									<td class=" text-centered">
+										<span class="fa fa-check text-success"></span>
+									</td>
+									<td class=" text-centered"></td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="text-centered sorting_1">06/05/2020 16:40</td>
+									<td class=" text-centered">06/05/2020 16:40</td>
+									<td>Agendado</td>
+									<td>Diego Fernandez</td>
+									<td class=" text-centered">
+										<span class="fa fa-check text-success"></span>
+									</td>
+									<td class=" text-centered"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 1 al 4 de un total de 4 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button active" aria-controls="tblData" tabindex="0">
+									<a href="#">1</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<br>
+					<br>
+					<div class="alert alert-warning alert-dismissible">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+						<strong>Advertencia!</strong> Para obtener el tiempo de atención de las citas, debe asegurarse de que el usuario encargado de la agenda marque correctamente con estado "En Espera" y luego en "Atendido", ya que este tiempo equivale a la diferencia de estos dos estados.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/informe_events?v=rWo4zwiTW1RdR9GfMfluGsLj6Q0FhKIYpumLW0n-bOA1"></script>
+
+	<!-- /.row -->
+</div>
+

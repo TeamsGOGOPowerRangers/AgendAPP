@@ -1,10 +1,10 @@
-﻿<link href="~/Assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet" />
-<link href="~/Assets/plugins/DataTables/datatables.css" rel="stylesheet" />
+﻿
 @{
-	ViewBag.Title = "Ocupaciones";
+	ViewBag.Title = "Previsiones";
 }
 
 <div class="container-fluid">
+
 
 	<div class="row">
 		<div class="col-lg-12">
@@ -15,116 +15,89 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button style="margin-right:10px" class="float-right d-inline-block btn btn-sm btn-outline-primary" id="AddPrevisiones" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Agregar Prevision" data-original-title="" title=""><i class="fa fa-plus"></i></button>
-					Previsiones Registradas <br><small>Lista</small>
-
+					Previsiones Registradas (Seleccione las isapres que estarán disponibles para su empresa).
 				</div>
-				<div class="panel-body">
-					<table class="table table-hover table-striped table-borderless table-bordered text-center" style="width:100%" id="tabla_Prevision">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripcion</th>
-								<th>Fecha Creacion</th>
-								<th>Fecha Edicion</th>
-								<th>Estado</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-						<tbody id=""></tbody>
-					</table>
+				<div class="panel-body bg-info">
+					<ul class="grid grid120x120">
+						<li tabindex="0" class="cell active" data-id="5">
+							Banmedica (Banmedica)
+							<span></span>
+						</li>
+						<li tabindex="1" class="cell active" data-id="16">
+							Capredena (Caja de Previsión de la Defensa Nacional)
+							<span></span>
+						</li>
+						<li tabindex="2" class="cell active" data-id="14">
+							Chuquicamata (Chuquicamata)
+							<span></span>
+						</li>
+						<li tabindex="3" class="cell active" data-id="4">
+							Colmena (Colmena)
+							<span></span>
+						</li>
+						<li tabindex="4" class="cell active" data-id="3">
+							Consalud (Consalud )
+							<span></span>
+						</li>
+						<li tabindex="5" class="cell active" data-id="7">
+							Cruz Blanca (Cruz Blanca)
+							<span></span>
+						</li>
+						<li tabindex="6" class="cell active" data-id="10">
+							Cruz del Norte (Cruz del Norte)
+							<span></span>
+						</li>
+						<li tabindex="7" class="cell active" data-id="17">
+							Dipreca (Dirección de Previsión de Carabineros de Chile)
+							<span></span>
+						</li>
+						<li tabindex="8" class="cell active" data-id="1">
+							Fonasa (Fondo Nacional de Salud)
+							<span></span>
+						</li>
+						<li tabindex="9" class="cell active" data-id="8">
+							Fundación (Fundación)
+							<span></span>
+						</li>
+						<li tabindex="10" class="cell active" data-id="11">
+							Fusat (Fusat)
+							<span></span>
+						</li>
+						<li tabindex="11" class="cell active" data-id="19">
+							Jeafosale (Jefatura Ejecutiva de Fondos de Salud Ejército)
+							<span></span>
+						</li>
+						<li tabindex="12" class="cell active" data-id="2">
+							Nueva Masvida (Isapre Nueva Masvida)
+							<span></span>
+						</li>
+						<li tabindex="13" class="cell active" data-id="9">
+							Óptima (Óptima)
+							<span></span>
+						</li>
+						<li tabindex="14" class="cell active" data-id="12">
+							Río Blanco (Río Blanco)
+							<span></span>
+						</li>
+						<li tabindex="15" class="cell active" data-id="13">
+							San Lorenzo (San Lorenzo)
+							<span></span>
+						</li>
+						<li tabindex="16" class="cell active" data-id="6">
+							Vida Tres (Vida Tres)
+							<span></span>
+						</li>
+					</ul>
 				</div>
-			</div>
-		</div>
-	</div>
-	<!-- I:Modal Crear -->
-	<div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel" style="display: none;">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">
-						<span class="glyphicon glyphicon-plus-sign"></span> Crear Prevision
-					</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal interline5 sub" novalidate="true">
-						<div class="form-group">
-							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
-							<div class="col-md-8 col-sm-8 col-xs-8">
-								<input type="text" class="form-control" id="txtNombre" value="" required="">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
-							<div class="col-md-8 col-sm-8 col-xs-8">
-								<textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="BtnGuardarPrevision"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- F:Modal Crear -->
-	<!-- I:Modal Editar -->
-	<div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">
-						<span class="glyphicon glyphicon-pencil"></span> Editar Prevision
-					</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal interline5 sub">
-						<input type="hidden" id="id" value="">
-						<div class="form-group">
-							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
-							<div class="col-md-8 col-sm-8 col-xs-8">
-								<input type="text" class="form-control" id="txtMNombre" value="" required="">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
-							<div class="col-md-8 col-sm-8 col-xs-8">
-								<textarea id="txtMDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
-							</div>
-						</div>
-
-						<div class="col-md-12 mb-3">
-							<label for="Nombre_Color">Estado</label>
-							<select class="form-control" id="MEstado">
-								<option value="1">Activo</option>
-								<option value="2">Inactivo</option>
-							</select>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="BtnModificarPrevision"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+				<div class="panel-footer">
+					<button type="button" id="save" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- F:Modal Editar -->
-	@section scripts{
-		<script src="~/ActionJs/jquery.min.js"></script>
-		<script src="~/Assets/plugins/DataTables/datatables.js"></script>
-		<script src="~/Assets/plugins/colorpicker/bootstrap-colorpicker.js"></script>
-		<script src="~/ActionJs/Mantenedores/Prevision.js"></script>
-
-	}
-
+	<script src="~/js/Previsiones.js"></script>
 
 	<!-- /.row -->
 </div>

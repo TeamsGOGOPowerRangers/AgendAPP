@@ -1,5 +1,4 @@
-﻿<link href="~/Assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet" />
-<link href="~/Assets/plugins/DataTables/datatables.css" rel="stylesheet" />
+﻿
 @{
 	ViewBag.Title = "Ocupaciones";
 }
@@ -15,24 +14,196 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button style="margin-right:10px" class="float-right d-inline-block btn btn-sm btn-outline-primary" id="AddOcupaciones" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Agregar Ocupacion" data-original-title="" title=""><i class="fa fa-plus"></i></button>
-					Ocupaciones Registrados <br><small>Lista</small>
-
+					Ocupaciones Registrados
 				</div>
 				<div class="panel-body">
-					<table class="table table-hover table-striped table-borderless table-bordered text-center" style="width:100%" id="tabla_Ocupaciones">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripcion</th>
-								<th>Fecha Creacion</th>
-								<th>Fecha Edicion</th>
-								<th>Estado</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-						<tbody id=""></tbody>
-					</table>
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar" style="float: left;">
+							<button id="btnNueva" class="btn btn-primary mr-5" data-toggle="tooltip" data-placement="right" title="" onclick="Crear();" data-original-title="Crear nuevo registro">Crear</button>
+						</div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-3" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting_asc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nombre: Activar para ordenar la columna de manera descendente" style="width: 154px;">Nombre</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Creación: Activar para ordenar la columna de manera ascendente" style="width: 112px;">Creación</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Edición: Activar para ordenar la columna de manera ascendente" style="width: 64px;">Edición</th>
+									<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Estado" style="width: 51px;">Estado</th>
+									<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 69px;">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr role="row" class="odd">
+									<td class="sorting_1">Abogado</td>
+									<td class=" text-centered">
+										09/05/2018 14:30
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Aida Riquelme"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Inactivo</td>
+									<td class=" text-centered"></td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="sorting_1">Abogado</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120850);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120850,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="sorting_1">Academico (a)</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120851);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120851,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="sorting_1">Actor</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120852);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120852,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="sorting_1">Actriz</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120853);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120853,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="sorting_1">Adiestrador (a)</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120854);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120854,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="sorting_1">Administrador (a)</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120855);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120855,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="sorting_1">Administrador (a) Hotelera</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120856);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120856,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="odd">
+									<td class="sorting_1">Administradora de RR.HH.</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120857);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120857,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr role="row" class="even">
+									<td class="sorting_1">Administrativo (a)</td>
+									<td class=" text-centered">
+										06/05/2020 13:57
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Cuenta Suscribe"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(120858);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(120858,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 1 al 10 de un total de 295 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button active" aria-controls="tblData" tabindex="0">
+									<a href="#">1</a>
+								</li>
+								<li class="paginate_button " aria-controls="tblData" tabindex="0">
+									<a href="#">2</a>
+								</li>
+								<li class="paginate_button " aria-controls="tblData" tabindex="0">
+									<a href="#">3</a>
+								</li>
+								<li class="paginate_button " aria-controls="tblData" tabindex="0">
+									<a href="#">4</a>
+								</li>
+								<li class="paginate_button " aria-controls="tblData" tabindex="0">
+									<a href="#">5</a>
+								</li>
+								<li class="paginate_button disabled" aria-controls="tblData" tabindex="0" id="tblData_ellipsis">
+									<a href="#">…</a>
+								</li>
+								<li class="paginate_button " aria-controls="tblData" tabindex="0">
+									<a href="#">30</a>
+								</li>
+								<li class="paginate_button next" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -42,11 +213,10 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 					<h4 class="modal-title" id="myModalLabel">
 						<span class="glyphicon glyphicon-plus-sign"></span> Crear Ocupación
 					</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal interline5 sub" novalidate="true">
@@ -66,7 +236,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="BtnGuardarOcupacion"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
 				</div>
 			</div>
 		</div>
@@ -77,11 +247,10 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 					<h4 class="modal-title" id="myModalLabel">
 						<span class="glyphicon glyphicon-pencil"></span> Editar Ocupación
 					</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal interline5 sub">
@@ -89,41 +258,27 @@
 						<div class="form-group">
 							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
 							<div class="col-md-8 col-sm-8 col-xs-8">
-								<input type="text" class="form-control" id="txtMNombre" value="" required="">
+								<input type="text" class="form-control" id="txtNombre" value="" required="">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
 							<div class="col-md-8 col-sm-8 col-xs-8">
-								<textarea id="txtMDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
+								<textarea id="txtDescripcion" class="form-control" rows="4" required="" maxlength="250"></textarea>
 							</div>
-						</div>
-
-						<div class="col-md-12 mb-3">
-							<label for="Nombre_Color">Estado</label>
-							<select class="form-control" id="MEstado">
-								<option value="1">Activo</option>
-								<option value="2">Inactivo</option>
-							</select>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="BtnModificarOcupaciones"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- F:Modal Editar -->
-	@section scripts{
-		<script src="~/ActionJs/jquery.min.js"></script>
-		<script src="~/Assets/plugins/DataTables/datatables.js"></script>
-		<script src="~/Assets/plugins/colorpicker/bootstrap-colorpicker.js"></script>
-
-		<script src="~/ActionJs/Mantenedores/Ocupaciones.js"></script>
-	}
+	<script src="/js/admin_ocupaciones?v=XzZhmIx-_shHGquD4UqRdTMX_1-jFJZ-MhOT0hUXZtg1"></script>
 
 
 	<!-- /.row -->

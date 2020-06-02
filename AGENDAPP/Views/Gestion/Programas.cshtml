@@ -1,0 +1,70 @@
+﻿
+@{
+	ViewBag.Title = "Programas";
+}
+
+<div class="container-fluid">
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Gestión de Programas</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Programas Registrados
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar"></div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-3" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 62px;">Número</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Presupesto: Activar para ordenar la columna de manera ascendente" style="width: 87px;">Presupesto</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Vigencia: Activar para ordenar la columna de manera ascendente" style="width: 68px;">Vigencia</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 68px;">Paciente</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Valor: Activar para ordenar la columna de manera ascendente" style="width: 45px;">Valor</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Descuento: Activar para ordenar la columna de manera ascendente" style="width: 83px;">Descuento</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd">
+									<td valign="top" colspan="11" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/gestion_programas?v=5m4eJcaQDM90oHWm8HkfJGbY9vq9utqiqu_KXdbOnoE1"></script>
+
+
+	<!-- /.row -->
+</div>

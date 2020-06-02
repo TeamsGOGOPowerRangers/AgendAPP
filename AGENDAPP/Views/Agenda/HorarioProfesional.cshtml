@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "HorarioProfesional";
 }
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" />*@
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />*@
+<link href="~/Timepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
 <div class="col-lg-12 col-xl-12 order-lg-12 order-xl-12">
     <div class="card mb-3">
@@ -13,29 +16,16 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Profesional</label>
-                        <select class="form-control" id="Profesional">
+                        <select type="email" class="form-control">
                             <option value="0">--Seleccione--</option>
                             <option value="1">Diego</option>
-                            <option value="2">Luciano</option>
-                            <option value="3">Bastian</option>
-                            <option value="4">Matias</option>
-                            <option value="5">Joshef</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label>Especialidad</label>
-                        <select class="form-control" id="Especialidad">
-                            <option value="0">--Seleccione--</option>
-                            <option value="1">Broncopulmonar</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Servicio</label>
-                        <select class="form-control" id="Servicio">
+                        <select type="email" class="form-control">
                             <option value="0">--Seleccione--</option>
                             <option value="1">Broncopulmonar</option>
                         </select>
@@ -52,34 +42,34 @@
         </div>
         <div class="card-body">
             <table class="table">
-                <thead id="tabla_dias_head">
+                <thead>
                     <tr>
                         <th>
-                            Lunes <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="1">&nbsp;<span></span></label></span>
+                            Lunes <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                         <th>
-                            Martes <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="2">&nbsp;<span></span></label></span>
+                            Martes <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                         <th>
-                            Miercoles <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="3">&nbsp;<span></span></label></span>
+                            Miercoles <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                         <th>
-                            Jueves <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="4">&nbsp;<span></span></label></span>
+                            Jueves <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                         <th>
-                            Viernes <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="5">&nbsp;<span></span></label></span>
+                            Vienes <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                         <th>
-                            Sabado <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="6">&nbsp;<span></span></label></span>
+                            Sabado <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                         <th>
-                            Domingo <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox" value="7">&nbsp;<span></span></label></span>
+                            Domingo <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="checkbox">&nbsp;<span></span></label></span>
 
                         </th>
                     </tr>
@@ -87,148 +77,116 @@
 
             </table>
 
-            <div class="row">
-                <div class="form-group col-lg-6">
-                    <label>Hora inicio</label>
-                    <div class="form-control-wrapper">
-                        <input type="text" id="HoraInicio" class="form-control floating-label" placeholder="Hora">
-                    </div>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Hora termino</label>
-                    <div class="form-control-wrapper">
-                        <input type="text" id="HoraTermino" class="form-control floating-label" placeholder="Hora">
-                    </div>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Fecha desde</label>
-                    <div class="form-control-wrapper">
-                        <input type="text" id="FechaDesde" class="form-control floating-label ValidaFecha" placeholder="Hora">
-                    </div>
-                    <span class="text-info"></span>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Fecha hasta</label>
-                    <div class="form-control-wrapper">
-                        <input type="text" id="FechaHasta" class="form-control floating-label ValidaFecha" placeholder="Hora">
-                    </div>
-                    <span class="text-info"></span>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="form-group">
+                                <label>Hora inicio</label>
+                                <div class="form-control-wrapper">
+                                    <input type="text" id="HoraInicio" class="form-control floating-label" placeholder="Hora">
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label>Hora termino</label>
+                                <div class="form-control-wrapper">
+                                    <input type="text" id="HoraTermino" class="form-control floating-label" placeholder="Hora">
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label>Jornada</label>
+                                <select type="email" class="form-control">
+                                    <option value="0">--Seleccione--</option>
+                                    <option value="1">Mañana</option>
+                                    <option value="2">Tarde</option>
+                                    <option value="3">Especial</option>
+                                </select>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label>Fecha desde</label>
+                                <div class="form-control-wrapper">
+                                    <input type="text" id="FechaDesde" class="form-control floating-label" placeholder="Hora">
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label>Fecha hasta</label>
+                                <div class="form-control-wrapper">
+                                    <input type="text" id="FechaHasta" class="form-control floating-label" placeholder="Hora">
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label>Duración</label>
+                                <div class="form-control-wrapper">
+                                    <input type="number" min="15" max="120" id="Duracion" class="form-control floating-label" placeholder="Hora">
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label>Espacio</label>
+                                <div class="form-control-wrapper">
+                                    <input type="number" min="5" max="120" id="Espacio" class="form-control floating-label" placeholder="Hora">
+                                </div>
+                            </div>
+                        </th>
 
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Duración de cita(Minutos)</label>
-                    <div class="form-control-wrapper">
-                        <input type="number" min="15" max="120" id="Duracion" class="form-control floating-label" placeholder="Hora">
-                    </div>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Espacio entre cita(Minutos)</label>
-                    <div class="form-control-wrapper">
-                        <input type="number" min="5" max="120" id="Espacio" class="form-control floating-label" placeholder="Hora">
-                    </div>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Jornada</label>
-                    <div class="input-group mb-3">
-                        <select class="form-control" id="Jornada">
-                            <option value="0">--Seleccione--</option>
-                            <option value="1">Mañana</option>
-                            <option value="2">Tarde</option>
-                            <option value="3">Especial</option>
-                        </select>
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-info" id="Agregar_Jornada" style="cursor:pointer" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="Agregar Jornada"><i class="fas fa-plus text-white"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-lg-6" style="padding-top:13px;">
-                    <label>¿Profesional habilitado para agendamiento via web?</label>
-                    <div class="form-control-wrapper">
-                        Si <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="radio" name="ViaWeb" id="WebSi" checked>&nbsp;<span></span></label></span>
-                        No <span style="width: 40px;"><label class="kt-checkbox kt-checkbox--single kt-checkbox--all kt-checkbox--solid"><input type="radio" name="ViaWeb" id="WebNo">&nbsp;<span></span></label></span>
-                    </div>
-                </div>
+                    </tr>
+                </thead>
 
-            </div>
+            </table>
         </div>
         <div class="card-footer text-right">
             <div class="form-group">
-                <button class="btn btn-sm btn-info" id="Agregar_Disponibilidad_Profesional"><i class="fas fa-save"></i>Agregar</button>
+                <label>Agregar</label>
+                <button class="btn btn-sm btn-info"><i class="fas fa-plus"></i></button>
             </div>
         </div>
     </div>
 
 </div>
 
-<div class="modal fade" id="Modal_Agregar_Jornada" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-plus text-info"></i> Añadiendo nueva jornada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+@*<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>*@
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>*@
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<script src="~/Timepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script>
+    $('#HoraInicio').bootstrapMaterialDatePicker
+        ({
+            date: false,
+            shortTime: false,
+            format: 'HH:mm'
+        });
 
-            </div>
-            <div class="modal-body">
+    $('#HoraTermino').bootstrapMaterialDatePicker
+        ({
+            date: false,
+            shortTime: false,
+            format: 'HH:mm'
+        });
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-info" id="Quitar_Horario">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="Modal_Fuera_de_Horario" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-exclamation-triangle" style="color:#ffb100"></i> Alerta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-            </div>
-            <div class="modal-body">
-                <p>
-                    A continuación se despliegan los siguientes detalles:
-                </p>
-                <div>
-                    <label>1.- Dias seleccionados que no estan dentro de los días de atencion de la sucursal</label>
-                    <table class="table table-info">
-                        <thead>
-                            <tr>
-                                <td>Días</td>
-                            </tr>
-                        </thead>
-                        <tbody id="Tbody_Dias_Fuera"></tbody>
-
-                    </table>
-                </div>
-                <div>
-                    <label>2.- Días seleccionados en los que si atiende la sucursal, pero entran en conflicto con las horas de atencion del medico </label>
-                    <table class="table table-info">
-                        <thead>
-                            <tr>
-                                <td>Dia de atencion</td>
-                                <td>Desde</td>
-                                <td>Hasta</td>
-                            </tr>
-                        </thead>
-                        <tbody id="Tbody_Horas_fuera"></tbody>
-
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <p>Te recomendamos crear los dias de disponibilidad horaria del medico que estan en conflicto por separado</p>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-@section scripts{
-    <script type="module" src="~/ActionJs/Agenda/Disponibilidad_Profesional.js"></script>
-}
+    $('#FechaDesde').bootstrapMaterialDatePicker
+        ({
+            format: 'DD/MM/YYYY HH:mm',
+            time: false,
+            clearButton: true
+        });
+    $('#FechaHasta').bootstrapMaterialDatePicker
+        ({
+            format: 'DD/MM/YYYY HH:mm',
+            time: false,
+            clearButton: true
+        });
+</script>

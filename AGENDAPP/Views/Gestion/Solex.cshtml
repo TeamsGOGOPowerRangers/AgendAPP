@@ -1,0 +1,221 @@
+﻿
+@{
+	ViewBag.Title = "Solex";
+}
+
+<div class="container-fluid">
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Gestión de Solicitud de Exámenes</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Solicitud Registradas
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar" style="float: left;">
+							<button id="btnNueva" class="btn btn-primary mr-3" data-toggle="tooltip" data-placement="right" title="" onclick="Crear();" data-original-title="Crear nueva Solicitud de Exámenes">Crear</button>
+						</div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-2" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 65px;">Número</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Especialista: Activar para ordenar la columna de manera ascendente" style="width: 81px;">Especialista</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 75px;">Paciente</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Creación: Activar para ordenar la columna de manera ascendente" style="width: 92px;">Creación</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Edición: Activar para ordenar la columna de manera ascendente" style="width: 53px;">Edición</th>
+									<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Estado" style="width: 47px;">Estado</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr role="row" class="odd">
+									<td class="sorting_1">00000001</td>
+									<td>Dermatologia</td>
+									<td>diego fernans hh</td>
+									<td class=" text-centered">
+										06/05/2020 14:06
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Diego Fernandez"><span></span></span>
+									</td>
+									<td class=" text-centered"></td>
+									<td class=" text-centered">Activo</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 1 al 1 de un total de 1 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button active" aria-controls="tblData" tabindex="0">
+									<a href="#">1</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#region Modal Crear -->
+	<div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">
+						<span class="fa fa-plus-circle"></span> Crear Solicitud
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-4 control-label" for="txtPaciente">Paciente:</label>
+							<div class="col-md-9 col-sm-8 col-xs-8">
+								<div class="input-group">
+									<input type="text" id="txtPaciente" placeholder="Paciente" autocomplete="off" class="form-control" required="" data-required-error="Debe ingresar un paciente" data-suggest="/api/suggest/pacientes" data-suggest-triggerlength="3" data-suggest-resultlength="15" data-suggest-text="name">
+									<span class="input-group-btn">
+										<div class="btn-group bootstrap-select tps fit-width">
+											<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboTPS_0000008" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+											<div class="dropdown-menu open">
+												<ul class="dropdown-menu inner" role="menu">
+													<li data-original-index="0" class="selected">
+														<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+													</li>
+													<li data-original-index="1">
+														<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Rut</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+													</li>
+													<li data-original-index="2">
+														<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nombre</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+													</li>
+													<li data-original-index="3">
+														<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Téléfono</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+													</li>
+												</ul>
+											</div>
+											<select class="selectpicker tps" id="cboTPS_0000008" onchange="UTILS.ChangeTypeSearch(this);" data-width="fit" tabindex="-98">
+												<option value="1" data-url="/api/suggest/pacientes" data-length="3">Todo</option>
+												<option value="2" data-url="/api/suggest/pacientes_r" data-length="6">Rut</option>
+												<option value="3" data-url="/api/suggest/pacientes_n" data-length="3">Nombre</option>
+												<option value="4" data-url="/api/suggest/pacientes_f" data-length="6">Téléfono</option>
+											</select>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-4 control-label" for="chkSolex">Origen Especialista:</label>
+							<div class="col-md-9 col-sm-8 col-xs-8">
+								<input id="chkSolex" name="chkSolex" checked="" type="checkbox" data-size="small" data-on-color="primary" data-off-color="success" data-on-text="Interno" data-off-text="Externo">
+							</div>
+						</div>
+						<div class="form-group solin">
+							<label class="col-md-3 col-sm-4 col-xs-4 control-label" for="cboEspacialista">Especialista:</label>
+							<div class="col-md-9 col-sm-8 col-xs-8">
+								<div class="btn-group bootstrap-select fit-width">
+									<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEspacialista" title="Especialista"><span class="filter-option pull-left">Especialista</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+									<div class="dropdown-menu open">
+										<ul class="dropdown-menu inner" role="menu"></ul>
+									</div>
+									<select id="cboEspacialista" class="selectpicker" title="Especialista" data-width="fit" required="" tabindex="-98"><option class="bs-title-option" value="">Especialista</option></select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group solex hidden">
+							<label class="col-md-3 col-sm-4 col-xs-4 control-label" for="txtEspecialista">Especialista:</label>
+							<div class="col-md-9 col-sm-8 col-xs-8">
+								<input type="text" class="form-control" id="txtEspecialista" value="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-4 control-label" for="txtExam">
+								Exámenes
+								@*<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Campo con autocompletado (Fonasa), comience a escribir con  @."></span>*@
+							</label>
+							<div class="col-md-9 col-sm-8 col-xs-8">
+								<div contenteditable="true" class="form-control ta large" id="txtExam" required="true" autocomplete="off" maxlength="5000" data-maxlength-error="No puede tener más de 200 caracteres" data-error="Debe ingresar Tratamiento" placeholder="Tratamiento" data-mentions="/api/mentions/fonasa" data-mentions-triggerlength="2" data-mentions-resultlength="20"></div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Modal Editar -->
+	<div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">
+						<span class="glyphicon glyphicon-pencil"></span> Editar Banco
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<input type="hidden" id="id" value="">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtPais">País:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input type="text" class="form-control" id="txtPais" value="" readonly="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input type="text" class="form-control" id="txtNombre" value="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombreLargo">Nombre Largo:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input type="text" class="form-control" id="txtNombreLargo" value="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtObservacion">Observación:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<textarea id="txtObservacion" class="form-control" rows="4" required="" maxlength="250"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#endregion -->
+	<script src="/js/gestion_solex?v=1HXPOx2A8-aopL_A2HiFZVw8eKwxUn6n0mK1rebn-AY1"></script>
+
+
+	<!-- /.row -->
+</div>

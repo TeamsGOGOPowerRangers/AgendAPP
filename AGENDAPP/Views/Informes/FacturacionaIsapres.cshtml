@@ -1,0 +1,256 @@
+﻿
+@{
+	ViewBag.Title = "FacturacionaIsapres";
+}
+
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Informe de Facturación a Isapres</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default" id="pnlInvisa">
+				<div class="panel-heading">
+					<form id="reportInvisa" class="form-horizontal interline5 sub">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-filter"></span> Filtro
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtFechaIni">Fechas:</label>
+											<div class="col-md-9">
+												<div class="input-group row mb-2">
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtStart" placeholder="Desde" required="" disabled="">
+													</div>
+													<span class="input-group-addon">_</span>
+													<div class="input-group-field col-5">
+														<input type="text" class="form-control date" id="dtEnd" placeholder="Hasta" required="" disabled="">
+													</div>
+													<div class="btn-group bootstrap-select fit-width col-12 row mt-2">
+														<button type="button" class="btn dropdown-toggle btn-default col-6" data-toggle="dropdown" data-id="cboPeriodo" title="Todo"><span class="filter-option pull-left">Todo</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu">
+																<li data-original-index="1" class="selected">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="2">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Día Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="3">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Pasada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="4">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Semana Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="5">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Pasado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="6">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mes Actual</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+																<li data-original-index="7">
+																	<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Personalizado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+																</li>
+															</ul>
+														</div>
+														<select id="cboPeriodo" class="selectpicker col-6" data-width="fit" title="Periodo..." tabindex="-98"><option class="bs-title-option" value="">Periodo...</option><option value="All">Todo</option><option value="Day">Día Actual</option><option value="WeekP">Semana Pasada</option><option value="Week">Semana Actual</option><option value="MonthP">Mes Pasado</option><option value="Month">Mes Actual</option><option value="Custom">Personalizado</option></select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="cboPrevision">Previsión:</label>
+											<div class="col-md-9">
+												<div class="btn-group bootstrap-select show-tick form-control">
+													<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPrevision" title="Previsión..."><span class="filter-option pull-left">Previsión...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+													<div class="dropdown-menu open">
+														<div class="bs-actionsbox">
+															<div class="btn-group btn-group-sm btn-block">
+																<button type="button" class="actions-btn bs-select-all btn btn-default">Seleccionar todo</button>
+																<button type="button" class="actions-btn bs-deselect-all btn btn-default">Deseleccionar todo</button>
+															</div>
+														</div>
+														<ul class="dropdown-menu inner" role="menu">
+															<li data-original-index="0">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nueva Masvida</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="1">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Consalud</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="2">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Colmena</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="3">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Banmedica</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="4">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Vida Tres</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="5">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cruz Blanca</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="6">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Fundación</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="7">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Óptima</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="8">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cruz del Norte</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="9">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Fusat</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="10">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Río Blanco</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="11">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">San Lorenzo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="12">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Chuquicamata</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="13">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Capredena</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="14">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Dipreca</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+															<li data-original-index="15">
+																<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Jeafosale</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+															</li>
+														</ul>
+													</div>
+													<select id="cboPrevision" class="form-control selectpicker" title="Previsión..." multiple="" data-actions-box="true" data-select-all-text="Seleccionar todo" data-deselect-all-text="Deseleccionar todo" tabindex="-98"><option value="2">Nueva Masvida</option><option value="3">Consalud</option><option value="4">Colmena</option><option value="5">Banmedica</option><option value="6">Vida Tres</option><option value="7">Cruz Blanca</option><option value="8">Fundación</option><option value="9">Óptima</option><option value="10">Cruz del Norte</option><option value="11">Fusat</option><option value="12">Río Blanco</option><option value="13">San Lorenzo</option><option value="14">Chuquicamata</option><option value="16">Capredena</option><option value="17">Dipreca</option><option value="19">Jeafosale</option></select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="fa fa-gear"></span> Configuración
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="alert alert-info" role="alert">
+											<span class="fa fa-info-circle fa-lg"></span> Puede guardar la configuración del informe (filtros seleccionados), además de agregar un título y un comentario, las configuraciones guardadas las puede cargar de forma fácil y rápida en un futuro. Para guardar simplemente debe ingresar un "Título" y seleccionar "¿Guardar?=Si" antes de generar el Informe.
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtTitulo">Preconfiguración:</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<div class="btn-group bootstrap-select input-group-btn fit-width">
+														<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboPreset" title="Título..."><span class="filter-option pull-left">Título...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+														<div class="dropdown-menu open">
+															<ul class="dropdown-menu inner" role="menu"></ul>
+														</div>
+														<select id="cboPreset" class="selectpicker" data-width="fit" title="Título..." tabindex="-98"><option class="bs-title-option" value="">Título...</option></select>
+													</div>
+													<span class="input-group-btn">
+														<button type="button" id="btnDeletePreset" class="btn btn-danger" disabled=""><span class="fa fa-trash"></span></button>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="txtTitulo">Título:</label>
+											<div class="col-md-9">
+												<input type="text" class="form-control" id="txtTitulo" placeholder="Título" required="">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="taComentarios">Comentarios:</label>
+											<div class="col-md-9">
+												<div contenteditable="true" class="form-control" id="taComentarios" autocomplete="off" maxlength="10000" data-maxlength-error="No puede tener más de 200 caracteres" placeholder="Comentarios"></div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label" for="chkSave">¿Guardar?:</label>
+											<div class="col-md-9">
+												<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small bootstrap-switch-id-chkSave bootstrap-switch-animate" style="width: 72.6875px;">
+													<div class="bootstrap-switch-container" style="width: 106.031px; margin-left: -35.3438px;">
+														<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 35.3438px;">Si</span>
+														<span class="bootstrap-switch-label" style="width: 35.3438px;">&nbsp;</span>
+														<span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 35.3438px;">No</span>
+														<input type="checkbox" id="chkSave">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12 col-md-offset-4">
+								<button class="btn btn-primary" id="btnApply" type="button">Generar</button>
+								<button class="btn btn-primary" id="btnPDF" type="button"><span class="fa fa-file-pdf-o"></span> Descargar PDF</button>
+								<button class="btn btn-primary" id="btnXLS" type="button"><span class="fa fa-file-excel-o"></span> Descargar XLS</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar"></div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<caption>
+								<input id="txtParams" type="text" class="hidden" data-aditional-parameter="params" data-aditional-type="json" data-aditional-skip="true">
+							</caption>
+							<thead>
+								<tr role="row">
+									<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Fecha: Activar para ordenar la columna de manera ascendente" style="width: 49px;">Fecha</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Código: Activar para ordenar la columna de manera ascendente" style="width: 57px;">Código</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Prestación: Activar para ordenar la columna de manera ascendente" style="width: 80px;">Prestación</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Previsión: Activar para ordenar la columna de manera ascendente" style="width: 72px;">Previsión</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 66px;">Paciente</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Especialista: Activar para ordenar la columna de manera ascendente" style="width: 89px;">Especialista</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd">
+									<td valign="top" colspan="9" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/informe_invisa?v=oXiSfhx24yICKJd92DMSpmTI6H8Jjm8-WAAILYk5gtM1"></script>
+
+	<!-- /.row -->
+</div>

@@ -1,0 +1,285 @@
+﻿
+@{
+	ViewBag.Title = "Facturas";
+}
+
+<div class="container-fluid">
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Gestión de Facturas</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Facturas Registrados
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar" style="float: left;">
+							<div class="btn-group bootstrap-select">
+								<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEstado" title="Todos"><span class="filter-option pull-left">Todos</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+								<div class="dropdown-menu open">
+									<ul class="dropdown-menu inner" role="menu">
+										<li data-original-index="1" class="selected">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todos</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="2">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pendiente</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="3">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pagada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="4">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pagada Parcial</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="5">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Anulada</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+									</ul>
+								</div>
+								<select id="cboEstado" data-aditional-parameter="EstadoFacturaId" data-aditional-type="int" title="Estado Factura..." class="ml-3" tabindex="-98"><option class="bs-title-option" value="">Estado Factura...</option><option value="0">Todos</option><option value="1">Pendiente</option><option value="2">Pagada</option><option value="3">Pagada Parcial</option><option value="4">Anulada</option></select>
+							</div>&nbsp;
+						</div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-2" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 72px;">Número</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 78px;">Paciente</th>
+									<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Previsión" style="width: 76px;">Previsión</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Fecha: Activar para ordenar la columna de manera ascendente" style="width: 59px;">Fecha</th>
+									<th class=" sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Valor: Activar para ordenar la columna de manera ascendente" style="width: 52px;">Valor</th>
+									<th class="text-centered all sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 76px;">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd">
+									<td valign="top" colspan="11" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#region Modal Editar -->
+	<div class="modal fade" id="mdlInvoiceDetail" tabindex="-1" role="dialog" aria-labelledby="mdlInvoiceDetail-label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlInvoiceDetail-label">
+						<span class="fa fa-list-alt"></span> Detalle de Factura
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="lblNumero">Número:</label>
+							<div class="col-md-9 control-text">
+								<span id="lblNumero"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="lblEstado">Estado:</label>
+							<div class="col-md-9 control-text">
+								<span id="lblEstado"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="lblFecha">Fecha:</label>
+							<div class="col-md-9 control-text">
+								<span id="lblFecha"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="lblPaciente">Paciente:</label>
+							<div class="col-md-9 control-text">
+								<span id="lblPaciente"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<table width="100%" class="table table-striped table-bordered table-hover" id="tblInvoiceDetail">
+									<caption>Detalle Factura</caption>
+									<thead>
+										<tr>
+											<th>Tipo</th>
+											<th>Glosa</th>
+											<th>Cantidad</th>
+											<th>Valor Unitario</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+									<tfoot>
+										<tr>
+											<th colspan="4">Total</th>
+											<th>
+												<span id="lblTotal"></span>
+											</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" id="print" class="btn btn-primary"><span class="fa fa-print"></span> Imprimir</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Modal Crear o Editar comentario -->
+	<div class="modal fade" id="mdlInvoiceComment" tabindex="-1" role="dialog" aria-labelledby="mdlInvoiceComment-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlInvoiceComment-label">
+						<span class="fa fa-comment"></span> Comentario en Factura
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="row form-group">
+							<label class="col-md-3 col-sm-3 col-xs-3 control-label" for="txtComentario">Comentario:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<textarea id="txtComentario" class="form-control" placeholder="Comentario" rows="4" required="" maxlength="250"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" id="save" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Modal Historial de Factura -->
+	<div class="modal fade" id="mdlHistInvoice" tabindex="-1" role="dialog" aria-labelledby="mdlHistInvoice-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlHistInvoice-label">
+						<span class="fa fa-calendar"></span> Historial Factura
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<table width="100%" class="table table-striped table-bordered table-hover" id="tblHistInvoice">
+									<thead>
+										<tr>
+											<th>Fecha</th>
+											<th>Estado</th>
+											<th>Usuario</th>
+											<th>Comentario</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#endregion -->
+	<!--#region Modal de Refacturación -->
+	<div class="modal fade" id="mdlRefact" tabindex="-1" role="dialog" aria-labelledby="mdlRefact-label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlRefact-label">
+						<span class="fa fa-list"></span>
+						Refacturación
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="alert alert-info" role="alert">
+									<span class="fa fa-info-circle fa-lg"></span>
+									<strong>Información importante</strong>
+									<ul>
+										<li>
+											Sólo se podrá cambiar el precio a las prestaciones que tengan un precio definido para la previsión que tiene definida el paciente, en este caso
+											<span id="lblPrevision"></span>
+										</li>
+										<li>Al refacturar se volverá a calcular el valor de la factura, junto con ello el nuevo descuento (si este aplica) y total.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<table width="100%" class="table table-striped table-bordered table-hover" id="tblRefact">
+									<thead>
+										<tr>
+											<th>Prestación</th>
+											<th>Particular</th>
+											<th>
+												<span id="lblPrevisionTitle">{{Prevision}}</span>
+											</th>
+											<th>Cambio</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btnRefact" class="btn btn-primary">Refacturar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#endregion -->
+	<script src="/js/gestion_facturas?v=WjFbyz4Hw2FnI3Akg3cfP6PlL8Emu91YRlUs4165gHs1"></script>
+
+	<!-- /.row -->
+</div>

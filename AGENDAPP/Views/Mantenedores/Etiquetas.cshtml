@@ -1,167 +1,177 @@
-﻿<link href="~/Assets/plugins/colorpicker/bootstrap-colorpicker.css" rel="stylesheet" />
-<link href="~/Assets/plugins/DataTables/datatables.css" rel="stylesheet" />
-
+﻿
 @{
-    ViewBag.Title = "Etiquetas";
+	ViewBag.Title = "Etiquetas";
 }
-
-
 
 <div class="container-fluid">
 
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header mt-0">Administración de Etiquetas</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-heading">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header mt-0">Administración de Etiquetas</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Etiquetas Registradas
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar" style="float: left;">
+							<button id="btnNueva" class="btn btn-primary mr-5" data-toggle="tooltip" data-placement="right" title="" onclick="Crear();" data-original-title="Crear nuevo registro">Crear</button>
+						</div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-3" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting_asc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nombre: Activar para ordenar la columna de manera descendente" style="width: 58px;">Nombre</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Color: Activar para ordenar la columna de manera ascendente" style="width: 43px;">Color</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Creación: Activar para ordenar la columna de manera ascendente" style="width: 100px;">Creación</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Edición: Activar para ordenar la columna de manera ascendente" style="width: 102px;">Edición</th>
+									<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Estado" style="width: 47px;">Estado</th>
+									<th class="text-centered sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 63px;">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr role="row" class="odd">
+									<td class="sorting_1">rojo</td>
+									<td>
+										<div class="tag-color" style="background-color: rgb(255,255,255)                                  ;"></div>
+									</td>
+									<td class=" text-centered">
+										11/05/2020 13:28
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Creado por: Diego Fernandez"><span></span></span>
+									</td>
+									<td class=" text-centered">
+										11/05/2020 13:28
+										<span class="fa fa-info-circle" data-toggle="tooltip" data-placement="rigth" title="" data-original-title="Editado por: Diego Fernandez"><span></span></span>
+									</td>
+									<td class=" text-centered">Activo</td>
+									<td class=" text-centered">
+										<a onclick="Editar(65);" data-toggle="tooltip" data-placement="left" title="" class="fa fa-edit" data-original-title="Editar"></a>&nbsp;&nbsp;
+										<a onclick="CambiarEstado(65,false);" data-toggle="tooltip" data-placement="left" title="" class="glyphicon glyphicon-check" data-original-title="Desactivar"></a>&nbsp;&nbsp;
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 1 al 1 de un total de 1 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button active" aria-controls="tblData" tabindex="0">
+									<a href="#">1</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #region Crear -->
+	<div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">
+						<span class="glyphicon glyphicon-plus-sign"></span> Crear Etiqueta
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input type="text" class="form-control" maxlength="50" id="txtNombre" value="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<textarea id="txtDescripcion" class="form-control" rows="4" maxlength="150"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtColor">Color:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<div id="cp1" class="input-group colorpicker-component colorpicker-element">
+									<input type="text" value="rgb(255,255,255)" class="form-control">
+									<span class="input-group-addon"><i style="background-color: rgb(255, 255, 255);"></i></span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #endregion -->
+	<!-- #region Editar -->
+	<div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">
+						<span class="fa fa-pencil"></span> Editar Etiqueta
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<input type="hidden" id="id" value="">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNombre">Nombre:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<input type="text" class="form-control" maxlength="50" id="txtNombre" value="" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtDescripcion">Descripción:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<textarea id="txtDescripcion" class="form-control" rows="4" maxlength="150"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtColor">Color:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<div id="cp2" class="input-group colorpicker-component colorpicker-element">
+									<input type="text" value="rgb(255,255,255)" class="form-control">
+									<span class="input-group-addon"><i style="background-color: rgb(255, 255, 255);"></i></span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-save"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #endregion -->
+	<script src="/js/admin_tags?v=6y0mBPMb92f_tzVQ45oPJc8aEnWyRN5UBJqhuiJ3GRQ1"></script>
 
-                        <button style="margin-right:10px" class="float-right d-inline-block btn btn-sm btn-outline-primary" id="AddColores" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Agregar nuevo color" data-original-title="" title=""><i class="fa fa-plus"></i></button>
-                        Etiquetas Registradas <br><small>Lista</small>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover table-striped table-borderless table-bordered text-center" style="width:100%" id="tabla_Etiqueta">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Color</th>
-                                <th>Fecha Creacion</th>
-                                <th>Fecha Edicion</th>
-                                <th>Estado</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody id=""></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- #region Crear -->
-    <div class="modal fade" id="mdlCrear" tabindex="-1" role="dialog" aria-labelledby="mdlCrearLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                     <h4 class="modal-title" id="myModalLabel">
-                        <span class="glyphicon glyphicon-plus-sign"></span> Crear Etiqueta
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 mb-12">
-                            <label for="Nombre_Color">Nombre Color</label>
-                            <input type="text" class="form-control" id="Nombre_Color1" placeholder="Ingrese Nombre color">
-                        </div>
-             \
-                        <div class="col-md-6 mb-3">
-
-                            <div class="form-group">
-                                <label>Color</label>
-
-                                <div class="input-group my-colorpicker2 ">
-                                    <input type="text" class="form-control my-colorpicker2 colorpicker-element " id="Color1">
-                                    <div class="input-group-text">
-                                        <div class="input-group-addon">
-                                            <i></i>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-
-                        </div>
-
-
-      
-
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" id="BtnGuardarColor"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- #endregion -->
-    <!-- #region Editar -->
-    <div class="modal fade" id="mdlEditar" tabindex="-1" role="dialog" aria-labelledby="mdlEditarLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">
-                        <span class="fa fa-pencil"></span> Editar Etiqueta
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 mb-12">
-                            <label for="Nombre_Color">Nombre Color</label>
-                            <input type="text" class="form-control" id="MNombre_Color" placeholder="Ingrese Nombre color">
-                        </div>
-  
-                        <div class="col-md-6 mb-3">
-
-                            <div class="form-group">
-                                <label>Color</label>
-
-                                <div class="input-group my-colorpicker2 ">
-                                    <input type="text" class="form-control my-colorpicker2 colorpicker-element " id="Mcolor">
-                                    <div class="input-group-text">
-                                        <div class="input-group-addon">
-                                            <i></i>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-
-                        </div>
-
-
-            
-
-                        <div class="col-md-12 mb-3">
-                            <label for="Nombre_Color">Estado</label>
-                            <select class="form-control" id="MEstado">
-                                <option value="1">Activo</option>
-                                <option value="2">Inactivo</option>
-                            </select>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="BtnModificarColoresss"><span class="fa fa-save"></span> Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- #endregion -->
-    @section scripts{
-
-        <script src="~/ActionJs/jquery.min.js"></script>
-        <script src="~/Assets/plugins/DataTables/datatables.js"></script>
-        <script src="~/Assets/plugins/colorpicker/bootstrap-colorpicker.js"></script>
-
-        <script src="~/ActionJs/Mantenedores/Etiqueta.js"></script>
-    }
-
-
-    <!-- /.row -->
+	<!-- /.row -->
 </div>

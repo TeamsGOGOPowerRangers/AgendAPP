@@ -1,0 +1,546 @@
+﻿
+@{
+	ViewBag.Title = "Liquidaciones";
+}
+
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Liquidación de Prestaciones</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="tabEmpresa">
+				<ul class="nav nav-tabs bordered" role="tablist">
+					<li role="presentation" class="active">
+						<a href="#liqPrest" aria-controls="liqPrest" role="tab" data-toggle="tab">Prestaciones Realizadas <span class="fa"></span></a>
+					</li>
+					<li role="presentation">
+						<a href="#liqGeneradas" aria-controls="liqGeneradas" role="tab" data-toggle="tab">Liquidaciones Generadas <span class="fa"></span></a>
+					</li>
+					<li role="presentation">
+						<a href="#liqAprobadas" aria-controls="liqAprobadas" role="tab" data-toggle="tab">Liquidaciones Aprobadas <span class="fa"></span></a>
+					</li>
+					<li role="presentation">
+						<a href="#liqRechazadas" aria-controls="liqRechazadas" role="tab" data-toggle="tab">Liquidaciones Rechazadas <span class="fa"></span></a>
+					</li>
+				</ul>
+				<div class="tab-content bordered">
+					<div role="tabpanel" class="tab-pane active" id="liqPrest">
+						<br>
+						<form class="form-horizontal interline5 empresa" role="form">
+							<div id="tblLiqPrev_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="toolbar" style="float: left;">
+									<input type="text" id="txtExcluded" data-aditional-parameter="Excluded" data-aditional-type="json" data-aditional-skip="true" class="hidden">
+									<input type="text" id="txtCreatedId" data-aditional-parameter="CreatedId" data-aditional-type="string" class="hidden">
+									<div class="btn-group bootstrap-select">
+										<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEspecialista" title="Especialista..."><span class="filter-option pull-left">Especialista...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+										<div class="dropdown-menu open">
+											<ul class="dropdown-menu inner" role="menu">
+												<li data-original-index="1">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Bastian Moyano</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="2">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Diego Fernandez</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="3">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Joshef Zuñiga</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="4">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Luciano Rodriguez</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="5">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Matias Ibarra</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="6">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Nicolas Flores</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="7">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Profesional 1</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+											</ul>
+										</div>
+										<select id="cboEspecialista" title="Especialista..." class="selectpicker" tabindex="-98"><option class="bs-title-option" value="">Especialista...</option><option value="515af04a-b691-4329-94ef-fb79fc21b420">Bastian Moyano</option><option value="72d0bede-8345-4a83-811c-3631b2ada432">Diego Fernandez</option><option value="4237fb37-0312-4547-972c-4e1e4872e4e6">Joshef Zuñiga</option><option value="111ee21f-df8e-4abb-859a-18d513b611c9">Luciano Rodriguez</option><option value="764a431f-4665-408a-9def-110476afdabb">Matias Ibarra</option><option value="2ce6c06e-638f-4535-ad99-456332239cb6">Nicolas Flores</option><option value="fffe540e-4cee-4d96-85bf-9f1381a43ab4">Profesional 1</option></select>
+									</div>&nbsp;
+									<div class="btn-group bootstrap-select">
+										<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEstadoEvento" title="Estado Atención..."><span class="filter-option pull-left">Estado Atención...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+										<div class="dropdown-menu open">
+											<ul class="dropdown-menu inner" role="menu">
+												<li data-original-index="1">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todos</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="2">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Agendado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="3">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Confirmado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="4">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Espera</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="5">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Atendido</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="6">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Solicitado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+												<li data-original-index="7">
+													<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Eliminado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+												</li>
+											</ul>
+										</div>
+										<select id="cboEstadoEvento" data-aditional-parameter="EstadoEventoId" data-aditional-type="int" data-aditional-skip="true" title="Estado Atención..." class="selectpicker" tabindex="-98"><option class="bs-title-option" value="">Estado Atención...</option><option value="0">Todos</option><option value="1">Agendado</option><option value="2">Confirmado</option><option value="3">Espera</option><option value="4">Atendido</option><option value="5">Solicitado</option><option value="7">Eliminado</option></select>
+									</div>&nbsp;
+									<div class="input-group">
+										<span class="input-group-addon">Fecha Pago</span>
+										<input type="text" id="txtFechaDesde" data-aditional-parameter="FechaPago" data-aditional-type="datetime_gt" placeholder="Desde" class="form-control date" style="width: 110px;">
+										<span class="input-group-addon">-</span>
+										<input type="text" id="txtFechaHasta" data-aditional-parameter="FechaPago" data-aditional-type="datetime_lt" placeholder="Hasta" class="form-control date" style="width: 110px;">
+										<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+									</div>&nbsp;
+									<button type="button" id="btnCargar" data-toggle="tooltip" data-placement="right" title="Cargar Prestaciones" class="btn btn-primary">Cargar Prestaciones</button>&nbsp;
+									<button type="button" id="btnGenerar" data-toggle="tooltip" data-placement="right" title="Generar Liquidación" class="btn btn-primary" disabled="">Generar Liquidación</button>&nbsp;
+									<a href="javascript:void(0)" role="button" data-toogle="helptip" data-width="500px" data-placement="right" data-id="25" class="" style="color: rgb(253, 129, 83);" data-original-title="" title=""><span class="fa fa-lg fa-question-circle-o"></span></a>
+								</div>
+								<div id="tblLiqPrev_filter" class="dataTables_filter">
+									<label>Buscar:<input type="search" class="form-control input-sm" placeholder="" aria-controls="tblLiqPrev"></label>
+								</div>
+								<div id="tblLiqPrev_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+								<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblLiqPrev" role="grid" aria-describedby="tblLiqPrev_info" style="width: 100%;">
+									<thead>
+										<tr role="row">
+											<th class="all text-centered sorting_desc" tabindex="0" aria-controls="tblLiqPrev" rowspan="1" colspan="1" aria-sort="descending" aria-label="Fecha Prestación: Activar para ordenar la columna de manera ascendente" style="width: 82px;">Fecha Prestación</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqPrev" rowspan="1" colspan="1" aria-label="Especialista: Activar para ordenar la columna de manera ascendente" style="width: 81px;">Especialista</th>
+											<th class="all sorting" tabindex="0" aria-controls="tblLiqPrev" rowspan="1" colspan="1" aria-label="Prestación: Activar para ordenar la columna de manera ascendente" style="width: 72px;">Prestación</th>
+											<th class="all sorting" tabindex="0" aria-controls="tblLiqPrev" rowspan="1" colspan="1" aria-label="Estado Atención: Activar para ordenar la columna de manera ascendente" style="width: 70px;">Estado Atención</th>
+											<th class="all text-right sorting" tabindex="0" aria-controls="tblLiqPrev" rowspan="1" colspan="1" aria-label="Honorarios: Activar para ordenar la columna de manera ascendente" style="width: 75px;">Honorarios</th>
+											<th class="all text-centered sorting" tabindex="0" aria-controls="tblLiqPrev" rowspan="1" colspan="1" aria-label="Incluir: Activar para ordenar la columna de manera ascendente" style="width: 43px;">Incluir</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td valign="top" colspan="14" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="dataTables_info" id="tblLiqPrev_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+								<div class="dataTables_paginate paging_full_numbers" id="tblLiqPrev_paginate">
+									<ul class="pagination">
+										<li class="paginate_button first disabled" aria-controls="tblLiqPrev" tabindex="0" id="tblLiqPrev_first">
+											<a href="#">Primero</a>
+										</li>
+										<li class="paginate_button previous disabled" aria-controls="tblLiqPrev" tabindex="0" id="tblLiqPrev_previous">
+											<a href="#">Anterior</a>
+										</li>
+										<li class="paginate_button next disabled" aria-controls="tblLiqPrev" tabindex="0" id="tblLiqPrev_next">
+											<a href="#">Siguiente</a>
+										</li>
+										<li class="paginate_button last disabled" aria-controls="tblLiqPrev" tabindex="0" id="tblLiqPrev_last">
+											<a href="#">Último</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="liqGeneradas">
+						<br>
+						<form class="form-horizontal interline5 empresa" role="form">
+							<div id="tblLiqGen_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="toolbar" style="float: left;">
+									<a href="javascript:void(0)" role="button" data-toogle="helptip" data-width="500px" data-placement="right" data-id="26" class="" style="color: rgb(253, 129, 83);" data-original-title="" title=""><span class="fa fa-lg fa-question-circle-o"></span></a>
+								</div>
+								<div id="tblLiqGen_filter" class="dataTables_filter">
+									<label>Buscar:<input type="search" class="form-control input-sm" placeholder="" aria-controls="tblLiqGen"></label>
+								</div>
+								<div id="tblLiqGen_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+								<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="tblLiqGen" role="grid" aria-describedby="tblLiqGen_info" style="width: 100%;">
+									<thead>
+										<tr role="row">
+											<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblLiqGen" rowspan="1" colspan="1" aria-sort="descending" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Número</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqGen" rowspan="1" colspan="1" aria-label="Especialista: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Especialista</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqGen" rowspan="1" colspan="1" aria-label="Forma de Pago: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Forma de Pago</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqGen" rowspan="1" colspan="1" aria-label="Fecha Creación: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Fecha Creación</th>
+											<th class="text-right sorting" tabindex="0" aria-controls="tblLiqGen" rowspan="1" colspan="1" aria-label="Total: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Total</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqGen" rowspan="1" colspan="1" aria-label="Acciones: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td valign="top" colspan="6" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="dataTables_info" id="tblLiqGen_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+								<div class="dataTables_paginate paging_full_numbers" id="tblLiqGen_paginate">
+									<ul class="pagination">
+										<li class="paginate_button first disabled" aria-controls="tblLiqGen" tabindex="0" id="tblLiqGen_first">
+											<a href="#">Primero</a>
+										</li>
+										<li class="paginate_button previous disabled" aria-controls="tblLiqGen" tabindex="0" id="tblLiqGen_previous">
+											<a href="#">Anterior</a>
+										</li>
+										<li class="paginate_button next disabled" aria-controls="tblLiqGen" tabindex="0" id="tblLiqGen_next">
+											<a href="#">Siguiente</a>
+										</li>
+										<li class="paginate_button last disabled" aria-controls="tblLiqGen" tabindex="0" id="tblLiqGen_last">
+											<a href="#">Último</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" role="tabpanel" id="liqAprobadas">
+						<br>
+						<form class="form-horizontal interline5 empresa">
+							<div id="tblLiqAprob_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="toolbar" style="float: left;">
+									<a href="javascript:void(0)" role="button" data-toogle="helptip" data-width="500px" data-placement="right" data-id="27" class="" style="color: rgb(253, 129, 83);" data-original-title="" title=""><span class="fa fa-lg fa-question-circle-o"></span></a>
+								</div>
+								<div id="tblLiqAprob_filter" class="dataTables_filter">
+									<label>Buscar:<input type="search" class="form-control input-sm" placeholder="" aria-controls="tblLiqAprob"></label>
+								</div>
+								<div id="tblLiqAprob_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+								<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="tblLiqAprob" role="grid" aria-describedby="tblLiqAprob_info" style="width: 100%;">
+									<thead>
+										<tr role="row">
+											<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-sort="descending" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Número</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-label="Especialista: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Especialista</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-label="Forma de Pago: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Forma de Pago</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-label="Fecha Aprobación: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Fecha Aprobación</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-label="Fecha Pago: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Fecha Pago</th>
+											<th class="text-right sorting" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-label="Total: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Total</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqAprob" rowspan="1" colspan="1" aria-label="Acciones: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td valign="top" colspan="7" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="dataTables_info" id="tblLiqAprob_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+								<div class="dataTables_paginate paging_full_numbers" id="tblLiqAprob_paginate">
+									<ul class="pagination">
+										<li class="paginate_button first disabled" aria-controls="tblLiqAprob" tabindex="0" id="tblLiqAprob_first">
+											<a href="#">Primero</a>
+										</li>
+										<li class="paginate_button previous disabled" aria-controls="tblLiqAprob" tabindex="0" id="tblLiqAprob_previous">
+											<a href="#">Anterior</a>
+										</li>
+										<li class="paginate_button next disabled" aria-controls="tblLiqAprob" tabindex="0" id="tblLiqAprob_next">
+											<a href="#">Siguiente</a>
+										</li>
+										<li class="paginate_button last disabled" aria-controls="tblLiqAprob" tabindex="0" id="tblLiqAprob_last">
+											<a href="#">Último</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" role="tabpanel" id="liqRechazadas">
+						<br>
+						<form class="form-horizontal interline5 empresa">
+							<div id="tblLiqRech_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="toolbar" style="float: left;">
+									<a href="javascript:void(0)" role="button" data-toogle="helptip" data-width="500px" data-placement="right" data-id="28" class="" style="color: rgb(253, 129, 83);" data-original-title="" title=""><span class="fa fa-lg fa-question-circle-o"></span></a>
+								</div>
+								<div id="tblLiqRech_filter" class="dataTables_filter">
+									<label>Buscar:<input type="search" class="form-control input-sm" placeholder="" aria-controls="tblLiqRech"></label>
+								</div>
+								<div id="tblLiqRech_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+								<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="tblLiqRech" role="grid" aria-describedby="tblLiqRech_info" style="width: 100%;">
+									<thead>
+										<tr role="row">
+											<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-sort="descending" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Número</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-label="Especialista: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Especialista</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-label="Forma de Pago: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Forma de Pago</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-label="Fecha Rechazo: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Fecha Rechazo</th>
+											<th class="text-right sorting" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-label="Total: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Total</th>
+											<th class="sorting" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-label="Motivo Rechazo: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Motivo Rechazo</th>
+											<th class="text-centered sorting" tabindex="0" aria-controls="tblLiqRech" rowspan="1" colspan="1" aria-label="Acciones: Activar para ordenar la columna de manera ascendente" style="width: 0px;">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td valign="top" colspan="7" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="dataTables_info" id="tblLiqRech_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+								<div class="dataTables_paginate paging_full_numbers" id="tblLiqRech_paginate">
+									<ul class="pagination">
+										<li class="paginate_button first disabled" aria-controls="tblLiqRech" tabindex="0" id="tblLiqRech_first">
+											<a href="#">Primero</a>
+										</li>
+										<li class="paginate_button previous disabled" aria-controls="tblLiqRech" tabindex="0" id="tblLiqRech_previous">
+											<a href="#">Anterior</a>
+										</li>
+										<li class="paginate_button next disabled" aria-controls="tblLiqRech" tabindex="0" id="tblLiqRech_next">
+											<a href="#">Siguiente</a>
+										</li>
+										<li class="paginate_button last disabled" aria-controls="tblLiqRech" tabindex="0" id="tblLiqRech_last">
+											<a href="#">Último</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#region Generar -->
+	<div class="modal fade" id="mdlNewLiq" tabindex="-1" role="dialog" aria-labelledby="mdlNewLiq-Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlNewLiqLabel">
+						<span class="fa fa-calendar-plus-o"></span> Nueva Liquidación
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5" role="form">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label">Especialista:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7 control-text">
+								<span id="lblEspecialista"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label">Total:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7 control-text">
+								<span id="lblTotal"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="cboFormaPago">Forma de Pago:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7 control-text">
+								<div class="btn-group bootstrap-select fit-width">
+									<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboFormaPago" title="Forma de Pago..."><span class="filter-option pull-left">Forma de Pago...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+									<div class="dropdown-menu open">
+										<ul class="dropdown-menu inner" role="menu"></ul>
+									</div>
+									<select class="selectpicker" id="cboFormaPago" data-width="fit" title="Forma de Pago..." required="" tabindex="-98"><option class="bs-title-option" value="">Forma de Pago...</option></select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtObservacion">Observación</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<textarea class="form-control" id="txtObservacion" rows="5" maxlength="250"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<table style="width:100%;" class="table table-striped table-bordered table-hover" id="tblCarabo">
+									<caption>
+										<h4>Otros Cargos y Abonos</h4>
+										<button type="button" class="btn btn-success btn-xs pull-right new"><span class="fa fa-plus"></span> Nuevo</button>
+									</caption>
+									<thead>
+										<tr>
+											<th>Fecha</th>
+											<th>Concepto</th>
+											<th>Tipo</th>
+											<th>Valor</th>
+											<th>Acciones</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Rechazar -->
+	<div class="modal fade" id="mdlRech" tabindex="-1" role="dialog" aria-labelledby="mdlRech-Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlRechLabel">
+						<span class="fa fa-calendar-times-o"></span> Rechazar Liquidación
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5" role="form">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtMotivoRechazo">Motivo de Rechazo</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<textarea class="form-control" id="txtMotivoRechazo" rows="5" maxlength="500" required=""></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Generar -->
+	<div class="modal fade" id="mdlResend" tabindex="-1" role="dialog" aria-labelledby="mdlResend-Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlResendLabel">
+						<span class="fa fa-paper-plane"></span> Reenviar Liquidación
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5" role="form">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtEmail">Email:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<input type="text" id="txtEmail" class="form-control" maxlength="50" placeholder="Email" required="">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-paper-plane"></span> Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Actualizar -->
+	<div class="modal fade" id="mdlUpdate" tabindex="-1" role="dialog" aria-labelledby="mdlUpdate-Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlUpdateLabel">
+						<span class="fa fa-pencil-square-o"></span> Actualizar Liquidación
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5" role="form">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="lblFormaPago">Forma de Pago:</label>
+							<div class="col-md-7 control-text">
+								<span id="lblFormaPago"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtNroReferencia">Número de Referencia:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<input type="text" id="txtNroReferencia" class="form-control" maxlength="50" placeholder="Número de Referencia" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label" for="txtFechaPago">Fecha Pago:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<div class="input-group date">
+									<input type="text" id="txtFechaPago" class="form-control date" maxlength="10" required="">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="save"><span class="fa fa-floppy-o"></span> Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<!--#region Actualizar -->
+	<div class="modal fade" id="mdlCarabo" tabindex="-1" role="dialog" aria-labelledby="mdlCarabo-Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlCaraboLabel">
+						<span class="fa fa-calendar-plus-o"></span> Nuevo Cargo/Abono
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5" role="form">
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label">Tipo:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7 control-text">
+								<div class="btn-group bootstrap-select">
+									<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboTipo" title="Cargo/Abono.."><span class="filter-option pull-left">Cargo/Abono..</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+									<div class="dropdown-menu open">
+										<ul class="dropdown-menu inner" role="menu">
+											<li data-original-index="1">
+												<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Cargo</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+											</li>
+											<li data-original-index="2">
+												<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Abono</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+											</li>
+										</ul>
+									</div>
+									<select id="cboTipo" class="selectpicker" title="Cargo/Abono.." required="" tabindex="-98">
+										<option class="bs-title-option" value="">Cargo/Abono..</option>
+										<option value="-1">Cargo</option>
+										<option value="1">Abono</option>
+									</select>
+								</div>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label">Fecha:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<div id="txtFecha" class="input-group date">
+									<input type="text" class="form-control" placeholder="Fecha" required="">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label">Concepto:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<input type="text" class="form-control" id="txtConcepto" maxlength="250" placeholder="Concepto" required="">
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 col-sm-4 col-xs-4 control-label">Valor:</label>
+							<div class="col-md-7 col-sm-7 col-xs-7">
+								<input type="number" step="0.01" id="txtValor" class="form-control text-right" maxlength="20" placeholder="Valor" data-nzero="El valor debe ser distinto a cero" required="">
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary add"><span class="fa fa-plus"></span> Agregar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#endregion -->
+	<script src="/js/admin_liq?v=IN22Hm1FjtpJ-JhM0UNqO0QEdOaHV2S1QcWqh4Vtb6I1"></script>
+
+	<!-- /.row -->
+</div>

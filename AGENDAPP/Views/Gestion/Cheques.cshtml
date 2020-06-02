@@ -1,0 +1,225 @@
+﻿
+@{
+	ViewBag.Title = "Cheques";
+}
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Gestión de Cheques</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Cheques Registrados
+				</div>
+				<div class="panel-body">
+					<div id="tblData_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="toolbar" style="float: left;">
+							<div class="btn-group bootstrap-select">
+								<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboEstado" title="Todos"><span class="filter-option pull-left">Todos</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+								<div class="dropdown-menu open">
+									<ul class="dropdown-menu inner" role="menu">
+										<li data-original-index="1" class="selected">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Todos</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="2">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pendiente</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="3">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Pagado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="4">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Protestado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+									</ul>
+								</div>
+								<select id="cboEstado" data-aditional-parameter="EstadoChequeId" data-aditional-type="int" title="Estado Cheque..." class="" tabindex="-98"><option class="bs-title-option" value="">Estado Cheque...</option><option value="0">Todos</option><option value="1">Pendiente</option><option value="2">Pagado</option><option value="3">Protestado</option></select>
+							</div>&nbsp;
+							<div class="btn-group bootstrap-select">
+								<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="cboRango" title="Rango Fechas Pago..."><span class="filter-option pull-left">Rango Fechas Pago...</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+								<div class="dropdown-menu open">
+									<ul class="dropdown-menu inner" role="menu">
+										<li data-original-index="1">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Enero 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="2">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Febrero 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="3">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Marzo 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="4">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Abril 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="5">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Mayo 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="6">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Junio 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="7">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Julio 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="8">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Agosto 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="9">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Septiembre 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="10">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Octubre 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="11">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Noviembre 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="12">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Diciembre 2020</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="13">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Último Día</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="14">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Última Semana</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="15">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Último Mes</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="16">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Último Año</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="17">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Próximo Día</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="18">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Próxima Semana</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="19">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Próximo Mes</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="20">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Próximo Año</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+										<li data-original-index="21">
+											<a tabindex="0" class="" style="" data-tokens="null"><span class="text">Personalizado</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+										</li>
+									</ul>
+								</div>
+								<select id="cboRango" title="Rango Fechas Pago..." class="" tabindex="-98"><option class="bs-title-option" value="">Rango Fechas Pago...</option><option value="2020Jan">Enero 2020</option><option value="2020feb.">Febrero 2020</option><option value="2020mar.">Marzo 2020</option><option value="2020abr.">Abril 2020</option><option value="2020may.">Mayo 2020</option><option value="2020jun.">Junio 2020</option><option value="2020jul.">Julio 2020</option><option value="2020ago.">Agosto 2020</option><option value="2020sep.">Septiembre 2020</option><option value="2020oct.">Octubre 2020</option><option value="2020nov.">Noviembre 2020</option><option value="2020dic.">Diciembre 2020</option><option value="LastDay">Último Día</option><option value="LastWeek">Última Semana</option><option value="LastMonth">Último Mes</option><option value="LastYear">Último Año</option><option value="NextDay">Próximo Día</option><option value="NextWeek">Próxima Semana</option><option value="NextMonth">Próximo Mes</option><option value="NextYear">Próximo Año</option><option value="Custom">Personalizado</option></select>
+							</div>&nbsp;
+							<span class="date">&nbsp;</span>
+							<button type="button" class="btn btn-primary date"><span class="fa fa-file-pdf-o"></span> Descargar PDF</button>
+							<span class="date">&nbsp;</span>
+							<button type="button" class="btn btn-primary date mr-3"><span class="fa fa-file-excel-o"></span> Descargar XLS</button>
+						</div>
+						<div id="tblData_filter" class="dataTables_filter">
+							<label>Buscar:<input type="search" class="form-control input-sm ml-2" placeholder="" aria-controls="tblData"></label>
+						</div>
+						<div id="tblData_processing" class="dataTables_processing" style="display: none;">Procesando...</div>
+						<table width="100%" class="table table-info table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="tblData" role="grid" aria-describedby="tblData_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Número: Activar para ordenar la columna de manera ascendente" style="width: 53px;">Número</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Paciente: Activar para ordenar la columna de manera ascendente" style="width: 58px;">Paciente</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="N° Factura: Activar para ordenar la columna de manera ascendente" style="width: 56px;">N° Factura</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Banco: Activar para ordenar la columna de manera ascendente" style="width: 43px;">Banco</th>
+									<th class="sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Total: Activar para ordenar la columna de manera ascendente" style="width: 33px;">Total</th>
+									<th class="text-centered sorting_desc" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-sort="descending" aria-label="Fecha Emisión: Activar para ordenar la columna de manera ascendente" style="width: 71px;">Fecha Emisión</th>
+									<th class="text-centered sorting" tabindex="0" aria-controls="tblData" rowspan="1" colspan="1" aria-label="Fecha Cobro: Activar para ordenar la columna de manera ascendente" style="width: 62px;">Fecha Cobro</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd">
+									<td valign="top" colspan="11" class="dataTables_empty">Ningún dato disponible en esta tabla</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="tblData_info" role="status" aria-live="polite">Mostrando registros del 0 al 0 de un total de 0 registros</div>
+						<div class="dataTables_paginate paging_full_numbers" id="tblData_paginate">
+							<ul class="pagination">
+								<li class="paginate_button first disabled" aria-controls="tblData" tabindex="0" id="tblData_first">
+									<a href="#">Primero</a>
+								</li>
+								<li class="paginate_button previous disabled" aria-controls="tblData" tabindex="0" id="tblData_previous">
+									<a href="#">Anterior</a>
+								</li>
+								<li class="paginate_button active" aria-controls="tblData" tabindex="0">
+									<a href="#">1</a>
+								</li>
+								<li class="paginate_button next disabled" aria-controls="tblData" tabindex="0" id="tblData_next">
+									<a href="#">Siguiente</a>
+								</li>
+								<li class="paginate_button last disabled" aria-controls="tblData" tabindex="0" id="tblData_last">
+									<a href="#">Último</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#region Cambia Estado -->
+	<div class="modal fade" id="mdlCambiaEstado" tabindex="-1" role="dialog" aria-labelledby="mdlCambiaEstado-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlCambiaEstado-label">
+						<span class="fa fa-refresh"></span> Cambia Estado Cheque
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="row form-group">
+							<label class="col-md-3 col-sm-3 col-xs-3 control-label" for="cboTipo">Nuevo Estado:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<select id="cboEstado" title="Estado Cheque..."></select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" id="save" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#endregion -->
+	<!--#region Cambia Comentario -->
+	<div class="modal fade" id="mdlCambiaComentario" tabindex="-1" role="dialog" aria-labelledby="mdlCambiaComentario-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="mdlCambiaComentario-label">
+						<span class="fa fa-refresh"></span> Cambia Comentario Cheque
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal interline5 sub">
+						<div class="row form-group">
+							<label class="col-md-3 col-sm-3 col-xs-3 control-label" for="txtComentario">Comentario:</label>
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<textarea id="txtComentario" class="form-control" placeholder="Comentario" rows="4" required="" maxlength="250"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" id="save" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#endregion -->
+	<script src="/js/gestion_cheques?v=kEuRKqQ6QldV9_vLb5OLCy9vx0tB2bg3D3mt2y5md1I1"></script>
+
+	<!-- /.row -->
+</div>
