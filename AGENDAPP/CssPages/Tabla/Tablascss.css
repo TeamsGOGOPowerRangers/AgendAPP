@@ -1,0 +1,87 @@
+﻿#tblData_info {
+	font-size:small;
+}
+#tblData_paginate, #tblROLUser_paginate, #tblFer_paginate, #tblLiqPrev_paginate, #tblPacientes_paginate {
+	margin-left: auto;
+}
+.table-info, .table-info > th, .table-info > td {
+	background-color: #1cbacc;
+}
+.dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-radius: 0;
+	top: 50%;
+	margin-right: 5px;
+	left: 8px;
+	height: 18px;
+	width: 18px;
+	margin-top: -9px;
+	font-size: 18px;
+	color: #fff;
+	border: 0;
+	background-color: transparent;
+	font-family: "LineAwesome";
+	text-decoration: inherit;
+	text-rendering: optimizeLegibility;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	content: "";
+}
+.dataTables_wrapper .dataTable th, .dataTables_wrapper .dataTable td {
+	color: #fff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+	background-color: #11a2b3 !important;
+	color: #fff;
+}
+.table-hover tbody tr:hover {
+	color: #fff;
+	background-color: #11a2b3 !important;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	z-index: 3;
+	color: #fff !important;
+	cursor: default;
+	background-color: #1cbacc;
+	border-color: #11a2b3;
+}
+
+/*------------Acciones------------*/
+.actions > a.fa-edit:hover  {
+	color: #0b6771;
+}
+.actions > a.glyphicon-check:hover {
+	color: #0b6771;
+}
+.actions > a.fa-trash:hover {
+	color: #0b6771;
+}
+.actions > a.fa-unlock:hover {
+	color: #0b6771;
+}
+.actions > a.fa-unlock-alt:hover {
+	color: #0b6771;
+}
+a.fa-edit:hover {
+	color: #0b6771 !important;
+}
+
+a.glyphicon-check:hover {
+	color: #0b6771 !important;
+}
+
+a.fa-trash:hover {
+	color: #0b6771 !important;
+}
+
+a.fa-unlock:hover {
+	color: #0b6771 !important;
+}
+
+a.fa-unlock-alt:hover {
+	color: #0b6771 !important;
+}
+/*------------Acciones------------*/

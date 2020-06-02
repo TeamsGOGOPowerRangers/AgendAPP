@@ -1,0 +1,99 @@
+﻿a {
+	color: #0e727d !important;
+	text-decoration: none;
+	background-color: transparent;
+}
+	a:not([href]):not([tabindex]) {
+		color: inherit !important;
+		text-decoration: none;
+	}
+.btn-primary, .btn-info {
+	color: #fff;
+	background-color: #1cbacc;
+	border-color: #1cbacc;
+}
+	.btn-primary.disabled, .btn-primary:disabled {
+		color: #fff;
+		background-color: #1cbacc !important;
+		border-color: #1cbacc !important;
+	}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+	background-color: #1cbacc !important;
+	border-color: #1cbacc !important;
+	color: #ffffff;
+}
+.alert.alert-info {
+	background: #1cbacc !important;
+	border: 1px solid #1cbacc !important;
+	color: #ffffff;
+}
+	.btn-primary:hover ,.btn-info:hover {
+		color: #fff;
+		background-color: #11a2b3;
+		border-color: #11a2b3;
+	}
+.show > .btn.btn-default, .btn.btn-default.active, .btn.btn-default:active, .btn.btn-default:hover {
+	color: #ffffff;
+	background: #1cbacc;
+	border-color: #1cbacc;
+}
+.text-success {
+	color: #ffffff !important;
+}
+.btn.btn-default {
+	border: 0;
+	background: transparent;
+	color: #74788d;
+	border: 1px solid #1cbacc;
+}
+.bg-info {
+	background-color: #1cbacc !important;
+	color: #fff;
+}
+.cell:hover {
+	color: #0b6771 !important;
+}
+.nav-tabs > li > a {
+	background-color: #1cbacc !important;
+	margin-right: 2px;
+	line-height: 1.42857143;
+	border: 1px solid transparent;
+	border-radius: 4px 4px 0 0;
+	color:#fff !important;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	color: #555 !important;
+	cursor: default;
+	background-color: #fff !important;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+}
+label.kt-portlet__head-title {
+	color: #fff;
+}
+.card-header {
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 0;
+	background-color: #1cbacc;
+	border-bottom: 1px solid #ebedf2;
+}
+.paginate_button {
+	padding: 3px 10px;
+	border: 0;
+	background: transparent;
+	color: #74788d;
+	border: 1px solid #1cbacc;
+}
+	.paginate_button:hover {
+		padding: 3px 10px;
+		border: 0;
+		background: #1cbacc;
+		color: #fff;
+		border: 1px solid #1cbacc;
+	}
+	.paginate_button > a:hover {
+		color: #fff !important;
+	}
+li.paginate_button.active {
+	background: #1cbacc;
+}
