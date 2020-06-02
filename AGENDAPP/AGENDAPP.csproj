@@ -138,7 +138,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\FichaPacienteController.cs" />
+    <Compile Include="Controllers\GestionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformesController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenedoresController.cs" />
     <Compile Include="Controllers\PacientesController.cs" />
     <Compile Include="Global.asax.cs">
